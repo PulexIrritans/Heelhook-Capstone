@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 import { ReactComponent as Map } from '../icons/map.svg';
 import { ReactComponent as Heart } from '../icons/heart.svg';
+import boulderstart from '../images/Boulder-start.jpg';
 
 const BoulderCard = ({id, name, sector, level, handle_color, likes, img_start}) => {
 
     return (
         <CardLi>
-            <BoulderPic src='../images/Boulder-girl.jpg'></BoulderPic> 
+            <BoulderPic src={boulderstart}></BoulderPic> 
             <BoulderID>#{id}</BoulderID>
             <BoulderName>{name}</BoulderName>
             <BoulderLikes><Heart style={{width: '20px'}}/>{likes}</BoulderLikes>
@@ -36,6 +37,9 @@ margin: 0.2rem 0;
 }`
 
 const BoulderPic = styled.img`
+ object-fit: cover;
+  width: 100%;
+  max-height: 100%;
 grid-column: 1/2;
 grid-row: 1/3;
 `
