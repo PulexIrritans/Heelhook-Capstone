@@ -1,4 +1,4 @@
-import './App.css';
+// import './App.css';
 import BoulderCard from './components/BoulderCard';
 
 function App() {
