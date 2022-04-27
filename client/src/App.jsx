@@ -56,8 +56,8 @@ function App() {
 
 
   return (
-    <div className="App">
-     <ul>
+    <div className='App'>
+     <ul role='list'>
       {bouldersList.map(boulder => (
         <BoulderCard 
         key={boulder.number}
