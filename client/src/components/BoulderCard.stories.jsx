@@ -1,4 +1,5 @@
 import BoulderCard from './BoulderCard';
+import '../App.css';
 
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -12,7 +13,10 @@ export default {
 };
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template = (args) => <BoulderCard {...args} />;
+const Template = (args) => (
+<ul>
+<BoulderCard {...args} />
+</ul>);
 
 export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
