@@ -4,6 +4,7 @@ import BoulderCard from './BoulderCard';
 export default {
   title: 'components/Cards/BoulderCard',
   component: BoulderCard,
+  argTypes: { onClick: 'onClick' },
 };
 
 const Template = (args) => (
@@ -19,4 +20,7 @@ Default.args = {
   sector: 'Sector Name',
   level: 5,
   handle_color: 'yellow',
+  tags: ['Sloper', 'Dyno'],
+  setter: 'Martin Pagels',
+  weighting: 100,
 };
