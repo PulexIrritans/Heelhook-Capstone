@@ -39,14 +39,14 @@ const Wrapper = styled.li`
   gap: 5px;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(3, 1.5rem);
-  background-color: rgb(248, 249, 250);
-  border-radius: 5px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  background-color: var(--color-light-gray);
+  /* border-radius: 5px; */
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
   padding: 0.2rem;
   margin: 0.2rem 0;
   &:hover {
-    background-color: rgb(241, 243, 245);
+    background-color: var(--color-medium-gray);
   }
 `;
 

@@ -5,5 +5,5 @@
   "tabWidth": 2,
   "trailingComma": "es5",
   "useTabs": false,
-  "printWidth": 50
+  "printWidth": 80
 }
