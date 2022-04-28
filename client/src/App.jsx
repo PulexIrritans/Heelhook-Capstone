@@ -57,7 +57,7 @@ function App() {
 
   return (
     <div className='App'>
-     <ul role='list'>
+     <ul style={{width: '95%'}}role='list'>
       {bouldersList.map(boulder => (
         <BoulderCard 
         key={boulder.number}
@@ -68,6 +68,10 @@ function App() {
         handle_color={boulder.handle_color}
         img_start={boulder.img_start}
         likes={boulder.number_of_likes}
+        setter={boulder.setter}
+        tags={boulder.tags}
+        weighting={boulder.weighting}
+        detailedMode={false}
         />
       ))}
      </ul>

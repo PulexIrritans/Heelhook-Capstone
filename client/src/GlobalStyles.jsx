@@ -5,6 +5,7 @@ export default createGlobalStyle`
 :root {
     --color-light-gray: rgb(248, 249, 250);
     --color-medium-gray: rgb(241, 243, 245);
+    --color-cyan: rgb(16, 152, 173);
     --border-color:rgb(69, 69, 69);
     --border-radius: 5px;
     --box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
@@ -35,7 +36,6 @@ input, label, textarea{
 ul {
   list-style: none;
   padding: 0;
-  width: 95%;
 }
 
 .App {

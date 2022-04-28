@@ -1,6 +1,9 @@
 import styled from 'styled-components';
+import { useState } from 'react';
 import { ReactComponent as Map } from '../icons/map.svg';
 import { ReactComponent as Heart } from '../icons/heart.svg';
+import { ReactComponent as SetterIcon } from '../icons/setter.svg';
+import boulderall from '../images/Boulder-all.jpg';
 import boulderstart from '../images/Boulder-start.jpg';
 
 const BoulderCard = ({
@@ -10,11 +13,20 @@ const BoulderCard = ({
   level,
   handle_color,
   likes,
+  tags,
   img_start,
+  setter,
+  weighting,
+  detailedMode
 }) => {
+
+    const [isInDetailedMode, setIsInDetailedMode] =useState(detailedMode);
+
   return (
-    <Wrapper>
-      <Pic src={boulderstart}></Pic>
+      <>
+        {!isInDetailedMode ? (
+           <WrapperShort> 
+              <StartPic src={boulderstart}></StartPic>
       <ID>#{id}</ID>
       <Name>{name}</Name>
       <Likes>
@@ -27,20 +39,45 @@ const BoulderCard = ({
         <Map style={{ width: '20px' }} />
       </SectorIcon>
       <Sector>{sector}</Sector>
-      <Button>Climb</Button>
-    </Wrapper>
+      <Button onClick={() => setIsInDetailedMode(true)}>Climb</Button>
+    </WrapperShort>  
+        ) : (
+            <WrapperLong> 
+              <StartPic src={boulderstart} alt="Boulder Start"></StartPic>
+      <ID>#{id}</ID>
+      <Name>{name}</Name>
+      <Likes>
+        <Heart style={{ width: '20px' }} />
+        {likes}
+      </Likes>
+      <Level>Level: {level}</Level>
+      <Handle>Handle: {handle_color}</Handle>
+      <SectorIcon>
+        <Map style={{ width: '20px' }} />
+      </SectorIcon>
+      <Sector>{sector}</Sector>
+      <Setter><SetterIcon style={{ width: '20px' }}/> {setter}</Setter>
+      <Weighting>Weighting: {weighting}</Weighting>
+      <TagList>
+         {tags.map((tag, index) => (
+        <Tag key={index}>{tag}</Tag>
+      ))}
+      </TagList>
+      <AllPic src={boulderall} alt="Boulder Complete"></AllPic>
+    </WrapperLong>   
+        )}
+    </>
   );
 };
 
 export default BoulderCard;
 
-const Wrapper = styled.li`
+const WrapperShort = styled.li`
   display: grid;
   gap: 5px;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(3, 1.5rem);
   background-color: var(--color-light-gray);
-  /* border-radius: 5px; */
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
   padding: 0.2rem;
@@ -50,7 +87,22 @@ const Wrapper = styled.li`
   }
 `;
 
-const Pic = styled.img`
+const WrapperLong = styled.li`
+  display: grid;
+  gap: 5px;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1.7rem);
+  background-color: var(--color-light-gray);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 0.2rem;
+  margin: 0.2rem 0;
+  &:hover {
+    background-color: var(--color-medium-gray);
+  }
+`;
+
+const StartPic = styled.img`
   object-fit: cover;
   width: 100%;
   max-height: 100%;
@@ -93,6 +145,37 @@ const Sector = styled.p`
 `;
 const Button = styled.button`
   font-size: inherit;
-  grid-column: 5/5;
-  grid-row: 1/4;
+  grid-column: 5/6;
+  grid-row: 1/4; 
+`;
+
+const TagList = styled.ul`
+  display: flex;
+  justify-content: space-evenly; 
+  grid-column: 1/5;  
+  grid-row: 5/6;
+`;
+
+const Tag = styled.li`
+  padding: 0.3em;
+  background-color: var(--color-cyan);
+  flex-wrap: wrap;
+`;
+
+const Setter = styled.p`
+  grid-column: 1/3;
+  grid-row: 4/5;  
+`;
+
+const Weighting = styled.p`
+  grid-column: 3/5;
+  grid-row: 4/5;
+`;
+
+const AllPic = styled.img`
+  object-fit: cover;
+  width: 100%;
+  max-height: 100%;
+  grid-column: 5/6;
+  grid-row: 1/6; 
 `;
