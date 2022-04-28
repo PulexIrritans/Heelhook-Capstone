@@ -1,3 +1,4 @@
+import { render, screen } from '@testing-library/react';
 import BoulderCard from './BoulderCard';
 
 const Boulder = {
@@ -25,10 +26,22 @@ const Boulder = {
               likes = {Boulder.number_of_likes}/>
           );
           const cardHeader = screen.getByRole('heading');
-          expect(cardHeader).toHaveTextContent('Black Widow and the people');
-
           const cardPicture = screen.getByRole('img');
-          expect(cardPicture).toBeInTheDocument();
+          const button = screen.getByRole('button');
 
+          const name = screen.getByText(/Black widow and the people/i);
+          const id = screen.getByText(/#1/);
+          const sector = screen.getByText(/Monkey Island/i);
+          const level = screen.getByText(/Level: 5/);
+          const handle_color = screen.getByText(/black/);
+
+          expect(cardPicture).toBeInTheDocument();
+          expect(cardHeader).toHaveTextContent('Black Widow and the people');
+          expect(button).toBeInTheDocument();
+          expect(name).toBeInTheDocument();
+          expect(id).toBeInTheDocument();
+          expect(sector).toBeInTheDocument();
+          expect(level).toBeInTheDocument();
+          expect(handle_color).toBeInTheDocument();
       })
   })
