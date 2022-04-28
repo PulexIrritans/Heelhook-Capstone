@@ -38,20 +38,26 @@ describe('BoulderCard', () => {
     const cardPicture = screen.getByRole('img');
     const button = screen.getByRole('button');
 
-    const name = screen.getByText(/Black widow and the people/i);
     const id = screen.getByText(/#1/);
     const sector = screen.getByText(/Monkey Island/i);
     const level = screen.getByText(/Level: 5/);
     const handle_color = screen.getByText(/black/);
+    const tag1BeforeEvent = screen.queryByText(/Dyno/i);
+    const tag2BeforeEvent = screen.queryByText(/Sloper/i);
+    const setterBeforeEvent = screen.queryByText(/Martin Pagels/i);
+    const weightingBeforeEvent = screen.queryByText(/Weighting: 100/i);
 
     expect(cardPicture).toBeInTheDocument();
     expect(cardHeader).toHaveTextContent('Black Widow and the people');
     expect(button).toBeInTheDocument();
-    expect(name).toBeInTheDocument();
     expect(id).toBeInTheDocument();
     expect(sector).toBeInTheDocument();
     expect(level).toBeInTheDocument();
     expect(handle_color).toBeInTheDocument();
+    expect(tag1BeforeEvent).not.toBeInTheDocument();
+    expect(tag2BeforeEvent).not.toBeInTheDocument();
+    expect(setterBeforeEvent).not.toBeInTheDocument();
+    expect(weightingBeforeEvent).not.toBeInTheDocument();
 
     userEvent.click(button);
 
