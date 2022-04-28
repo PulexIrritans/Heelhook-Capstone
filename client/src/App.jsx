@@ -1,5 +1,5 @@
-// import './App.css';
 import BoulderCard from './components/BoulderCard';
+import styled from 'styled-components';
 
 function App() {
  
@@ -57,7 +57,7 @@ function App() {
 
   return (
     <div className='App'>
-     <ul style={{width: '95%'}}role='list'>
+     <BoulderList role='list'>
       {bouldersList.map(boulder => (
         <BoulderCard 
         key={boulder.number}
@@ -74,9 +74,16 @@ function App() {
         detailedMode={false}
         />
       ))}
-     </ul>
+     </BoulderList>
     </div>
   );
 }
 
 export default App;
+
+const BoulderList = styled.ul`
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+`

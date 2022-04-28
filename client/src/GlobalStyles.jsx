@@ -23,7 +23,6 @@ body{
     height: 100vh;
     margin: 0 auto;
     padding: 0;
-    text-align: center;
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
     color: var(--color-white);
     background-color: var(--color-black);
@@ -36,13 +35,6 @@ input, label, textarea{
 ul {
   list-style: none;
   padding: 0;
-}
-
-.App {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  margin: 0 auto;
 }
 `;

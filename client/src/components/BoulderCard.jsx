@@ -16,11 +16,10 @@ const BoulderCard = ({
   tags,
   img_start,
   setter,
-  weighting,
-  detailedMode
+  weighting
 }) => {
 
-    const [isInDetailedMode, setIsInDetailedMode] =useState(detailedMode);
+    const [isInDetailedMode, setIsInDetailedMode] =useState(false);
 
   return (
       <>
@@ -81,7 +80,6 @@ const WrapperShort = styled.li`
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
   padding: 0.2rem;
-  margin: 0.2rem 0;
   &:hover {
     background-color: var(--color-medium-gray);
   }
@@ -151,7 +149,9 @@ const Button = styled.button`
 
 const TagList = styled.ul`
   display: flex;
+  width: 100%;
   justify-content: space-evenly; 
+  flex-wrap: wrap;
   grid-column: 1/5;  
   grid-row: 5/6;
 `;
@@ -159,7 +159,6 @@ const TagList = styled.ul`
 const Tag = styled.li`
   padding: 0.3em;
   background-color: var(--color-cyan);
-  flex-wrap: wrap;
 `;
 
 const Setter = styled.p`
