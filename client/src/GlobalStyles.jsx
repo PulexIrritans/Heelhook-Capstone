@@ -5,6 +5,7 @@ export default createGlobalStyle`
 :root {
     --color-light-gray: rgb(248, 249, 250);
     --color-medium-gray: rgb(241, 243, 245);
+    --color-cyan: rgb(16, 152, 173);
     --border-color:rgb(69, 69, 69);
     --border-radius: 5px;
     --box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
@@ -22,7 +23,6 @@ body{
     height: 100vh;
     margin: 0 auto;
     padding: 0;
-    text-align: center;
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
     color: var(--color-white);
     background-color: var(--color-black);
@@ -35,14 +35,6 @@ input, label, textarea{
 ul {
   list-style: none;
   padding: 0;
-  width: 95%;
-}
-
-.App {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  margin: 0 auto;
 }
 `;
