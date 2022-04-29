@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ReactComponent as Map } from '../icons/map.svg';
 import { ReactComponent as Heart } from '../icons/heart.svg';
 import { ReactComponent as SetterIcon } from '../icons/setter.svg';
@@ -17,8 +18,9 @@ const BoulderCard = ({
   img_start,
   setter,
   weighting,
+  detailedMode
 }) => {
-  const [isInDetailedMode, setIsInDetailedMode] = useState(false);
+  const [isInDetailedMode, setIsInDetailedMode] = useState(detailedMode);
 
   return (
     <>
@@ -63,7 +65,7 @@ const BoulderCard = ({
           <Map style={{ width: '20px' }} />
         </SectorIcon>
         <Sector>{sector}</Sector>
-        <Button onClick={() => setIsInDetailedMode(true)}>Climb</Button>
+       <Link onClick={() => setIsInDetailedMode(true)} to={`/add/${id}`}><Button>Climb</Button></Link>
       </WrapperShort>
       )}
     </>
