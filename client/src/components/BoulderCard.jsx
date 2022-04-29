@@ -65,7 +65,7 @@ const BoulderCard = ({
           <Map style={{ width: '20px' }} />
         </SectorIcon>
         <Sector>{sector}</Sector>
-       <Link onClick={() => setIsInDetailedMode(true)} to={`/add/${id}`}><Button>Climb</Button></Link>
+       <StyledLink onClick={() => setIsInDetailedMode(true)} to={`/add/${id}`}>Climb</StyledLink>
       </WrapperShort>
       )}
     </>
@@ -144,10 +144,18 @@ const Sector = styled.p`
   grid-column: 3/5;
   grid-row: 3/4;
 `;
-const Button = styled.button`
+const StyledLink = styled(Link)`
   font-size: inherit;
+  color: inherit;
   grid-column: 5/6;
   grid-row: 1/4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background-color: var(--color-cyan);
 `;
 
 const TagList = styled.ul`
