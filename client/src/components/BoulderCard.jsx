@@ -11,60 +11,61 @@ const BoulderCard = ({
   name,
   sector,
   level,
-  handle_color,
+  hold_color,
   likes,
   tags,
   img_start,
   setter,
-  weighting
+  weighting,
 }) => {
-
-    const [isInDetailedMode, setIsInDetailedMode] =useState(false);
+  const [isInDetailedMode, setIsInDetailedMode] = useState(false);
 
   return (
-      <>
-        {!isInDetailedMode ? (
-           <WrapperShort> 
-              <StartPic src={boulderstart}></StartPic>
-      <ID>#{id}</ID>
-      <Name>{name}</Name>
-      <Likes>
-        <Heart style={{ width: '20px' }} />
-        {likes}
-      </Likes>
-      <Level>Level: {level}</Level>
-      <Handle>Handle: {handle_color}</Handle>
-      <SectorIcon>
-        <Map style={{ width: '20px' }} />
-      </SectorIcon>
-      <Sector>{sector}</Sector>
-      <Button onClick={() => setIsInDetailedMode(true)}>Climb</Button>
-    </WrapperShort>  
-        ) : (
-            <WrapperLong> 
-              <StartPic src={boulderstart} alt="Boulder Start"></StartPic>
-      <ID>#{id}</ID>
-      <Name>{name}</Name>
-      <Likes>
-        <Heart style={{ width: '20px' }} />
-        {likes}
-      </Likes>
-      <Level>Level: {level}</Level>
-      <Handle>Handle: {handle_color}</Handle>
-      <SectorIcon>
-        <Map style={{ width: '20px' }} />
-      </SectorIcon>
-      <Sector>{sector}</Sector>
-      <Setter><SetterIcon style={{ width: '20px' }}/> {setter}</Setter>
-      <Weighting>Weighting: {weighting}</Weighting>
-      <TagList>
-         {tags.map((tag, index) => (
-        <Tag key={index}>{tag}</Tag>
-      ))}
-      </TagList>
-      <AllPic src={boulderall} alt="Boulder Complete"></AllPic>
-    </WrapperLong>   
-        )}
+    <>
+      {!isInDetailedMode ? (
+        <WrapperLong>
+        <StartPic src={boulderstart} alt='Boulder Start'/>
+        <ID>#{id}</ID>
+        <Name>{name}</Name>
+        <Likes>
+          <Heart style={{ width: '20px' }} />
+          {likes}
+        </Likes>
+        <Level>Level: {level}</Level>
+        <Hold>Hold: {hold_color}</Hold>
+        <SectorIcon>
+          <Map style={{ width: '20px' }} />
+        </SectorIcon>
+        <Sector>{sector}</Sector>
+        <Setter>
+          <SetterIcon style={{ width: '20px' }} /> {setter}
+        </Setter>
+        <Weighting>Weighting: {weighting}</Weighting>
+        <TagList>
+          {tags.map((tag, index) => (
+            <Tag key={index}>{tag}</Tag>
+          ))}
+        </TagList>
+        <AllPic src={boulderall} alt="Boulder Complete"></AllPic>
+      </WrapperLong> 
+      ) : (
+        <WrapperShort>
+        <StartPic src={boulderstart} alt='Boulder Start'/>
+        <ID>#{id}</ID>
+        <Name>{name}</Name>
+        <Likes>
+          <Heart style={{ width: '20px' }} />
+          {likes}
+        </Likes>
+        <Level>Level: {level}</Level>
+        <Hold>Hold: {hold_color}</Hold>
+        <SectorIcon>
+          <Map style={{ width: '20px' }} />
+        </SectorIcon>
+        <Sector>{sector}</Sector>
+        <Button onClick={() => setIsInDetailedMode(true)}>Climb</Button>
+      </WrapperShort>
+      )}
     </>
   );
 };
@@ -128,7 +129,7 @@ const Level = styled.p`
   grid-column: 2/3;
   grid-row: 2/3;
 `;
-const Handle = styled.p`
+const Hold = styled.p`
   grid-column: 3/5;
   grid-row: 2/3;
 `;
@@ -144,15 +145,15 @@ const Sector = styled.p`
 const Button = styled.button`
   font-size: inherit;
   grid-column: 5/6;
-  grid-row: 1/4; 
+  grid-row: 1/4;
 `;
 
 const TagList = styled.ul`
   display: flex;
   width: 100%;
-  justify-content: space-evenly; 
+  justify-content: space-evenly;
   flex-wrap: wrap;
-  grid-column: 1/5;  
+  grid-column: 1/5;
   grid-row: 5/6;
 `;
 
@@ -163,7 +164,7 @@ const Tag = styled.li`
 
 const Setter = styled.p`
   grid-column: 1/3;
-  grid-row: 4/5;  
+  grid-row: 4/5;
 `;
 
 const Weighting = styled.p`
@@ -176,5 +177,8 @@ const AllPic = styled.img`
   width: 100%;
   max-height: 100%;
   grid-column: 5/6;
-  grid-row: 1/6; 
+  grid-row: 1/6;
 `;
+
+
+

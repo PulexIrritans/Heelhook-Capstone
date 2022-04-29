@@ -9,7 +9,7 @@ function App() {
       name: 'Black Widow and the people',
       sector: 'Monkey Island',
       level: '5',
-      handle_color: 'black',
+      hold_color: 'black',
       setter: 'Martin Pagels',
       tags: ['Dyno', 'Sloper'],
       img_start: 'Boulder-girl.jpg',
@@ -25,7 +25,7 @@ function App() {
       name: 'Orang Utan',
       sector: 'Monkey Island',
       level: '3',
-      handle_color: 'blue',
+      hold_color: 'blue',
       setter: 'Stefan Korder',
       tags: ['Sloper'],
       img_start: 'Boulder-girl.jpg',
@@ -41,7 +41,7 @@ function App() {
       name: 'Tarzan',
       sector: 'Monkey Island',
       level: '3',
-      handle_color: 'white',
+      hold_color: 'white',
       setter: 'Stefan Korder',
       tags: ['Travers'],
       img_start: 'Boulder-girl.jpg',
@@ -65,7 +65,7 @@ function App() {
         name={boulder.name}
         sector={boulder.sector}
         level={boulder.level}
-        handle_color={boulder.handle_color}
+        hold_color={boulder.hold_color}
         img_start={boulder.img_start}
         likes={boulder.number_of_likes}
         setter={boulder.setter}
