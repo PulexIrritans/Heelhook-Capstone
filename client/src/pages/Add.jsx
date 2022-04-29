@@ -1,38 +1,30 @@
 import BoulderCard from '../components/BoulderCard';
-import styled from 'styled-components'
-import { useParams } from 'react-router-dom';
-
+import { useParams, Link } from 'react-router-dom';
 
 const Add = ({bouldersList}) => {
     const { id } = useParams()
+    const currentBoulder = bouldersList.find(boulder => boulder.number === Number(id));
   return (
-    <BoulderList role="list">
-      {bouldersList.map(boulder => (
+    <>
+      <Link to={`/`}>Back to Boulder List</Link>
+      {currentBoulder ? (
         <BoulderCard
-          key={boulder.number}
-          id={boulder.number}
-          name={boulder.name}
-          sector={boulder.sector}
-          level={boulder.level}
-          hold_color={boulder.hold_color}
-          img_start={boulder.img_start}
-          likes={boulder.number_of_likes}
-          setter={boulder.setter}
-          tags={boulder.tags}
-          weighting={boulder.weighting}
+          id={currentBoulder.number}
+          name={currentBoulder.name}
+          sector={currentBoulder.sector}
+          level={currentBoulder.level}
+          hold_color={currentBoulder.hold_color}
+          img_start={currentBoulder.img_start}
+          likes={currentBoulder.number_of_likes}
+          setter={currentBoulder.setter}
+          tags={currentBoulder.tags}
+          weighting={currentBoulder.weighting}
           detailedMode={true}
         />
-      ))}
-    </BoulderList>
+        ) : (''
+        )}
+    </>
   );
 };
-
-
-const BoulderList = styled.ul`
-  width: 95%;
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-`
 
 export default Add;
