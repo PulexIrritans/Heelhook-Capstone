@@ -104,9 +104,10 @@ const WrapperLong = styled.li`
 `;
 
 const StartPic = styled.img`
-  object-fit: cover;
-  width: 100%;
+  object-fit: contain;
+  max-width: 100%;
   max-height: 100%;
+  border-radius: 100%;
   grid-column: 1/2;
   grid-row: 1/3;
 `;
@@ -183,7 +184,7 @@ const Weighting = styled.p`
 `;
 
 const AllPic = styled.img`
-  object-fit: cover;
+  object-fit: contain;
   width: 100%;
   max-height: 100%;
   grid-column: 5/6;
