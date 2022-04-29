@@ -22,7 +22,7 @@ const BoulderCard = ({
 
   return (
     <>
-      {!isInDetailedMode ? (
+      {isInDetailedMode ? (
         <WrapperLong>
         <StartPic src={boulderstart} alt='Boulder Start'/>
         <ID>#{id}</ID>
