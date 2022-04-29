@@ -1,4 +1,5 @@
 import BoulderCard from '../components/BoulderCard';
+import AddClimbedBoulderForm from '../components/AddClimbedBoulderForm';
 import { useParams, Link } from 'react-router-dom';
 
 const Add = ({bouldersList}) => {
@@ -6,7 +7,7 @@ const Add = ({bouldersList}) => {
     const currentBoulder = bouldersList.find(boulder => boulder.number === Number(id));
   return (
     <>
-      <Link to={`/`}>Back to Boulder List</Link>
+      
       {currentBoulder ? (
         <BoulderCard
           id={currentBoulder.number}
@@ -23,6 +24,8 @@ const Add = ({bouldersList}) => {
         />
         ) : (''
         )}
+        <AddClimbedBoulderForm/>
+      <Link to={`/`}>Back to Boulder List</Link>
     </>
   );
 };
