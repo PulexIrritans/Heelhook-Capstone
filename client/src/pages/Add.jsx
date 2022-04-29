@@ -9,6 +9,7 @@ const Add = ({bouldersList}) => {
     const currentBoulder = bouldersList.find(boulder => boulder.number === Number(id));
 
     const [newClimbedBoulder, setNewClimbedBoulder] = useState();
+    console.log(newClimbedBoulder)
 
   const saveClimbedBoulder = (date, projected, attempts, result, liked, levelFeedback) => {
     setNewClimbedBoulder({
@@ -47,7 +48,16 @@ const Add = ({bouldersList}) => {
         <AddClimbedBoulderForm
         saveClimbedBoulder={saveClimbedBoulder}/>
         {newClimbedBoulder && (
+          <>
           <p>You have successfully saved a new entry for this boulder!</p>
+          {/* <p>Boulder ID: {newClimbedBoulder.boulder_id}</p>
+          <p>Climb Date: {newClimbedBoulder.date}</p>
+          <p>Projected: {newClimbedBoulder.projected}</p>
+          <p>Attempts: {newClimbedBoulder.attempts}</p>
+          <p>Result: {newClimbedBoulder.result}</p>
+          <p>Liked: {newClimbedBoulder.liked}</p>
+          <p>Level Feedback: {newClimbedBoulder.level_feedback}</p> */}
+          </>
         )}
         <Link to={`/`}>Back to Boulder List</Link>
     </>

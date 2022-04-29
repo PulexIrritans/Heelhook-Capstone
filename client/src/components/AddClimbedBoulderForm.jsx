@@ -16,6 +16,7 @@ const AddClimbedBoulderForm = ({saveClimbedBoulder}) => {
         saveClimbedBoulder(date, projected, attempts, result, liked, levelFeedback);
       }}
     >
+      <p>Save your achievement!</p>
       <label htmlFor="date">Climb date:</label>
       <input
         type="date"
@@ -37,7 +38,7 @@ const AddClimbedBoulderForm = ({saveClimbedBoulder}) => {
           placeholder=""
           value={projected}
           onChange={event => {
-            setProjected(event.target.value);
+            setProjected(event.target.checked);
           }}
         ></input>
       </div>
@@ -56,7 +57,8 @@ const AddClimbedBoulderForm = ({saveClimbedBoulder}) => {
       </div>
       <fieldset>
         <legend>Your result:</legend>
-        <div>
+        <RadioButtonWrapper>
+           <div>
           <input
             type="radio"
             id="zone"
@@ -97,7 +99,6 @@ const AddClimbedBoulderForm = ({saveClimbedBoulder}) => {
           />
           <label htmlFor="flash">Flash</label>
         </div>
-        <div>
           <button
             onClick={event => {
               event.preventDefault();
@@ -106,9 +107,9 @@ const AddClimbedBoulderForm = ({saveClimbedBoulder}) => {
           >
             x
           </button>
-        </div>
+        </RadioButtonWrapper>
       </fieldset>
-
+      <p>Give us your feedback!</p>
       <div>
         <label htmlFor="liked">Like: </label>
         <input
@@ -118,14 +119,15 @@ const AddClimbedBoulderForm = ({saveClimbedBoulder}) => {
           placeholder=""
           value={liked}
           onChange={event => {
-            setLiked(event.target.value);
+            setLiked(event.target.checked);
           }}
         ></input>
       </div>
 
       <fieldset>
         <legend>Level Feedback</legend>
-        <div>
+        <RadioButtonWrapper>
+          <div>
           <input
             type="radio"
             id="tooeasy"
@@ -174,6 +176,8 @@ const AddClimbedBoulderForm = ({saveClimbedBoulder}) => {
         >
           x
         </button>
+        </RadioButtonWrapper>
+        
       </fieldset>
       <button>Save</button>
     </BoulderForm>
@@ -187,4 +191,10 @@ const BoulderForm = styled.form`
   max-width: 90%;
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
 `;
+
+const RadioButtonWrapper = styled.div`
+display: flex;
+justify-content: space-between;
+`
