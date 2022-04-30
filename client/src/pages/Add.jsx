@@ -11,12 +11,12 @@ const Add = ({bouldersList}) => {
     const [newClimbedBoulder, setNewClimbedBoulder] = useState();
     console.log(newClimbedBoulder)
 
-  const saveClimbedBoulder = (date, projected, attempts, result, liked, levelFeedback) => {
+  const saveClimbedBoulder = (projected, attempts, result, liked, levelFeedback) => {
     setNewClimbedBoulder({
       id: '999999',
       climber_id: '9999999999',
       boulder_id: id,
-      date: date,
+      date: new Date(),
       projected: projected,
       attempts: attempts,
       result: result,
@@ -50,13 +50,13 @@ const Add = ({bouldersList}) => {
         {newClimbedBoulder && (
           <>
           <p>You have successfully saved a new entry for this boulder!</p>
-          {/* <p>Boulder ID: {newClimbedBoulder.boulder_id}</p>
-          <p>Climb Date: {newClimbedBoulder.date}</p>
+          <p>Boulder ID: {newClimbedBoulder.boulder_id}</p>
+          <p>Climb Date: {newClimbedBoulder.date.toISOString()}</p>
           <p>Projected: {newClimbedBoulder.projected}</p>
           <p>Attempts: {newClimbedBoulder.attempts}</p>
           <p>Result: {newClimbedBoulder.result}</p>
           <p>Liked: {newClimbedBoulder.liked}</p>
-          <p>Level Feedback: {newClimbedBoulder.level_feedback}</p> */}
+          <p>Level Feedback: {newClimbedBoulder.level_feedback}</p>
           </>
         )}
         <Link to={`/`}>Back to Boulder List</Link>

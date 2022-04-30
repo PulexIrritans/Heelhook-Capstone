@@ -27,7 +27,6 @@ const BoulderCard = ({
       {isInDetailedMode ? (
         <WrapperLong>
         <StartPic src={boulderstart} alt='Boulder Start'/>
-        <ID>#{id}</ID>
         <Name>{name}</Name>
         <Likes>
           <Heart style={{ width: '20px' }} />
@@ -53,7 +52,6 @@ const BoulderCard = ({
       ) : (
         <WrapperShort>
         <StartPic src={boulderstart} alt='Boulder Start'/>
-        <ID>#{id}</ID>
         <Name>{name}</Name>
         <Likes>
           <Heart style={{ width: '20px' }} />
@@ -111,13 +109,9 @@ const StartPic = styled.img`
   grid-column: 1/2;
   grid-row: 1/3;
 `;
-const ID = styled.p`
-  grid-column: 2/3;
-  grid-row: 1/2;
-`;
 
 const Name = styled.h2`
-  grid-column: 3/5;
+  grid-column: 2/5;
   grid-row: 1/2;
   font-size: 1rem;
   text-overflow: ellipsis;

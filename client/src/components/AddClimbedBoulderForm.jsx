@@ -2,7 +2,6 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 const AddClimbedBoulderForm = ({saveClimbedBoulder}) => {
-  const [date, setDate] = useState(new Date());
   const [projected, setProjected] = useState(false);
   const [attempts, setAttempts] = useState(0);
   const [result, setResult] = useState();
@@ -13,22 +12,10 @@ const AddClimbedBoulderForm = ({saveClimbedBoulder}) => {
   return (
     <BoulderForm
       onSubmit={(event) => {event.preventDefault();
-        saveClimbedBoulder(date, projected, attempts, result, liked, levelFeedback);
+        saveClimbedBoulder(projected, attempts, result, liked, levelFeedback);
       }}
     >
       <p>Save your achievement!</p>
-      <label htmlFor="date">Climb date:</label>
-      <input
-        type="date"
-        id="date"
-        name="date"
-        // defaultValue={date}
-        placeholder={date}
-        value={date}
-        onChange={event => {
-          setDate(event.target.value);
-        }}
-      ></input>
       <div>
         <label htmlFor="projected">Projected: </label>
         <input
