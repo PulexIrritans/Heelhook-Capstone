@@ -50,7 +50,7 @@ const BoulderCard = ({
         <AllPic src={boulderall} alt="Boulder Complete"></AllPic>
       </WrapperLong> 
       ) : (
-        <WrapperShort>
+        <WrapperShort onClick={() => setIsInDetailedMode(true)} to={`/add/${id}`}>
         <StartPic src={boulderstart} alt='Boulder Start'/>
         <Name>{name}</Name>
         <Likes>
@@ -63,8 +63,8 @@ const BoulderCard = ({
           <Map style={{ width: '20px' }} />
         </SectorIcon>
         <Sector>{sector}</Sector>
-       <StyledLink onClick={() => setIsInDetailedMode(true)} to={`/add/${id}`}>Climb</StyledLink>
-      </WrapperShort>
+       {/* <StyledLink >Climb</StyledLink> */}
+      </WrapperShort >
       )}
     </>
   );
@@ -72,11 +72,14 @@ const BoulderCard = ({
 
 export default BoulderCard;
 
-const WrapperShort = styled.li`
+const WrapperShort = styled(Link)`
+  text-decoration: none;
+ font-size: inherit;
+  color: inherit;
   display: grid;
   gap: 5px;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(3, 1.7rem);
+  grid-template-rows: repeat(3, 1.3rem);
   background-color: var(--color-light-gray);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
@@ -90,7 +93,7 @@ const WrapperLong = styled.li`
   display: grid;
   gap: 5px;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 1.7rem);
+  grid-template-rows: repeat(5, 1.3rem);
   background-color: var(--color-light-gray);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
@@ -118,8 +121,9 @@ const Name = styled.h2`
   overflow: hidden;
 `;
 const Likes = styled.p`
-  grid-column: 1/2;
-  grid-row: 3/4;
+  grid-column: 5/6;
+  grid-row: 1/2;
+  justify-self: end;
 `;
 const Level = styled.p`
   grid-column: 2/3;
@@ -162,7 +166,8 @@ const TagList = styled.ul`
 `;
 
 const Tag = styled.li`
-  padding: 0.3em;
+  padding: 0.2em;
+  font-size: 0.8rem;
   background-color: var(--color-cyan);
 `;
 
