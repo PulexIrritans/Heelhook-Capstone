@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import Footer from './components/Footer';
 import Find from './pages/Find';
 import Add from './pages/Add';
 
@@ -71,7 +72,7 @@ function App() {
           }
         />
       </Routes>
-    
+      <Footer />
     </>
   );
 
