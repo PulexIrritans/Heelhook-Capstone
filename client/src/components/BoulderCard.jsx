@@ -76,7 +76,7 @@ const WrapperShort = styled.li`
   display: grid;
   gap: 5px;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(3, 1.5rem);
+  grid-template-rows: repeat(3, 1.7rem);
   background-color: var(--color-light-gray);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
@@ -95,7 +95,6 @@ const WrapperLong = styled.li`
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
   padding: 0.2rem;
-  margin: 0.2rem 0;
   &:hover {
     background-color: var(--color-medium-gray);
   }
