@@ -26,7 +26,7 @@ const Add = ({bouldersList}) => {
   };
   
     return (
-    <>
+    <main>
       <BoulderList role="list">
       {currentBoulder ? (
         <BoulderCard
@@ -59,12 +59,11 @@ const Add = ({bouldersList}) => {
           <p>Level Feedback: {newClimbedBoulder.level_feedback}</p>
           </>
         )}
-    </>
+    </main>
   );
 };
 
 const BoulderList = styled.ul`
-  width: 95%;
   display: flex;
   flex-direction: column;
   gap: 0.2rem;

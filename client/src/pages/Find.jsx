@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 const Find = ({bouldersList}) => {
   return (
+    <main>
     <BoulderList role="list">
       {bouldersList.map(boulder => (
         <BoulderCard
@@ -22,14 +23,14 @@ const Find = ({bouldersList}) => {
         />
       ))}
     </BoulderList>
+    </main>
   );
 };
 
 export default Find;
 
 const BoulderList = styled.ul`
-  width: 95%;
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  gap: 0.4rem;
 `

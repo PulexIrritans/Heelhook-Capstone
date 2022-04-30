@@ -59,7 +59,7 @@ function App() {
 
 
   return (
-    <>
+    <div className="App">
    
       <Routes>
         <Route path="/" element={<Find bouldersList={bouldersList} />} />
@@ -73,7 +73,7 @@ function App() {
         />
       </Routes>
       <Footer />
-    </>
+    </div>
   );
 
 }
