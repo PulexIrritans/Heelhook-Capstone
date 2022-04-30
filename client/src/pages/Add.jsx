@@ -59,7 +59,6 @@ const Add = ({bouldersList}) => {
           <p>Level Feedback: {newClimbedBoulder.level_feedback}</p>
           </>
         )}
-        <Link to={`/`}>Back to Boulder List</Link>
     </>
   );
 };

@@ -9,37 +9,46 @@ const Footer = ({}) => {
   };
   return (
     <StyledFooter>
-      <FooterUl>
-        <FooterLi>
-          <NavLink
+     
+          <StyledNavLink
             // style={({ isActive }) => isActive ? undefined : activeStyle}
-            activeStyle={{backgroundColor: 'blue'}}
             to="/"
           >
             <Search style={{width: '50px'}}/>
-          </NavLink>
-        </FooterLi>
-      </FooterUl>
+          </StyledNavLink>
+       
     </StyledFooter>
   );
 };
 
 export default Footer;
 
-const StyledFooter = styled.div`
-`;
-
-const FooterUl = styled.ul`
+const StyledFooter = styled.nav`
+width: 100%;
+  max-width: 768px;
   display: flex;
   justify-content: space-around;
-`;
-
-const FooterLi = styled.li`
-  padding: 1rem 0;
+  align-items: center;
+  border-top: 1px solid var(--border-color);
+  background-color: var(--color-light-gray);
+  position: fixed;
+  bottom: 0;
 `;
 
 const StyledNavLink = styled(NavLink)`
-overflow: auto;
+display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 48px;
+  padding: 0.2rem;
+  color: inherit;
+  text-decoration: none;
+  &.active {
+    background-color: var(--color-cyan);
+  }
 `;
+
 
 
