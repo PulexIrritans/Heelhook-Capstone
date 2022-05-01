@@ -9,7 +9,6 @@ const Add = ({bouldersList}) => {
     const currentBoulder = bouldersList.find(boulder => boulder.number === Number(id));
 
     const [newClimbedBoulder, setNewClimbedBoulder] = useState();
-    console.log(newClimbedBoulder)
 
   const saveClimbedBoulder = (projected, attempts, result, liked, levelFeedback) => {
     setNewClimbedBoulder({
