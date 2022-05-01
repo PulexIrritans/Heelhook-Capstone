@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-const Header = () => {
+const Header = ({title}) => {
   return (
       <StyledHeader>
-      <HeaderH1>Heelhook</HeaderH1>
+      <HeaderH1>{title}</HeaderH1>
       </StyledHeader>
   )
 };

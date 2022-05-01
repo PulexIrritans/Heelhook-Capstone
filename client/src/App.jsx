@@ -4,9 +4,7 @@ import Find from './pages/Find';
 import Add from './pages/Add';
 import Header from './components/Header';
 
-
 function App() {
- 
   const bouldersList = [
     {
       id: 1,
@@ -55,29 +53,23 @@ function App() {
       start_date: '2022-04-26',
       expiry_date: '',
       climbers: [],
-    }
+    },
   ];
-
 
   return (
     <div className="App">
-      <Header />
       <Routes>
-        <Route path="/" element={<Find bouldersList={bouldersList} />} />
+        <Route
+          path="/"
+          element={<Find bouldersList={bouldersList} title="Heelhook" />}
+        />
         <Route
           path="/add/:id"
-          element={
-            <Add
-              bouldersList={bouldersList}
-            />
-          }
+          element={<Add bouldersList={bouldersList} title="Add climb" />}
         />
       </Routes>
-      <Footer />
     </div>
   );
-
 }
 
 export default App;
-

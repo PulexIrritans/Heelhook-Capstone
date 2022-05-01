@@ -1,16 +1,27 @@
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import BoulderCard from '../components/BoulderCard';
 import AddClimbedBoulderForm from '../components/AddClimbedBoulderForm';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import styled from 'styled-components';
 
-const Add = ({bouldersList}) => {
-    const { id } = useParams()
-    const currentBoulder = bouldersList.find(boulder => boulder.id === Number(id));
+const Add = ({ bouldersList, title }) => {
+  const { id } = useParams();
+  const currentBoulder = bouldersList.find(
+    boulder => boulder.id === Number(id)
+  );
 
-    const [newClimbedBoulder, setNewClimbedBoulder] = useState();
+  const [newClimbedBoulder, setNewClimbedBoulder] = useState();
 
-  const saveClimbedBoulder = (projected, attempts, result, liked, levelFeedback) => {
+  const saveClimbedBoulder = (
+    projected,
+    attempts,
+    result,
+    liked,
+    levelFeedback,
+    title
+  ) => {
     setNewClimbedBoulder({
       id: '999999',
       climber_id: '9999999999',
@@ -23,41 +34,45 @@ const Add = ({bouldersList}) => {
       level_feedback: Number(levelFeedback),
     });
   };
-  
-    return (
-    <main>
-      <BoulderList role="list">
-      {currentBoulder ? (
-        <BoulderCard
-          id={currentBoulder.id}
-          name={currentBoulder.name}
-          sector={currentBoulder.sector}
-          level={currentBoulder.level}
-          hold_color={currentBoulder.hold_color}
-          img_start={currentBoulder.img_start}
-          likes={currentBoulder.number_of_likes}
-          setter={currentBoulder.setter}
-          tags={currentBoulder.tags}
-          weighting={currentBoulder.weighting}
-          detailedMode={true}
-        />
-        ) : (''
-        )}
+
+  return (
+    <>
+      <Header title={title} />
+      <main>
+        <BoulderList role="list">
+          {currentBoulder ? (
+            <BoulderCard
+              id={currentBoulder.id}
+              name={currentBoulder.name}
+              sector={currentBoulder.sector}
+              level={currentBoulder.level}
+              hold_color={currentBoulder.hold_color}
+              img_start={currentBoulder.img_start}
+              likes={currentBoulder.number_of_likes}
+              setter={currentBoulder.setter}
+              tags={currentBoulder.tags}
+              weighting={currentBoulder.weighting}
+              detailedMode={true}
+            />
+          ) : (
+            ''
+          )}
         </BoulderList>
-        <AddClimbedBoulderForm
-        saveClimbedBoulder={saveClimbedBoulder}/>
+        <AddClimbedBoulderForm saveClimbedBoulder={saveClimbedBoulder} />
         {newClimbedBoulder && (
           <>
-          <p>You have successfully saved a new entry for this boulder!</p>
-          <p>Climb Date: {newClimbedBoulder.date.toISOString()}</p>
-          <p>Projected: {newClimbedBoulder.projected}</p>
-          <p>Attempts: {newClimbedBoulder.attempts}</p>
-          <p>Result: {newClimbedBoulder.result}</p>
-          <p>Liked: {newClimbedBoulder.liked}</p>
-          <p>Level Feedback: {newClimbedBoulder.level_feedback}</p>
+            <p>You have successfully saved a new entry for this boulder!</p>
+            <p>Climb Date: {newClimbedBoulder.date.toISOString()}</p>
+            <p>Projected: {newClimbedBoulder.projected}</p>
+            <p>Attempts: {newClimbedBoulder.attempts}</p>
+            <p>Result: {newClimbedBoulder.result}</p>
+            <p>Liked: {newClimbedBoulder.liked}</p>
+            <p>Level Feedback: {newClimbedBoulder.level_feedback}</p>
           </>
         )}
-    </main>
+      </main>
+      <Footer />
+    </>
   );
 };
 
@@ -65,6 +80,6 @@ const BoulderList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
-`
+`;
 
 export default Add;
