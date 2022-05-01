@@ -2,13 +2,14 @@ import { Routes, Route } from 'react-router-dom';
 import Footer from './components/Footer';
 import Find from './pages/Find';
 import Add from './pages/Add';
+import Header from './components/Header';
 
 
 function App() {
  
   const bouldersList = [
     {
-      number: 1,
+      id: 1,
       name: 'Black Widow and the people',
       sector: 'Monkey Island',
       level: '5',
@@ -24,7 +25,7 @@ function App() {
       climbers: [],
     },
     {
-      number: 2,
+      id: 2,
       name: 'Orang Utan',
       sector: 'Monkey Island',
       level: '3',
@@ -40,7 +41,7 @@ function App() {
       climbers: [],
     },
     {
-      number: 3,
+      id: 3,
       name: 'Tarzan',
       sector: 'Monkey Island',
       level: '3',
@@ -60,7 +61,7 @@ function App() {
 
   return (
     <div className="App">
-   
+      <Header />
       <Routes>
         <Route path="/" element={<Find bouldersList={bouldersList} />} />
         <Route
