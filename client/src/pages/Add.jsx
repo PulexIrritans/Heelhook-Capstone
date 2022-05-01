@@ -51,10 +51,10 @@ const Add = ({bouldersList}) => {
           <p>You have successfully saved a new entry for this boulder!</p>
           <p>Boulder ID: {newClimbedBoulder.boulder_id}</p>
           <p>Climb Date: {newClimbedBoulder.date.toISOString()}</p>
-          <p>Projected: {newClimbedBoulder.projected}</p>
+          <p>Projected: {newClimbedBoulder.projected ? "true" : "false"}</p>
           <p>Attempts: {newClimbedBoulder.attempts}</p>
           <p>Result: {newClimbedBoulder.result}</p>
-          <p>Liked: {newClimbedBoulder.liked}</p>
+          <p>Liked: {newClimbedBoulder.liked ? "true" : "false"}</p>
           <p>Level Feedback: {newClimbedBoulder.level_feedback}</p>
           </>
         )}
