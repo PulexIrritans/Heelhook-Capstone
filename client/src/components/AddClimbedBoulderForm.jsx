@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const AddClimbedBoulderForm = ({saveClimbedBoulder}) => {
   const [projected, setProjected] = useState(false);
-  const [attempts, setAttempts] = useState(0);
+  const [attempts, setAttempts] = useState("");
   const [result, setResult] = useState();
   const [liked, setLiked] = useState(false);
   const [levelFeedback, setLevelFeedback] = useState();
@@ -22,7 +22,6 @@ const AddClimbedBoulderForm = ({saveClimbedBoulder}) => {
           type="checkbox"
           id="projected"
           name="projected"
-          placeholder=""
           value={projected}
           onChange={event => {
             setProjected(event.target.checked);
@@ -35,7 +34,6 @@ const AddClimbedBoulderForm = ({saveClimbedBoulder}) => {
           type="number"
           id="attempts"
           name="attempts"
-          placeholder="0"
           value={attempts}
           onChange={event => {
             setAttempts(event.target.value);
@@ -103,7 +101,6 @@ const AddClimbedBoulderForm = ({saveClimbedBoulder}) => {
           type="checkbox"
           id="liked"
           name="liked"
-          placeholder=""
           value={liked}
           onChange={event => {
             setLiked(event.target.checked);
