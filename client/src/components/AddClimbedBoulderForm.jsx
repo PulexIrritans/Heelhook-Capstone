@@ -8,7 +8,7 @@ const AddClimbedBoulderForm = ({saveClimbedBoulder}) => {
   const [liked, setLiked] = useState(false);
   const [levelFeedback, setLevelFeedback] = useState();
   
-
+  
   return (
     <BoulderForm
       onSubmit={(event) => {event.preventDefault();
@@ -119,8 +119,8 @@ const AddClimbedBoulderForm = ({saveClimbedBoulder}) => {
             type="radio"
             id="tooeasy"
             name="levelFeedback"
-            value="tooeasy"
-            checked={levelFeedback === 'tooeasy'}
+            value="-1"
+            checked={levelFeedback === "-1"}
             onChange={event => {
               setLevelFeedback(event.target.value);
             }}
@@ -133,8 +133,8 @@ const AddClimbedBoulderForm = ({saveClimbedBoulder}) => {
             type="radio"
             id="justright"
             name="levelFeedback"
-            value="justright"
-            checked={levelFeedback === 'justright'}
+            value="0"
+            checked={levelFeedback === "0"}
             onChange={event => {
               setLevelFeedback(event.target.value);
             }}
@@ -147,8 +147,8 @@ const AddClimbedBoulderForm = ({saveClimbedBoulder}) => {
             type="radio"
             id="toohard"
             name="levelFeedback"
-            value="toohard"
-            checked={levelFeedback === 'toohard'}
+            value="1"
+            checked={levelFeedback === "1"}
             onChange={event => {
               setLevelFeedback(event.target.value);
             }}
