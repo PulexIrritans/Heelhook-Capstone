@@ -4,7 +4,7 @@ import BoulderCard from './BoulderCard';
 import { MemoryRouter as Router } from 'react-router-dom';
 
 
-const Boulder = {
+const boulder = {
   number: 1,
   name: 'Black Widow and the people',
   sector: 'Monkey Island',
@@ -26,15 +26,15 @@ describe('BoulderCard', () => {
     render(
       <Router>
       <BoulderCard
-        id={Boulder.number}
-        name={Boulder.name}
-        sector={Boulder.sector}
-        level={Boulder.level}
-        hold_color={Boulder.handle_color}
-        likes={Boulder.number_of_likes}
-        tags={Boulder.tags}
-        setter={Boulder.setter}
-        weighting={Boulder.weighting}
+        id={boulder.number}
+        name={boulder.name}
+        sector={boulder.sector}
+        level={boulder.level}
+        hold_color={boulder.handle_color}
+        likes={boulder.number_of_likes}
+        tags={boulder.tags}
+        setter={boulder.setter}
+        weighting={boulder.weighting}
       />
       </Router>
     );
