@@ -31,6 +31,7 @@ body{
 }
 
 .App{
+  height: 100vh;
   display: flex;
   flex-direction: column;
 }

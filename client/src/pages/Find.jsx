@@ -8,8 +8,8 @@ const Find = ({bouldersList}) => {
     <BoulderList role="list">
       {bouldersList.map(boulder => (
         <BoulderCard
-          key={boulder.number}
-          id={boulder.number}
+          key={boulder.id}
+          id={boulder.id}
           name={boulder.name}
           sector={boulder.sector}
           level={boulder.level}

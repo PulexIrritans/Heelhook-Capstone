@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 const Add = ({bouldersList}) => {
     const { id } = useParams()
-    const currentBoulder = bouldersList.find(boulder => boulder.number === Number(id));
+    const currentBoulder = bouldersList.find(boulder => boulder.id === Number(id));
 
     const [newClimbedBoulder, setNewClimbedBoulder] = useState();
     console.log(newClimbedBoulder)
@@ -30,7 +30,7 @@ const Add = ({bouldersList}) => {
       <BoulderList role="list">
       {currentBoulder ? (
         <BoulderCard
-          id={currentBoulder.number}
+          id={currentBoulder.id}
           name={currentBoulder.name}
           sector={currentBoulder.sector}
           level={currentBoulder.level}
@@ -50,7 +50,6 @@ const Add = ({bouldersList}) => {
         {newClimbedBoulder && (
           <>
           <p>You have successfully saved a new entry for this boulder!</p>
-          <p>Boulder ID: {newClimbedBoulder.boulder_id}</p>
           <p>Climb Date: {newClimbedBoulder.date.toISOString()}</p>
           <p>Projected: {newClimbedBoulder.projected}</p>
           <p>Attempts: {newClimbedBoulder.attempts}</p>

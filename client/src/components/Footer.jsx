@@ -11,7 +11,6 @@ const Footer = ({}) => {
     <StyledFooter>
      
           <StyledNavLink
-            // style={({ isActive }) => isActive ? undefined : activeStyle}
             to="/"
           >
             <Search style={{width: '50px'}}/>
@@ -27,12 +26,9 @@ const StyledFooter = styled.nav`
 width: 100%;
   max-width: 768px;
   display: flex;
-  justify-content: space-around;
   align-items: center;
   border-top: 1px solid var(--border-color);
   background-color: var(--color-light-gray);
-  position: fixed;
-  bottom: 0;
 `;
 
 const StyledNavLink = styled(NavLink)`

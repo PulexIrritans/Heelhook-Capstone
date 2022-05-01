@@ -24,7 +24,7 @@ Default.args = {
   likes: 0,
   sector: 'Sector Name',
   level: 5,
-  handle_color: 'yellow',
+  hold_color: 'yellow',
   tags: ['Sloper', 'Dyno'],
   setter: 'Martin Pagels',
   weighting: 100,
