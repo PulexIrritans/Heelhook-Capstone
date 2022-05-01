@@ -28,10 +28,6 @@ const BoulderCard = ({
         <WrapperLong>
         <StartPic src={boulderstart} alt='Boulder Start'/>
         <Name>{name}</Name>
-        <Likes>
-          <Heart style={{ width: '20px' }} />
-          {likes}
-        </Likes>
         <Level>Level: {level}</Level>
         <Hold>Hold: {hold_color}</Hold>
         <SectorIcon>
@@ -63,7 +59,6 @@ const BoulderCard = ({
           <Map style={{ width: '20px' }} />
         </SectorIcon>
         <Sector>{sector}</Sector>
-       {/* <StyledLink >Climb</StyledLink> */}
       </WrapperShort >
       )}
     </>
