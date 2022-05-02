@@ -6,11 +6,10 @@ import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import styled from 'styled-components';
 
-const Add = ({bouldersList}) => {
-  
-    const { id } = useParams()
-    const currentBoulder = bouldersList.find(boulder => boulder.id === id);
-    const [newClimbedBoulder, setNewClimbedBoulder] = useState();
+const Add = ({ bouldersList, title }) => {
+  const { id } = useParams();
+  const currentBoulder = bouldersList.find(boulder => boulder.id === id);
+  const [newClimbedBoulder, setNewClimbedBoulder] = useState();
 
   const saveClimbedBoulder = (
     projected,
@@ -37,25 +36,23 @@ const Add = ({bouldersList}) => {
     <>
       <Header title={title} />
       <main>
-      <BoulderList role="list">
-      {currentBoulder ? (
-        <BoulderCard
-         boulder={currentBoulder}
-          detailedMode={true}
-        />
-        ) : (''
-        )}
+        <BoulderList role="list">
+          {currentBoulder ? (
+            <BoulderCard boulder={currentBoulder} detailedMode={true} />
+          ) : (
+            ''
+          )}
         </BoulderList>
         <AddClimbedBoulderForm saveClimbedBoulder={saveClimbedBoulder} />
         {newClimbedBoulder && (
           <>
-          <h3>You have successfully saved a new entry for this boulder!</h3>
-          <p>Climb Date: {newClimbedBoulder.date.toISOString()}</p>
-          <p>Projected: {newClimbedBoulder.projected ? "true" : "false"}</p>
-          <p>Attempts: {newClimbedBoulder.attempts}</p>
-          <p>Result: {newClimbedBoulder.result}</p>
-          <p>Liked: {newClimbedBoulder.liked ? "true" : "false"}</p>
-          <p>Level Feedback: {newClimbedBoulder.level_feedback}</p>
+            <h3>You have successfully saved a new entry for this boulder!</h3>
+            <p>Climb Date: {newClimbedBoulder.date.toISOString()}</p>
+            <p>Projected: {newClimbedBoulder.projected ? 'true' : 'false'}</p>
+            <p>Attempts: {newClimbedBoulder.attempts}</p>
+            <p>Result: {newClimbedBoulder.result}</p>
+            <p>Liked: {newClimbedBoulder.liked ? 'true' : 'false'}</p>
+            <p>Level Feedback: {newClimbedBoulder.level_feedback}</p>
           </>
         )}
       </main>

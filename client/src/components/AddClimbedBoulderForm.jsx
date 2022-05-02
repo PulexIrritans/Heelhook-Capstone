@@ -8,7 +8,6 @@ const AddClimbedBoulderForm = ({ saveClimbedBoulder }) => {
   const [liked, setLiked] = useState(false);
   const [levelFeedback, setLevelFeedback] = useState();
 
-
   return (
     <BoulderForm
       onSubmit={event => {
@@ -110,46 +109,44 @@ const AddClimbedBoulderForm = ({ saveClimbedBoulder }) => {
         <legend>Level Feedback</legend>
         <RadioButtonWrapper>
           <div>
-          <input
-            type="radio"
-            id="tooeasy"
-            name="levelFeedback"
-            value="-1"
-            checked={levelFeedback === "-1"}
-            onChange={event => {
-              setLevelFeedback(event.target.value);
-            }}
-          />
-          <label htmlFor="tooeasy">Too easy</label>
-        </div>
-
-        <div>
-          <input
-            type="radio"
-            id="justright"
-            name="levelFeedback"
-            value="0"
-            checked={levelFeedback === "0"}
-            onChange={event => {
-              setLevelFeedback(event.target.value);
-            }}
-          />
-          <label htmlFor="justright">Just right</label>
-        </div>
-
-        <div>
-          <input
-            type="radio"
-            id="toohard"
-            name="levelFeedback"
-            value="1"
-            checked={levelFeedback === "1"}
-            onChange={event => {
-              setLevelFeedback(event.target.value);
-            }}
-          >
-            x
-          </button>
+            <input
+              type="radio"
+              id="tooeasy"
+              name="levelFeedback"
+              value="-1"
+              checked={levelFeedback === '-1'}
+              onChange={event => {
+                setLevelFeedback(event.target.value);
+              }}
+            />
+            <label htmlFor="tooeasy">Too easy</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="justright"
+              name="levelFeedback"
+              value="0"
+              checked={levelFeedback === '0'}
+              onChange={event => {
+                setLevelFeedback(event.target.value);
+              }}
+            />
+            <label htmlFor="justright">Just right</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="toohard"
+              name="levelFeedback"
+              value="1"
+              checked={levelFeedback === '1'}
+              onChange={event => {
+                setLevelFeedback(event.target.value);
+              }}
+            />
+            <label htmlFor="toohard">Too hard</label>
+          </div>
         </RadioButtonWrapper>
       </fieldset>
       <button>Save</button>
