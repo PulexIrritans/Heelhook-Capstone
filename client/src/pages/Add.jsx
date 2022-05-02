@@ -5,9 +5,9 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 const Add = ({bouldersList}) => {
+  
     const { id } = useParams()
-    const currentBoulder = bouldersList.find(boulder => boulder.number === Number(id));
-
+    const currentBoulder = bouldersList.find(boulder => boulder.id === id);
     const [newClimbedBoulder, setNewClimbedBoulder] = useState();
 
   const saveClimbedBoulder = (projected, attempts, result, liked, levelFeedback) => {
@@ -29,16 +29,7 @@ const Add = ({bouldersList}) => {
       <BoulderList role="list">
       {currentBoulder ? (
         <BoulderCard
-          id={currentBoulder.number}
-          name={currentBoulder.name}
-          sector={currentBoulder.sector}
-          level={currentBoulder.level}
-          hold_color={currentBoulder.hold_color}
-          img_start={currentBoulder.img_start}
-          likes={currentBoulder.number_of_likes}
-          setter={currentBoulder.setter}
-          tags={currentBoulder.tags}
-          weighting={currentBoulder.weighting}
+         boulder={currentBoulder}
           detailedMode={true}
         />
         ) : (''
@@ -48,7 +39,7 @@ const Add = ({bouldersList}) => {
         saveClimbedBoulder={saveClimbedBoulder}/>
         {newClimbedBoulder && (
           <>
-          <p>You have successfully saved a new entry for this boulder!</p>
+          <h3>You have successfully saved a new entry for this boulder!</h3>
           <p>Boulder ID: {newClimbedBoulder.boulder_id}</p>
           <p>Climb Date: {newClimbedBoulder.date.toISOString()}</p>
           <p>Projected: {newClimbedBoulder.projected ? "true" : "false"}</p>

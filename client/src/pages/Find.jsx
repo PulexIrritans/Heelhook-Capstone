@@ -7,17 +7,8 @@ const Find = ({bouldersList}) => {
     <BoulderList role="list">
       {bouldersList.map(boulder => (
         <BoulderCard
-          key={boulder.number}
-          id={boulder.number}
-          name={boulder.name}
-          sector={boulder.sector}
-          level={boulder.level}
-          hold_color={boulder.hold_color}
-          img_start={boulder.img_start}
-          likes={boulder.number_of_likes}
-          setter={boulder.setter}
-          tags={boulder.tags}
-          weighting={boulder.weighting}
+          key={boulder.id}
+          boulder={boulder}
           detailedMode={false}
         />
       ))}

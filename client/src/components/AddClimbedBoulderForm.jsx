@@ -1,21 +1,21 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-const AddClimbedBoulderForm = ({saveClimbedBoulder}) => {
+const AddClimbedBoulderForm = ({ saveClimbedBoulder }) => {
   const [projected, setProjected] = useState(false);
-  const [attempts, setAttempts] = useState("");
+  const [attempts, setAttempts] = useState('');
   const [result, setResult] = useState();
   const [liked, setLiked] = useState(false);
   const [levelFeedback, setLevelFeedback] = useState();
-  
 
   return (
     <BoulderForm
-      onSubmit={(event) => {event.preventDefault();
+      onSubmit={event => {
+        event.preventDefault();
         saveClimbedBoulder(projected, attempts, result, liked, levelFeedback);
       }}
     >
-      <p>Save your achievement!</p>
+      <h3>Save your achievement!</h3>
       <div>
         <label htmlFor="projected">Projected: </label>
         <input
@@ -43,47 +43,45 @@ const AddClimbedBoulderForm = ({saveClimbedBoulder}) => {
       <fieldset>
         <legend>Your result:</legend>
         <RadioButtonWrapper>
-           <div>
-          <input
-            type="radio"
-            id="zone"
-            name="result"
-            value="zone"
-            checked={result === 'zone'}
-            onChange={event => {
-              setResult(event.target.value);
-            }}
-          />
-          <label htmlFor="zone">Zone</label>
-        </div>
-
-        <div>
-          <input
-            type="radio"
-            id="top"
-            name="result"
-            value="top"
-            checked={result === 'top'}
-            onChange={event => {
-              setResult(event.target.value);
-            }}
-          />
-          <label htmlFor="top">Top</label>
-        </div>
-
-        <div>
-          <input
-            type="radio"
-            id="flash"
-            name="result"
-            value="flash"
-            checked={result === 'flash'}
-            onChange={event => {
-              setResult(event.target.value);
-            }}
-          />
-          <label htmlFor="flash">Flash</label>
-        </div>
+          <div>
+            <input
+              type="radio"
+              id="zone"
+              name="result"
+              value="zone"
+              checked={result === 'zone'}
+              onChange={event => {
+                setResult(event.target.value);
+              }}
+            />
+            <label htmlFor="zone">Zone</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="top"
+              name="result"
+              value="top"
+              checked={result === 'top'}
+              onChange={event => {
+                setResult(event.target.value);
+              }}
+            />
+            <label htmlFor="top">Top</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="flash"
+              name="result"
+              value="flash"
+              checked={result === 'flash'}
+              onChange={event => {
+                setResult(event.target.value);
+              }}
+            />
+            <label htmlFor="flash">Flash</label>
+          </div>
           <button
             onClick={event => {
               event.preventDefault();
@@ -94,7 +92,7 @@ const AddClimbedBoulderForm = ({saveClimbedBoulder}) => {
           </button>
         </RadioButtonWrapper>
       </fieldset>
-      <p>Give us your feedback!</p>
+      <h3>Give us your feedback!</h3>
       <div>
         <label htmlFor="liked">Like: </label>
         <input
@@ -107,61 +105,57 @@ const AddClimbedBoulderForm = ({saveClimbedBoulder}) => {
           }}
         ></input>
       </div>
-
       <fieldset>
         <legend>Level Feedback</legend>
         <RadioButtonWrapper>
           <div>
-          <input
-            type="radio"
-            id="tooeasy"
-            name="levelFeedback"
-            value="tooeasy"
-            checked={levelFeedback === 'tooeasy'}
-            onChange={event => {
-              setLevelFeedback(event.target.value);
+            <input
+              type="radio"
+              id="tooEasy"
+              name="levelFeedback"
+              value="tooEasy"
+              checked={levelFeedback === 'tooEasy'}
+              onChange={event => {
+                setLevelFeedback(event.target.value);
+              }}
+            />
+            <label htmlFor="tooEasy">Too easy</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="justRight"
+              name="levelFeedback"
+              value="justRight"
+              checked={levelFeedback === 'justRight'}
+              onChange={event => {
+                setLevelFeedback(event.target.value);
+              }}
+            />
+            <label htmlFor="justRight">Just right</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="tooHard"
+              name="levelFeedback"
+              value="tooHard"
+              checked={levelFeedback === 'tooHard'}
+              onChange={event => {
+                setLevelFeedback(event.target.value);
+              }}
+            />
+            <label htmlFor="tooHard">Too hard</label>
+          </div>
+          <button
+            onClick={event => {
+              event.preventDefault();
+              setLevelFeedback('');
             }}
-          />
-          <label htmlFor="tooeasy">Too easy</label>
-        </div>
-
-        <div>
-          <input
-            type="radio"
-            id="justright"
-            name="levelFeedback"
-            value="justright"
-            checked={levelFeedback === 'justright'}
-            onChange={event => {
-              setLevelFeedback(event.target.value);
-            }}
-          />
-          <label htmlFor="justright">Just right</label>
-        </div>
-
-        <div>
-          <input
-            type="radio"
-            id="toohard"
-            name="levelFeedback"
-            value="toohard"
-            checked={levelFeedback === 'toohard'}
-            onChange={event => {
-              setLevelFeedback(event.target.value);
-            }}
-          />
-          <label htmlFor="toohard">Too hard</label>
-        </div>
-        <button
-          onClick={event => {
-            event.preventDefault();
-            setLevelFeedback('');
-          }}
-        >
-          x
-        </button>
+          >
+            x
+          </button>
         </RadioButtonWrapper>
-        
       </fieldset>
       <button>Save</button>
     </BoulderForm>
@@ -179,6 +173,6 @@ const BoulderForm = styled.form`
 `;
 
 const RadioButtonWrapper = styled.div`
-display: flex;
-justify-content: space-between;
-`
+  display: flex;
+  justify-content: space-between;
+`;

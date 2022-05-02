@@ -7,64 +7,69 @@ import { ReactComponent as SetterIcon } from '../icons/setter.svg';
 import boulderall from '../images/Boulder-all.jpg';
 import boulderstart from '../images/Boulder-start.jpg';
 
-const BoulderCard = ({
-  id,
-  name,
-  sector,
-  level,
-  hold_color,
-  likes,
-  tags,
-  img_start,
-  setter,
-  weighting,
-  detailedMode
-}) => {
+const BoulderCard = ({ boulder, detailedMode }) => {
+  const {
+    id,
+    name,
+    sector,
+    level,
+    hold_color,
+    likes,
+    tags,
+    img_start,
+    setter,
+    weighting,
+  } = boulder;
   const [isInDetailedMode, setIsInDetailedMode] = useState(detailedMode);
 
   return (
     <>
       {isInDetailedMode ? (
         <WrapperLong>
-        <StartPic src={boulderstart} alt='Boulder Start'/>
-        <Name>{name}</Name>
-        <Likes>
-          <Heart style={{ width: '20px' }} />
-          {likes}
-        </Likes>
-        <Level>Level: {level}</Level>
-        <Hold>Hold: {hold_color}</Hold>
-        <SectorIcon>
-          <Map style={{ width: '20px' }} />
-        </SectorIcon>
-        <Sector>{sector}</Sector>
-        <Setter>
-          <SetterIcon style={{ width: '20px' }} /> {setter}
-        </Setter>
-        <Weighting>Weighting: {weighting}</Weighting>
-        <TagList>
-          {tags.map((tag, index) => (
-            <Tag key={index}>{tag}</Tag>
-          ))}
-        </TagList>
-        <AllPic src={boulderall} alt="Boulder Complete"></AllPic>
-      </WrapperLong> 
+          <StartPic src={boulderstart} alt="Boulder Start" />
+          <Name>{name}</Name>
+          <Likes>
+            <Heart style={{ width: '20px' }} />
+            {likes}
+          </Likes>
+          <Level>Level: {level}</Level>
+          <Hold>Hold: {hold_color}</Hold>
+          <SectorIcon>
+            <Map style={{ width: '20px' }} />
+          </SectorIcon>
+          <Sector>{sector}</Sector>
+          <Setter>
+            <SetterIcon style={{ width: '20px' }} /> {setter}
+          </Setter>
+          <Weighting>Weighting: {weighting}</Weighting>
+          <TagList>
+            {tags.map((tag, index) => (
+              <Tag key={index}>{tag}</Tag>
+            ))}
+          </TagList>
+          <AllPic src={boulderall} alt="Boulder Complete"></AllPic>
+        </WrapperLong>
       ) : (
         <WrapperShort>
-        <StartPic src={boulderstart} alt='Boulder Start'/>
-        <Name>{name}</Name>
-        <Likes>
-          <Heart style={{ width: '20px' }} />
-          {likes}
-        </Likes>
-        <Level>Level: {level}</Level>
-        <Hold>Hold: {hold_color}</Hold>
-        <SectorIcon>
-          <Map style={{ width: '20px' }} />
-        </SectorIcon>
-        <Sector>{sector}</Sector>
-       <StyledLink onClick={() => setIsInDetailedMode(true)} to={`/add/${id}`}>Climb</StyledLink>
-      </WrapperShort>
+          <StartPic src={boulderstart} alt="Boulder Start" />
+          <Name>{name}</Name>
+          <Likes>
+            <Heart style={{ width: '20px' }} />
+            {likes}
+          </Likes>
+          <Level>Level: {level}</Level>
+          <Hold>Hold: {hold_color}</Hold>
+          <SectorIcon>
+            <Map style={{ width: '20px' }} />
+          </SectorIcon>
+          <Sector>{sector}</Sector>
+          <StyledLink
+            onClick={() => setIsInDetailedMode(true)}
+            to={`/add/${id}`}
+          >
+            Climb
+          </StyledLink>
+        </WrapperShort>
       )}
     </>
   );
@@ -184,6 +189,3 @@ const AllPic = styled.img`
   grid-column: 5/6;
   grid-row: 1/6;
 `;
-
-
-
