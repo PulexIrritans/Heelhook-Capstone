@@ -35,6 +35,7 @@ const AddClimbedBoulderForm = ({ saveClimbedBoulder }) => {
           id="attempts"
           name="attempts"
           value={attempts}
+          min="0"
           onChange={event => {
             setAttempts(event.target.value);
           }}
@@ -111,41 +112,41 @@ const AddClimbedBoulderForm = ({ saveClimbedBoulder }) => {
           <div>
             <input
               type="radio"
-              id="tooEasy"
+              id="tooeasy"
               name="levelFeedback"
-              value="tooEasy"
-              checked={levelFeedback === 'tooEasy'}
+              value="-1"
+              checked={levelFeedback === '-1'}
               onChange={event => {
                 setLevelFeedback(event.target.value);
               }}
             />
-            <label htmlFor="tooEasy">Too easy</label>
+            <label htmlFor="tooeasy">Too easy</label>
           </div>
           <div>
             <input
               type="radio"
-              id="justRight"
+              id="justright"
               name="levelFeedback"
-              value="justRight"
-              checked={levelFeedback === 'justRight'}
+              value="0"
+              checked={levelFeedback === '0'}
               onChange={event => {
                 setLevelFeedback(event.target.value);
               }}
             />
-            <label htmlFor="justRight">Just right</label>
+            <label htmlFor="justright">Just right</label>
           </div>
           <div>
             <input
               type="radio"
-              id="tooHard"
+              id="toohard"
               name="levelFeedback"
-              value="tooHard"
-              checked={levelFeedback === 'tooHard'}
+              value="1"
+              checked={levelFeedback === '1'}
               onChange={event => {
                 setLevelFeedback(event.target.value);
               }}
             />
-            <label htmlFor="tooHard">Too hard</label>
+            <label htmlFor="toohard">Too hard</label>
           </div>
           <button
             onClick={event => {

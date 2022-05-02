@@ -1,15 +1,14 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import BoulderCard from './BoulderCard';
-import { MemoryRouter as Router } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 
-
-const Boulder = {
-  number: 1,
+const boulderTest = {
+  id: '1',
   name: 'Black Widow and the people',
   sector: 'Monkey Island',
   level: '5',
-  handle_color: 'black',
+  hold_color: 'black',
   setter: 'Martin Pagels',
   tags: ['Dyno', 'Sloper'],
   img_start: 'Boulder-girl.jpg',
@@ -24,23 +23,13 @@ const Boulder = {
 describe('BoulderCard', () => {
   it('renders the a list item with a title, an img, 5 details and a button and renders four more details after button click', () => {
     render(
-      <Router>
-      <BoulderCard
-        id={Boulder.number}
-        name={Boulder.name}
-        sector={Boulder.sector}
-        level={Boulder.level}
-        hold_color={Boulder.handle_color}
-        likes={Boulder.number_of_likes}
-        tags={Boulder.tags}
-        setter={Boulder.setter}
-        weighting={Boulder.weighting}
-      />
-      </Router>
+      <MemoryRouter>
+        <BoulderCard boulder={boulderTest} detailedMode={false} />
+      </MemoryRouter>
     );
     const cardHeader = screen.getByRole('heading');
     const cardPicture = screen.getByRole('img');
-    const button = screen.getByRole('link');
+    const cardLink = screen.getByRole('link');
 
     const sector = screen.getByText(/Monkey Island/i);
     const level = screen.getByText(/Level: 5/);
@@ -52,7 +41,7 @@ describe('BoulderCard', () => {
 
     expect(cardPicture).toBeInTheDocument();
     expect(cardHeader).toHaveTextContent('Black Widow and the people');
-    expect(button).toBeInTheDocument();
+    expect(cardLink).toBeInTheDocument();
     expect(sector).toBeInTheDocument();
     expect(level).toBeInTheDocument();
     expect(handle_color).toBeInTheDocument();
@@ -61,7 +50,7 @@ describe('BoulderCard', () => {
     expect(setterBeforeEvent).not.toBeInTheDocument();
     expect(weightingBeforeEvent).not.toBeInTheDocument();
 
-    userEvent.click(button);
+    userEvent.click(cardLink);
 
     const tag1 = screen.getByText(/Dyno/i);
     const tag2 = screen.getByText(/Sloper/i);

@@ -14,9 +14,8 @@ const BoulderCard = ({ boulder, detailedMode }) => {
     sector,
     level,
     hold_color,
-    likes,
+    number_of_likes,
     tags,
-    img_start,
     setter,
     weighting,
   } = boulder;
@@ -28,10 +27,6 @@ const BoulderCard = ({ boulder, detailedMode }) => {
         <WrapperLong>
           <StartPic src={boulderstart} alt="Boulder Start" />
           <Name>{name}</Name>
-          <Likes>
-            <Heart style={{ width: '20px' }} />
-            {likes}
-          </Likes>
           <Level>Level: {level}</Level>
           <Hold>Hold: {hold_color}</Hold>
           <SectorIcon>
@@ -51,24 +46,20 @@ const BoulderCard = ({ boulder, detailedMode }) => {
         </WrapperLong>
       ) : (
         <WrapperShort>
-          <StartPic src={boulderstart} alt="Boulder Start" />
-          <Name>{name}</Name>
-          <Likes>
-            <Heart style={{ width: '20px' }} />
-            {likes}
-          </Likes>
-          <Level>Level: {level}</Level>
-          <Hold>Hold: {hold_color}</Hold>
-          <SectorIcon>
-            <Map style={{ width: '20px' }} />
-          </SectorIcon>
-          <Sector>{sector}</Sector>
-          <StyledLink
-            onClick={() => setIsInDetailedMode(true)}
-            to={`/add/${id}`}
-          >
-            Climb
-          </StyledLink>
+          <CardLink onClick={() => setIsInDetailedMode(true)} to={`/add/${id}`}>
+            <StartPic src={boulderstart} alt="Boulder Start" />
+            <Name>{name}</Name>
+            <Likes>
+              <Heart style={{ width: '20px' }} />
+              {number_of_likes}
+            </Likes>
+            <Level>Level: {level}</Level>
+            <Hold>Hold: {hold_color}</Hold>
+            <SectorIcon>
+              <Map style={{ width: '20px' }} />
+            </SectorIcon>
+            <Sector>{sector}</Sector>
+          </CardLink>
         </WrapperShort>
       )}
     </>
@@ -78,14 +69,9 @@ const BoulderCard = ({ boulder, detailedMode }) => {
 export default BoulderCard;
 
 const WrapperShort = styled.li`
-  display: grid;
-  gap: 5px;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(3, 1.5rem);
   background-color: var(--color-light-gray);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
-  padding: 0.2rem;
   &:hover {
     background-color: var(--color-medium-gray);
   }
@@ -95,15 +81,25 @@ const WrapperLong = styled.li`
   display: grid;
   gap: 5px;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 1.7rem);
+  grid-template-rows: repeat(5, 1.3rem);
   background-color: var(--color-light-gray);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
   padding: 0.2rem;
-  margin: 0.2rem 0;
   &:hover {
     background-color: var(--color-medium-gray);
   }
+`;
+
+const CardLink = styled(Link)`
+  text-decoration: none;
+  font-size: inherit;
+  color: inherit;
+  display: grid;
+  gap: 5px;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 1.3rem);
+  padding: 0.2rem;
 `;
 
 const StartPic = styled.img`
@@ -124,8 +120,9 @@ const Name = styled.h2`
   overflow: hidden;
 `;
 const Likes = styled.p`
-  grid-column: 1/2;
-  grid-row: 3/4;
+  grid-column: 5/6;
+  grid-row: 1/2;
+  justify-self: end;
 `;
 const Level = styled.p`
   grid-column: 2/3;
@@ -144,19 +141,6 @@ const Sector = styled.p`
   grid-column: 3/5;
   grid-row: 3/4;
 `;
-const StyledLink = styled(Link)`
-  font-size: inherit;
-  color: inherit;
-  grid-column: 5/6;
-  grid-row: 1/4;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
-  background-color: var(--color-cyan);
-`;
 
 const TagList = styled.ul`
   display: flex;
@@ -168,7 +152,8 @@ const TagList = styled.ul`
 `;
 
 const Tag = styled.li`
-  padding: 0.3em;
+  padding: 0.2em;
+  font-size: 0.8rem;
   background-color: var(--color-cyan);
 `;
 

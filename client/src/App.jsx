@@ -2,12 +2,10 @@ import { Routes, Route } from 'react-router-dom';
 import Find from './pages/Find';
 import Add from './pages/Add';
 
-
 function App() {
- 
   const bouldersList = [
     {
-      id: "1",
+      id: '1',
       name: 'Black Widow and the people',
       sector: 'Monkey Island',
       level: '5',
@@ -23,7 +21,7 @@ function App() {
       climbers: [],
     },
     {
-      id: "2",
+      id: '2',
       name: 'Orang Utan',
       sector: 'Monkey Island',
       level: '3',
@@ -39,7 +37,7 @@ function App() {
       climbers: [],
     },
     {
-      id: "3",
+      id: '3',
       name: 'Tarzan',
       sector: 'Monkey Island',
       level: '3',
@@ -53,29 +51,17 @@ function App() {
       start_date: '2022-04-26',
       expiry_date: '',
       climbers: [],
-    }
+    },
   ];
 
-
   return (
-    <>
-   
+    <div className="App">
       <Routes>
         <Route path="/" element={<Find bouldersList={bouldersList} />} />
-        <Route
-          path="/add/:id"
-          element={
-            <Add
-              bouldersList={bouldersList}
-            />
-          }
-        />
+        <Route path="/add/:id" element={<Add bouldersList={bouldersList} />} />
       </Routes>
-    
-    </>
+    </div>
   );
-
 }
 
 export default App;
-
