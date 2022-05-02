@@ -35,6 +35,7 @@ const AddClimbedBoulderForm = ({ saveClimbedBoulder }) => {
           id="attempts"
           name="attempts"
           value={attempts}
+          min="0"
           onChange={event => {
             setAttempts(event.target.value);
           }}
@@ -147,6 +148,14 @@ const AddClimbedBoulderForm = ({ saveClimbedBoulder }) => {
             />
             <label htmlFor="toohard">Too hard</label>
           </div>
+          <button
+            onClick={event => {
+              event.preventDefault();
+              setLevelFeedback('');
+            }}
+          >
+            x
+          </button>
         </RadioButtonWrapper>
       </fieldset>
       <button>Save</button>

@@ -3,13 +3,12 @@ import userEvent from '@testing-library/user-event';
 import BoulderCard from './BoulderCard';
 import { MemoryRouter as Router } from 'react-router-dom';
 
-
-const boulder = {
-  number: 1,
+const boulderTest = {
+  id: '1',
   name: 'Black Widow and the people',
   sector: 'Monkey Island',
   level: '5',
-  handle_color: 'black',
+  hold_color: 'black',
   setter: 'Martin Pagels',
   tags: ['Dyno', 'Sloper'],
   img_start: 'Boulder-girl.jpg',
@@ -25,22 +24,12 @@ describe('BoulderCard', () => {
   it('renders the a list item with a title, an img, 5 details and a button and renders four more details after button click', () => {
     render(
       <Router>
-      <BoulderCard
-        id={boulder.number}
-        name={boulder.name}
-        sector={boulder.sector}
-        level={boulder.level}
-        hold_color={boulder.handle_color}
-        likes={boulder.number_of_likes}
-        tags={boulder.tags}
-        setter={boulder.setter}
-        weighting={boulder.weighting}
-      />
+        <BoulderCard boulder={boulderTest} detailedMode={false} />
       </Router>
     );
     const cardHeader = screen.getByRole('heading');
     const cardPicture = screen.getByRole('img');
-    const button = screen.getByRole('link');
+    const cardLink = screen.getByRole('link');
 
     const sector = screen.getByText(/Monkey Island/i);
     const level = screen.getByText(/Level: 5/);
@@ -52,7 +41,7 @@ describe('BoulderCard', () => {
 
     expect(cardPicture).toBeInTheDocument();
     expect(cardHeader).toHaveTextContent('Black Widow and the people');
-    expect(button).toBeInTheDocument();
+    expect(cardLink).toBeInTheDocument();
     expect(sector).toBeInTheDocument();
     expect(level).toBeInTheDocument();
     expect(handle_color).toBeInTheDocument();
@@ -61,7 +50,7 @@ describe('BoulderCard', () => {
     expect(setterBeforeEvent).not.toBeInTheDocument();
     expect(weightingBeforeEvent).not.toBeInTheDocument();
 
-    userEvent.click(button);
+    userEvent.click(cardLink);
 
     const tag1 = screen.getByText(/Dyno/i);
     const tag2 = screen.getByText(/Sloper/i);

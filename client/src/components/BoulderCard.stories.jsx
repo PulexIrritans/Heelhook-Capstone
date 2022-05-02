@@ -15,15 +15,19 @@ const Template = args => (
   </Router>
 );
 
+const boulder = {};
+
 export const Default = Template.bind({});
 Default.args = {
-  id: 2,
-  name: 'Boulder Name',
-  likes: 0,
-  sector: 'Sector Name',
-  level: 5,
-  hold_color: 'yellow',
-  tags: ['Sloper', 'Dyno'],
-  setter: 'Martin Pagels',
-  weighting: 100,
+  boulder: {
+    id: '2',
+    name: 'Boulder Name',
+    likes: 0,
+    sector: 'Sector Name',
+    level: 5,
+    hold_color: 'yellow',
+    tags: ['Sloper', 'Dyno'],
+    setter: 'Martin Pagels',
+    weighting: 100,
+  },
 };
