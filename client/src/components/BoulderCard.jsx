@@ -7,19 +7,19 @@ import { ReactComponent as SetterIcon } from '../icons/setter.svg';
 import boulderall from '../images/Boulder-all.jpg';
 import boulderstart from '../images/Boulder-start.jpg';
 
-const BoulderCard = ({
-  id,
-  name,
-  sector,
-  level,
-  hold_color,
-  likes,
-  tags,
-  img_start,
-  setter,
-  weighting,
-  detailedMode
-}) => {
+const BoulderCard = ({ boulder, detailedMode }) => {
+  const {
+    id,
+    name,
+    sector,
+    level,
+    hold_color,
+    likes,
+    tags,
+    img_start,
+    setter,
+    weighting,
+  } = boulder;
   const [isInDetailedMode, setIsInDetailedMode] = useState(detailedMode);
 
   return (
@@ -183,6 +183,3 @@ const AllPic = styled.img`
   grid-column: 5/6;
   grid-row: 1/6;
 `;
-
-
-

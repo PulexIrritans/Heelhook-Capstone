@@ -1,20 +1,18 @@
 import BoulderCard from './BoulderCard';
 import { MemoryRouter as Router } from 'react-router-dom';
 
-
-
 export default {
   title: 'components/Cards/BoulderCard',
   component: BoulderCard,
   argTypes: { onClick: 'onClick' },
 };
 
-const Template = (args) => (
+const Template = args => (
   <Router>
-<ul>
-<BoulderCard {...args} />
-</ul>
-</Router>
+    <ul>
+      <BoulderCard {...args} />
+    </ul>
+  </Router>
 );
 
 export const Default = Template.bind({});
