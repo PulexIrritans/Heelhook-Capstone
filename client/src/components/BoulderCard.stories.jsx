@@ -1,5 +1,5 @@
 import BoulderCard from './BoulderCard';
-
+import { MemoryRouter as Router } from 'react-router-dom';
 
 export default {
   title: 'components/Cards/BoulderCard',
@@ -7,10 +7,13 @@ export default {
   argTypes: { onClick: 'onClick' },
 };
 
-const Template = (args) => (
-<ul>
-<BoulderCard {...args} />
-</ul>);
+const Template = args => (
+  <Router>
+    <ul>
+      <BoulderCard {...args} />
+    </ul>
+  </Router>
+);
 
 export const Default = Template.bind({});
 Default.args = {

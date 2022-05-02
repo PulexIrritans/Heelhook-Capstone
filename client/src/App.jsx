@@ -1,11 +1,13 @@
-import BoulderCard from './components/BoulderCard';
-import styled from 'styled-components';
+import { Routes, Route } from 'react-router-dom';
+import Find from './pages/Find';
+import Add from './pages/Add';
+
 
 function App() {
  
   const bouldersList = [
     {
-      number: 1,
+      id: "1",
       name: 'Black Widow and the people',
       sector: 'Monkey Island',
       level: '5',
@@ -21,7 +23,7 @@ function App() {
       climbers: [],
     },
     {
-      number: 2,
+      id: "2",
       name: 'Orang Utan',
       sector: 'Monkey Island',
       level: '3',
@@ -37,7 +39,7 @@ function App() {
       climbers: [],
     },
     {
-      number: 3,
+      id: "3",
       name: 'Tarzan',
       sector: 'Monkey Island',
       level: '3',
@@ -56,34 +58,24 @@ function App() {
 
 
   return (
-    <div className='App'>
-     <BoulderList role='list'>
-      {bouldersList.map(boulder => (
-        <BoulderCard 
-        key={boulder.number}
-        id={boulder.number}
-        name={boulder.name}
-        sector={boulder.sector}
-        level={boulder.level}
-        hold_color={boulder.hold_color}
-        img_start={boulder.img_start}
-        likes={boulder.number_of_likes}
-        setter={boulder.setter}
-        tags={boulder.tags}
-        weighting={boulder.weighting}
-        detailedMode={false}
+    <>
+   
+      <Routes>
+        <Route path="/" element={<Find bouldersList={bouldersList} />} />
+        <Route
+          path="/add/:id"
+          element={
+            <Add
+              bouldersList={bouldersList}
+            />
+          }
         />
-      ))}
-     </BoulderList>
-    </div>
+      </Routes>
+    
+    </>
   );
+
 }
 
 export default App;
 
-const BoulderList = styled.ul`
-  width: 95%;
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-`
