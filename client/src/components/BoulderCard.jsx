@@ -14,7 +14,7 @@ const BoulderCard = ({ boulder, detailedMode }) => {
     sector,
     level,
     hold_color,
-    likes,
+    number_of_likes,
     tags,
     img_start,
     setter,
@@ -26,40 +26,43 @@ const BoulderCard = ({ boulder, detailedMode }) => {
     <>
       {isInDetailedMode ? (
         <WrapperLong>
-        <StartPic src={boulderstart} alt='Boulder Start'/>
-        <Name>{name}</Name>
-        <Level>Level: {level}</Level>
-        <Hold>Hold: {hold_color}</Hold>
-        <SectorIcon>
-          <Map style={{ width: '20px' }} />
-        </SectorIcon>
-        <Sector>{sector}</Sector>
-        <Setter>
-          <SetterIcon style={{ width: '20px' }} /> {setter}
-        </Setter>
-        <Weighting>Weighting: {weighting}</Weighting>
-        <TagList>
-          {tags.map((tag, index) => (
-            <Tag key={index}>{tag}</Tag>
-          ))}
-        </TagList>
-        <AllPic src={boulderall} alt="Boulder Complete"></AllPic>
-      </WrapperLong> 
+          <StartPic src={boulderstart} alt="Boulder Start" />
+          <Name>{name}</Name>
+          <Level>Level: {level}</Level>
+          <Hold>Hold: {hold_color}</Hold>
+          <SectorIcon>
+            <Map style={{ width: '20px' }} />
+          </SectorIcon>
+          <Sector>{sector}</Sector>
+          <Setter>
+            <SetterIcon style={{ width: '20px' }} /> {setter}
+          </Setter>
+          <Weighting>Weighting: {weighting}</Weighting>
+          <TagList>
+            {tags.map((tag, index) => (
+              <Tag key={index}>{tag}</Tag>
+            ))}
+          </TagList>
+          <AllPic src={boulderall} alt="Boulder Complete"></AllPic>
+        </WrapperLong>
       ) : (
-        <WrapperShort onClick={() => setIsInDetailedMode(true)} to={`/add/${id}`}>
-        <StartPic src={boulderstart} alt='Boulder Start'/>
-        <Name>{name}</Name>
-        <Likes>
-          <Heart style={{ width: '20px' }} />
-          {likes}
-        </Likes>
-        <Level>Level: {level}</Level>
-        <Hold>Hold: {hold_color}</Hold>
-        <SectorIcon>
-          <Map style={{ width: '20px' }} />
-        </SectorIcon>
-        <Sector>{sector}</Sector>
-      </WrapperShort >
+        <WrapperShort
+          onClick={() => setIsInDetailedMode(true)}
+          to={`/add/${id}`}
+        >
+          <StartPic src={boulderstart} alt="Boulder Start" />
+          <Name>{name}</Name>
+          <Likes>
+            <Heart style={{ width: '20px' }} />
+            {number_of_likes}
+          </Likes>
+          <Level>Level: {level}</Level>
+          <Hold>Hold: {hold_color}</Hold>
+          <SectorIcon>
+            <Map style={{ width: '20px' }} />
+          </SectorIcon>
+          <Sector>{sector}</Sector>
+        </WrapperShort>
       )}
     </>
   );
@@ -69,7 +72,7 @@ export default BoulderCard;
 
 const WrapperShort = styled(Link)`
   text-decoration: none;
- font-size: inherit;
+  font-size: inherit;
   color: inherit;
   display: grid;
   gap: 5px;
