@@ -57,8 +57,8 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Find bouldersList={bouldersList} />} />
-        <Route path="/add/:id" element={<Add bouldersList={bouldersList} />} />
+        <Route path="/" element={<Find />} />
+        <Route path="/add/:id" element={<Add />} />
       </Routes>
     </div>
   );

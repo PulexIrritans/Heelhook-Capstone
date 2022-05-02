@@ -3,12 +3,23 @@ import Navigation from '../components/Navigation';
 import BoulderCard from '../components/BoulderCard';
 import AddClimbedBoulderForm from '../components/AddClimbedBoulderForm';
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-const Add = ({ bouldersList, title }) => {
+const Add = () => {
   const { id } = useParams();
-  const currentBoulder = bouldersList.find(boulder => boulder.id === id);
+  const [bouldersList, setBouldersList] = useState([]);
+
+  const fetchBouldersList = () => {
+    fetch('/api')
+      .then(res => res.json())
+      .then(data => setBouldersList(data));
+  };
+  useEffect(() => {
+    fetchBouldersList();
+  }, []);
+
+  const currentBoulder = bouldersList.find(boulder => boulder._id === id);
   const [newClimbedBoulder, setNewClimbedBoulder] = useState();
 
   const saveClimbedBoulder = (
@@ -16,8 +27,7 @@ const Add = ({ bouldersList, title }) => {
     attempts,
     result,
     liked,
-    levelFeedback,
-    title
+    levelFeedback
   ) => {
     setNewClimbedBoulder({
       id: '999999',
