@@ -57,14 +57,8 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route
-          path="/"
-          element={<Find bouldersList={bouldersList} title="Heelhook" />}
-        />
-        <Route
-          path="/add/:id"
-          element={<Add bouldersList={bouldersList} title="Add climb" />}
-        />
+        <Route path="/" element={<Find bouldersList={bouldersList} />} />
+        <Route path="/add/:id" element={<Add bouldersList={bouldersList} />} />
       </Routes>
     </div>
   );

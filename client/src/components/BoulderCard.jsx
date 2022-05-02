@@ -16,7 +16,6 @@ const BoulderCard = ({ boulder, detailedMode }) => {
     hold_color,
     number_of_likes,
     tags,
-    img_start,
     setter,
     weighting,
   } = boulder;
@@ -46,22 +45,21 @@ const BoulderCard = ({ boulder, detailedMode }) => {
           <AllPic src={boulderall} alt="Boulder Complete"></AllPic>
         </WrapperLong>
       ) : (
-        <WrapperShort
-          onClick={() => setIsInDetailedMode(true)}
-          to={`/add/${id}`}
-        >
-          <StartPic src={boulderstart} alt="Boulder Start" />
-          <Name>{name}</Name>
-          <Likes>
-            <Heart style={{ width: '20px' }} />
-            {number_of_likes}
-          </Likes>
-          <Level>Level: {level}</Level>
-          <Hold>Hold: {hold_color}</Hold>
-          <SectorIcon>
-            <Map style={{ width: '20px' }} />
-          </SectorIcon>
-          <Sector>{sector}</Sector>
+        <WrapperShort>
+          <CardLink onClick={() => setIsInDetailedMode(true)} to={`/add/${id}`}>
+            <StartPic src={boulderstart} alt="Boulder Start" />
+            <Name>{name}</Name>
+            <Likes>
+              <Heart style={{ width: '20px' }} />
+              {number_of_likes}
+            </Likes>
+            <Level>Level: {level}</Level>
+            <Hold>Hold: {hold_color}</Hold>
+            <SectorIcon>
+              <Map style={{ width: '20px' }} />
+            </SectorIcon>
+            <Sector>{sector}</Sector>
+          </CardLink>
         </WrapperShort>
       )}
     </>
@@ -70,18 +68,10 @@ const BoulderCard = ({ boulder, detailedMode }) => {
 
 export default BoulderCard;
 
-const WrapperShort = styled(Link)`
-  text-decoration: none;
-  font-size: inherit;
-  color: inherit;
-  display: grid;
-  gap: 5px;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(3, 1.3rem);
+const WrapperShort = styled.li`
   background-color: var(--color-light-gray);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
-  padding: 0.2rem;
   &:hover {
     background-color: var(--color-medium-gray);
   }
@@ -99,6 +89,17 @@ const WrapperLong = styled.li`
   &:hover {
     background-color: var(--color-medium-gray);
   }
+`;
+
+const CardLink = styled(Link)`
+  text-decoration: none;
+  font-size: inherit;
+  color: inherit;
+  display: grid;
+  gap: 5px;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 1.3rem);
+  padding: 0.2rem;
 `;
 
 const StartPic = styled.img`
@@ -139,19 +140,6 @@ const SectorIcon = styled.div`
 const Sector = styled.p`
   grid-column: 3/5;
   grid-row: 3/4;
-`;
-const StyledLink = styled(Link)`
-  font-size: inherit;
-  color: inherit;
-  grid-column: 5/6;
-  grid-row: 1/4;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
-  background-color: var(--color-cyan);
 `;
 
 const TagList = styled.ul`

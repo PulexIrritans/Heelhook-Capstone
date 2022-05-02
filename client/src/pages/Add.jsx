@@ -1,5 +1,5 @@
 import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Navigation from '../components/Navigation';
 import BoulderCard from '../components/BoulderCard';
 import AddClimbedBoulderForm from '../components/AddClimbedBoulderForm';
 import { useParams } from 'react-router-dom';
@@ -34,7 +34,7 @@ const Add = ({ bouldersList, title }) => {
 
   return (
     <>
-      <Header title={title} />
+      <Header title="Add climb" />
       <main>
         <BoulderList role="list">
           {currentBoulder ? (
@@ -56,7 +56,7 @@ const Add = ({ bouldersList, title }) => {
           </>
         )}
       </main>
-      <Footer />
+      <Navigation />
     </>
   );
 };

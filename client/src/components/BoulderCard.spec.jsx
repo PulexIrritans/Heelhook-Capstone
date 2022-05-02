@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import BoulderCard from './BoulderCard';
-import { MemoryRouter as Router } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 
 const boulderTest = {
   id: '1',
@@ -23,9 +23,9 @@ const boulderTest = {
 describe('BoulderCard', () => {
   it('renders the a list item with a title, an img, 5 details and a button and renders four more details after button click', () => {
     render(
-      <Router>
+      <MemoryRouter>
         <BoulderCard boulder={boulderTest} detailedMode={false} />
-      </Router>
+      </MemoryRouter>
     );
     const cardHeader = screen.getByRole('heading');
     const cardPicture = screen.getByRole('img');

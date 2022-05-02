@@ -1,5 +1,4 @@
 import BoulderCard from './BoulderCard';
-import { MemoryRouter as Router } from 'react-router-dom';
 
 export default {
   title: 'components/Cards/BoulderCard',
@@ -8,11 +7,9 @@ export default {
 };
 
 const Template = args => (
-  <Router>
-    <ul>
-      <BoulderCard {...args} />
-    </ul>
-  </Router>
+  <ul>
+    <BoulderCard {...args} />
+  </ul>
 );
 
 const boulder = {};
@@ -22,7 +19,7 @@ Default.args = {
   boulder: {
     id: '2',
     name: 'Boulder Name',
-    likes: 0,
+    number_of_likes: 0,
     sector: 'Sector Name',
     level: 5,
     hold_color: 'yellow',

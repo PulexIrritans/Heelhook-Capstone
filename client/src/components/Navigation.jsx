@@ -1,29 +1,21 @@
 import { NavLink } from 'react-router-dom';
 import { ReactComponent as Search } from '../icons/search.svg';
-import { ReactComponent as Add } from '../icons/add.svg';
 import styled from 'styled-components';
 
-const Footer = ({}) => {
-  const activeStyle = {
-    backgroundColor: 'blue',
-  };
+const Navigation = () => {
   return (
-    <StyledFooter>
-     
-          <StyledNavLink
-            to="/"
-          >
-            <Search style={{width: '50px'}}/>
-          </StyledNavLink>
-       
-    </StyledFooter>
+    <StyledNavigation>
+      <StyledNavLink to="/">
+        <Search style={{ width: '50px' }} />
+      </StyledNavLink>
+    </StyledNavigation>
   );
 };
 
-export default Footer;
+export default Navigation;
 
-const StyledFooter = styled.nav`
-width: 100%;
+const StyledNavigation = styled.nav`
+  width: 100%;
   max-width: 768px;
   display: flex;
   align-items: center;
@@ -32,7 +24,7 @@ width: 100%;
 `;
 
 const StyledNavLink = styled(NavLink)`
-display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -45,6 +37,3 @@ display: flex;
     background-color: var(--color-cyan);
   }
 `;
-
-
-

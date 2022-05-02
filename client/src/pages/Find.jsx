@@ -1,24 +1,24 @@
 import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Navigation from '../components/Navigation';
 import BoulderCard from '../components/BoulderCard';
 import styled from 'styled-components';
 
 const Find = ({ bouldersList, title }) => {
   return (
     <>
-      <Header title={title} />
+      <Header title="Heelhook" />
       <main>
         <BoulderList role="list">
-      {bouldersList.map(boulder => (
-        <BoulderCard
-          key={boulder.id}
-          boulder={boulder}
-          detailedMode={false}
-        />
-      ))}
-    </BoulderList>
+          {bouldersList.map(boulder => (
+            <BoulderCard
+              key={boulder.id}
+              boulder={boulder}
+              detailedMode={false}
+            />
+          ))}
+        </BoulderList>
       </main>
-      <Footer />
+      <Navigation />
     </>
   );
 };
