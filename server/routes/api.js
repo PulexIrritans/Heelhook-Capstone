@@ -24,7 +24,7 @@ router.get('/add/:id', (req, res, next) => {
     });
 });
 
-router.post('/add', (req, res, next) => {
+router.post('/add/', (req, res, next) => {
   const climber_id = req.body.climber_id;
   const boulder_id = req.body.boulder_id;
   const date = req.body.date;

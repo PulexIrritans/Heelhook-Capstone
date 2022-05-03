@@ -3,12 +3,13 @@ import Header from '../components/Header';
 import Navigation from '../components/Navigation';
 import BoulderCard from '../components/BoulderCard';
 import styled from 'styled-components';
+const URL = process.env.REACT_APP_URL;
 
 const Find = () => {
   const [bouldersList, setBouldersList] = useState([]);
 
   const fetchBouldersList = () => {
-    fetch('https://heelhook-backend.herokuapp.com/api')
+    fetch(`${URL}/api`)
       .then(res => res.json())
       .then(data => setBouldersList(data));
   };

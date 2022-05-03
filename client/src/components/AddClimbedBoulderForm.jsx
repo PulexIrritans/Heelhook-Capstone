@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-const AddClimbedBoulderForm = ({ saveClimbedBoulder }) => {
+const AddClimbedBoulderForm = ({ saveClimbedBoulderToDatabase }) => {
   const [projected, setProjected] = useState(false);
   const [attempts, setAttempts] = useState('');
   const [result, setResult] = useState();
@@ -12,7 +12,13 @@ const AddClimbedBoulderForm = ({ saveClimbedBoulder }) => {
     <BoulderForm
       onSubmit={event => {
         event.preventDefault();
-        saveClimbedBoulder(projected, attempts, result, liked, levelFeedback);
+        saveClimbedBoulderToDatabase(
+          projected,
+          attempts,
+          result,
+          liked,
+          levelFeedback
+        );
       }}
     >
       <h3>Save your achievement!</h3>
