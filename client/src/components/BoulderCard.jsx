@@ -8,17 +8,8 @@ import boulderall from '../images/Boulder-all.jpg';
 import boulderstart from '../images/Boulder-start.jpg';
 
 const BoulderCard = ({ boulder, detailedMode }) => {
-  const {
-    id,
-    name,
-    sector,
-    level,
-    hold_color,
-    number_of_likes,
-    tags,
-    setter,
-    weighting,
-  } = boulder;
+  const { _id, name, sector, level, hold_color, tags, setter, weighting } =
+    boulder;
   const [isInDetailedMode, setIsInDetailedMode] = useState(detailedMode);
 
   return (
@@ -46,12 +37,14 @@ const BoulderCard = ({ boulder, detailedMode }) => {
         </WrapperLong>
       ) : (
         <WrapperShort>
-          <CardLink onClick={() => setIsInDetailedMode(true)} to={`/add/${id}`}>
+          <CardLink
+            onClick={() => setIsInDetailedMode(true)}
+            to={`/add/${_id}`}
+          >
             <StartPic src={boulderstart} alt="Boulder Start" />
             <Name>{name}</Name>
             <Likes>
-              <Heart style={{ width: '20px' }} />
-              {number_of_likes}
+              <Heart style={{ width: '20px' }} />0
             </Likes>
             <Level>Level: {level}</Level>
             <Hold>Hold: {hold_color}</Hold>

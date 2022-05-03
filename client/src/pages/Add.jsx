@@ -3,21 +3,29 @@ import Navigation from '../components/Navigation';
 import BoulderCard from '../components/BoulderCard';
 import AddClimbedBoulderForm from '../components/AddClimbedBoulderForm';
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-const Add = ({ bouldersList, title }) => {
+const Add = () => {
   const { id } = useParams();
-  const currentBoulder = bouldersList.find(boulder => boulder.id === id);
+  const [currentBoulder, setCurrentBoulder] = useState();
   const [newClimbedBoulder, setNewClimbedBoulder] = useState();
+
+  const fetchCurrentBoulder = () => {
+    fetch(`/api/add/${id}`)
+      .then(res => res.json())
+      .then(data => setCurrentBoulder(data));
+  };
+  useEffect(() => {
+    fetchCurrentBoulder();
+  }, []);
 
   const saveClimbedBoulder = (
     projected,
     attempts,
     result,
     liked,
-    levelFeedback,
-    title
+    levelFeedback
   ) => {
     setNewClimbedBoulder({
       id: '999999',
@@ -36,14 +44,17 @@ const Add = ({ bouldersList, title }) => {
     <>
       <Header title="Add climb" />
       <main>
-        <BoulderList role="list">
-          {currentBoulder ? (
-            <BoulderCard boulder={currentBoulder} detailedMode={true} />
-          ) : (
-            ''
-          )}
-        </BoulderList>
-        <AddClimbedBoulderForm saveClimbedBoulder={saveClimbedBoulder} />
+        {currentBoulder ? (
+          <>
+            <BoulderList role="list">
+              <BoulderCard boulder={currentBoulder} detailedMode={true} />
+            </BoulderList>
+            <AddClimbedBoulderForm saveClimbedBoulder={saveClimbedBoulder} />{' '}
+          </>
+        ) : (
+          <p>Sorry, could not load boulder.</p>
+        )}
+
         {newClimbedBoulder && (
           <>
             <h3>You have successfully saved a new entry for this boulder!</h3>

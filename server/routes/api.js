@@ -1,19 +1,26 @@
 import express from 'express';
 const router = express.Router();
+import { Boulder } from '../models/boulder.js';
 
 router.get('/', (req, res, next) => {
-  res.status(200).json([
-    { id: 1, name: 'Mike' },
-    { id: 2, name: 'Carol' },
-  ]);
+  Boulder.find({})
+    .then(data => {
+      res.send(data);
+    })
+    .catch(() => {
+      next();
+    });
 });
 
-router.get('/:id', (req, res, next) => {
+router.get('/add/:id', (req, res, next) => {
   const { id } = req.params;
-  res.status(200).json({
-    id: id,
-    name: 'something',
-  });
+  Boulder.findById(id)
+    .then(data => {
+      res.send(data);
+    })
+    .catch(() => {
+      next();
+    });
 });
 
 export default router;
