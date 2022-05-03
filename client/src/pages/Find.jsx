@@ -8,7 +8,7 @@ const Find = () => {
   const [bouldersList, setBouldersList] = useState([]);
 
   const fetchBouldersList = () => {
-    fetch('/api')
+    fetch('https://heelhook-backend.herokuapp.com/api')
       .then(res => res.json())
       .then(data => setBouldersList(data));
   };

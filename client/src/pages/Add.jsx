@@ -12,7 +12,7 @@ const Add = () => {
   const [newClimbedBoulder, setNewClimbedBoulder] = useState();
 
   const fetchCurrentBoulder = () => {
-    fetch(`/api/add/${id}`)
+    fetch(`https://heelhook-backend.herokuapp.com/api/add/${id}`)
       .then(res => res.json())
       .then(data => setCurrentBoulder(data));
   };
