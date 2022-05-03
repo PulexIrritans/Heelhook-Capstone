@@ -21,13 +21,17 @@ const Find = () => {
       <Header title="Heelhook" />
       <main>
         <BoulderList role="list">
-          {bouldersList.map(boulder => (
-            <BoulderCard
-              key={boulder._id}
-              boulder={boulder}
-              detailedMode={false}
-            />
-          ))}
+          {bouldersList.length > 0 ? (
+            bouldersList.map(boulder => (
+              <BoulderCard
+                key={boulder._id}
+                boulder={boulder}
+                detailedMode={false}
+              />
+            ))
+          ) : (
+            <p>Sorry, nothing found. Please try again.</p>
+          )}
         </BoulderList>
       </main>
       <Navigation />

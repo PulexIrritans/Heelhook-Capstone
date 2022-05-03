@@ -44,14 +44,17 @@ const Add = () => {
     <>
       <Header title="Add climb" />
       <main>
-        <BoulderList role="list">
-          {currentBoulder ? (
-            <BoulderCard boulder={currentBoulder} detailedMode={true} />
-          ) : (
-            ''
-          )}
-        </BoulderList>
-        <AddClimbedBoulderForm saveClimbedBoulder={saveClimbedBoulder} />
+        {currentBoulder ? (
+          <>
+            <BoulderList role="list">
+              <BoulderCard boulder={currentBoulder} detailedMode={true} />
+            </BoulderList>
+            <AddClimbedBoulderForm saveClimbedBoulder={saveClimbedBoulder} />{' '}
+          </>
+        ) : (
+          <p>Sorry, could not load boulder.</p>
+        )}
+
         {newClimbedBoulder && (
           <>
             <h3>You have successfully saved a new entry for this boulder!</h3>
