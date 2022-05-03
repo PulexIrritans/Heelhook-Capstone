@@ -8,19 +8,17 @@ import styled from 'styled-components';
 
 const Add = () => {
   const { id } = useParams();
-  const [bouldersList, setBouldersList] = useState([]);
+  const [currentBoulder, setCurrentBoulder] = useState();
+  const [newClimbedBoulder, setNewClimbedBoulder] = useState();
 
-  const fetchBouldersList = () => {
-    fetch('/api')
+  const fetchCurrentBoulder = () => {
+    fetch(`/api/add/${id}`)
       .then(res => res.json())
-      .then(data => setBouldersList(data));
+      .then(data => setCurrentBoulder(data));
   };
   useEffect(() => {
-    fetchBouldersList();
+    fetchCurrentBoulder();
   }, []);
-
-  const currentBoulder = bouldersList.find(boulder => boulder._id === id);
-  const [newClimbedBoulder, setNewClimbedBoulder] = useState();
 
   const saveClimbedBoulder = (
     projected,
