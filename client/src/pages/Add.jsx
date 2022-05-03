@@ -10,7 +10,6 @@ const URL = process.env.REACT_APP_URL;
 const Add = () => {
   const { id } = useParams();
   const [currentBoulder, setCurrentBoulder] = useState();
-  // const [newClimbedBoulder, setNewClimbedBoulder] = useState();
   const [climbedBoulder, setClimbedBoulder] = useState();
 
   const fetchCurrentBoulder = () => {
@@ -22,35 +21,13 @@ const Add = () => {
     fetchCurrentBoulder();
   }, []);
 
-  // const saveClimbedBoulder = (
-  //   projected,
-  //   attempts,
-  //   result,
-  //   liked,
-  //   levelFeedback
-  // ) => {
-  //   setNewClimbedBoulder({
-  //     id: '999999',
-  //     climber_id: '9999999999',
-  //     boulder_id: id,
-  //     date: new Date(),
-  //     projected: projected,
-  //     attempts: attempts,
-  //     result: result,
-  //     liked: liked,
-  //     level_feedback: Number(levelFeedback),
-  //   });
-  // };
-
   const saveClimbedBoulderToDatabase = (
-    // event,
     projected,
     attempts,
     result,
     liked,
     levelFeedback
   ) => {
-    // event.preventDefault();
     const newClimbedBoulder = {
       climber_id: 9999,
       boulder_id: id,
@@ -63,7 +40,7 @@ const Add = () => {
     };
 
     fetch(`${URL}/api/add/`, {
-      method: 'POST', // or 'PUT'
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
