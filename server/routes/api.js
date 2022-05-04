@@ -33,25 +33,39 @@ router.post('/add/', (req, res, next) => {
   const result = req.body.result;
   const liked = req.body.liked;
   const level_feedback = req.body.level_feedback;
-
   const newClimbed_boulder = Climbed_boulder({
-    climber_id,
-    boulder_id,
-    date,
-    projected,
-    attempts,
-    result,
-    liked,
-    level_feedback,
+  climber_id,
+  boulder_id,
+  date,
+  projected,
+  attempts,
+  result,
+  liked,
+  level_feedback,
   });
-  newClimbed_boulder
-    .save()
-    .then(data => {
-      res.status(201).send(data);
-    })
-    .catch(() => {
-      next();
-    });
-});
 
+  const filteredClimbedBoulder = Climbed_boulder.find({
+  climber_id: climber_id,
+  boulder_id: boulder_id,
+  });
+
+  filteredClimbedBoulder ? Climbed_boulder.updateOne(
+  filteredClimbedBoulder._id,
+  newClimbed_boulder
+  ).then(
+  data => {
+  res.status(200).send(data);
+  })
+  .catch(() => {
+  next();
+  })
+  
+  : newClimbed_boulder.save().then(data => {
+  res.status(201).send(data);
+  });
+  .catch(() => {
+  next();
+  });
+});
+  
 export default router;
