@@ -10,8 +10,7 @@ const AddClimbedBoulderForm = ({ saveClimbedBoulderToDatabase }) => {
 
   return (
     <BoulderForm
-      onSubmit={
-        event => {
+      onSubmit={event => {
         event.preventDefault();
         saveClimbedBoulderToDatabase(
           projected,
@@ -91,8 +90,8 @@ const AddClimbedBoulderForm = ({ saveClimbedBoulderToDatabase }) => {
             <label htmlFor="flash">Flash</label>
           </div>
           <button
-            onClick={event => {
-              event.preventDefault();
+            type="button"
+            onClick={() => {
               setResult('');
             }}
           >
@@ -155,7 +154,14 @@ const AddClimbedBoulderForm = ({ saveClimbedBoulderToDatabase }) => {
             />
             <label htmlFor="toohard">Too hard</label>
           </div>
-          <button>x</button>
+          <button
+            type="button"
+            onClick={() => {
+              setLevelFeedback(0);
+            }}
+          >
+            x
+          </button>
         </RadioButtonWrapper>
       </fieldset>
       <button>Save</button>
