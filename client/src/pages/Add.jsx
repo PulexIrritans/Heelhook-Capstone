@@ -11,6 +11,7 @@ const Add = () => {
   const { id } = useParams();
   const [currentBoulder, setCurrentBoulder] = useState();
   const [climbedBoulder, setClimbedBoulder] = useState();
+  const [error, setError] = useState(false);
 
   const fetchCurrentBoulder = () => {
     fetch(`${URL}/api/add/${id}/`)
@@ -50,7 +51,11 @@ const Add = () => {
     })
       .then(response => response.json())
       .then(data => {
+        console.log(data);
         setClimbedBoulder(data);
+      })
+      .catch(error => {
+        setError(true);
       });
   };
 
@@ -72,8 +77,18 @@ const Add = () => {
         )}
 
         {climbedBoulder && (
-          <h3>You have successfully saved a new entry for this boulder!</h3>
+          <>
+            <h3>You have successfully saved a new entry for this boulder!</h3>
+            <p>Climb Date: {climbedBoulder.date}</p>
+            <p>Projected: {climbedBoulder.projected ? 'true' : 'false'}</p>
+            <p>Attempts: {climbedBoulder.attempts}</p>
+            <p>Result: {climbedBoulder.result}</p>
+            <p>Liked: {climbedBoulder.liked ? 'true' : 'false'}</p>
+            <p>Level Feedback: {climbedBoulder.level_feedback}</p>
+          </>
         )}
+
+        {error && <p>Sorry, could not save new boulder entry.</p>}
       </main>
       <Navigation />
     </>

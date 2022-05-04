@@ -39,7 +39,8 @@ router.post('/add/', async (req, res, next) => {
   if (filteredClimbedBoulder) {
     Climbed_boulder.replaceOne(filteredClimbedBoulder, newClimbedBoulder)
       .then(data => {
-        res.status(200).send(data);
+        res.status(200).send(newClimbedBoulder);
+        console.log(data);
       })
       .catch(() => {
         next();
