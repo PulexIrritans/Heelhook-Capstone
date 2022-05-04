@@ -6,7 +6,7 @@ const AddClimbedBoulderForm = ({ saveClimbedBoulderToDatabase }) => {
   const [attempts, setAttempts] = useState('');
   const [result, setResult] = useState();
   const [liked, setLiked] = useState(false);
-  const [levelFeedback, setLevelFeedback] = useState();
+  const [levelFeedback, setLevelFeedback] = useState(0);
 
   return (
     <BoulderForm

@@ -39,6 +39,8 @@ const Add = () => {
       level_feedback: Number(levelFeedback),
     };
 
+    console.log(newClimbedBoulder);
+
     fetch(`${URL}/api/add/`, {
       method: 'POST',
       headers: {
