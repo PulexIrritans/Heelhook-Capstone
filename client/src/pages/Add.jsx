@@ -11,16 +11,26 @@ const Add = () => {
   const { id } = useParams();
   const [currentBoulder, setCurrentBoulder] = useState();
   const [climbedBoulder, setClimbedBoulder] = useState();
+  const [formPrefilledClimbedBoulder, setFormPrefilledClimbedBoulder] =
+    useState();
   const [error, setError] = useState(false);
 
   const fetchCurrentBoulder = () => {
-    fetch(`${URL}/api/add/${id}/`)
+    fetch(`${URL}/api/add/9999/${id}/`)
       .then(res => res.json())
       .then(data => setCurrentBoulder(data));
   };
   useEffect(() => {
     fetchCurrentBoulder();
+    fetchCurrentClimbedBoulder();
   }, []);
+
+  const fetchCurrentClimbedBoulder = () => {
+    fetch(`${URL}/api/prefill/9999/${id}/`)
+      .then(res => res.json())
+      .then(data => console.log(data, 'Test'))
+      .catch(error);
+  };
 
   const saveClimbedBoulderToDatabase = (
     projected,
@@ -39,8 +49,6 @@ const Add = () => {
       liked,
       level_feedback: Number(levelFeedback),
     };
-
-    console.log(newClimbedBoulder);
 
     fetch(`${URL}/api/add/`, {
       method: 'POST',
