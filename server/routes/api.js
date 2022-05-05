@@ -6,18 +6,32 @@ import { Climbed_boulder } from '../models/climbed_boulder.js';
 router.get('/', (req, res, next) => {
   Boulder.find({})
     .then(data => {
-      res.send(data);
+      res.status(200).send(data);
     })
     .catch(() => {
       next();
     });
 });
 
-router.get('/add/:id', (req, res, next) => {
-  const { id } = req.params;
-  Boulder.findById(id)
+router.get('/add/:climberID/:boulderID', (req, res, next) => {
+  const { boulderID } = req.params;
+  Boulder.findById(boulderID)
     .then(data => {
-      res.send(data);
+      res.status(200).send(data);
+    })
+    .catch(() => {
+      next();
+    });
+});
+
+router.get('/prefill/:climberID/:boulderID', (req, res, next) => {
+  const { climberID, boulderID } = req.params;
+  Climbed_boulder.findOne({
+    climber_id: climberID,
+    boulder_id: boulderID,
+  })
+    .then(data => {
+      data === null ? res.status(200).send({}) : res.status(200).send(data);
     })
     .catch(() => {
       next();
@@ -29,8 +43,6 @@ router.post('/add/', async (req, res, next) => {
   const boulder_id = req.body.boulder_id;
   const newClimbedBoulder = req.body;
 
-  console.log(newClimbedBoulder);
-
   const filteredClimbedBoulder = await Climbed_boulder.findOne({
     climber_id: climber_id,
     boulder_id: boulder_id,
@@ -40,7 +52,6 @@ router.post('/add/', async (req, res, next) => {
     Climbed_boulder.replaceOne(filteredClimbedBoulder, newClimbedBoulder)
       .then(data => {
         res.status(200).send(newClimbedBoulder);
-        console.log(data);
       })
       .catch(() => {
         next();

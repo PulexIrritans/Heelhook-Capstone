@@ -6,21 +6,32 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 const URL = process.env.REACT_APP_URL;
+const USER_ID = 9999;
 
 const Add = () => {
   const { id } = useParams();
   const [currentBoulder, setCurrentBoulder] = useState();
   const [climbedBoulder, setClimbedBoulder] = useState();
+  const [formPrefilledClimbedBoulder, setFormPrefilledClimbedBoulder] =
+    useState({});
   const [error, setError] = useState(false);
 
   const fetchCurrentBoulder = () => {
-    fetch(`${URL}/api/add/${id}/`)
+    fetch(`${URL}/api/add/${USER_ID}/${id}/`)
       .then(res => res.json())
       .then(data => setCurrentBoulder(data));
   };
   useEffect(() => {
     fetchCurrentBoulder();
+    fetchCurrentClimbedBoulder();
   }, []);
+
+  const fetchCurrentClimbedBoulder = () => {
+    fetch(`${URL}/api/prefill/${USER_ID}/${id}/`)
+      .then(res => res.json())
+      .then(data => setFormPrefilledClimbedBoulder(data))
+      .catch(error);
+  };
 
   const saveClimbedBoulderToDatabase = (
     projected,
@@ -30,7 +41,7 @@ const Add = () => {
     levelFeedback
   ) => {
     const newClimbedBoulder = {
-      climber_id: 9999,
+      climber_id: USER_ID.toString(),
       boulder_id: id,
       date: new Date(),
       projected,
@@ -39,8 +50,6 @@ const Add = () => {
       liked,
       level_feedback: Number(levelFeedback),
     };
-
-    console.log(newClimbedBoulder);
 
     fetch(`${URL}/api/add/`, {
       method: 'POST',
@@ -70,6 +79,7 @@ const Add = () => {
             </BoulderList>
             <AddClimbedBoulderForm
               saveClimbedBoulderToDatabase={saveClimbedBoulderToDatabase}
+              formPrefilledClimbedBoulder={formPrefilledClimbedBoulder}
             />
           </>
         ) : (

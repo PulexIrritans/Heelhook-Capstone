@@ -1,23 +1,29 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-const AddClimbedBoulderForm = ({ saveClimbedBoulderToDatabase }) => {
-  const [projected, setProjected] = useState(false);
-  const [attempts, setAttempts] = useState('');
-  const [result, setResult] = useState();
-  const [liked, setLiked] = useState(false);
-  const [levelFeedback, setLevelFeedback] = useState(0);
+const AddClimbedBoulderForm = ({
+  saveClimbedBoulderToDatabase,
+  formPrefilledClimbedBoulder,
+}) => {
+  const { projected, attempts, result, liked, level_feedback } =
+    formPrefilledClimbedBoulder;
+
+  const [newProjected, setNewProjected] = useState(projected);
+  const [newAttempts, setNewAttempts] = useState(attempts);
+  const [newResult, setNewResult] = useState(result);
+  const [newLiked, setNewLiked] = useState(liked);
+  const [newLevelFeedback, setNewLevelFeedback] = useState(level_feedback);
 
   return (
     <BoulderForm
       onSubmit={event => {
         event.preventDefault();
         saveClimbedBoulderToDatabase(
-          projected,
-          attempts,
-          result,
-          liked,
-          levelFeedback
+          newProjected,
+          newAttempts,
+          newResult,
+          newLiked,
+          newLevelFeedback
         );
       }}
     >
@@ -28,9 +34,9 @@ const AddClimbedBoulderForm = ({ saveClimbedBoulderToDatabase }) => {
           type="checkbox"
           id="projected"
           name="projected"
-          value={projected}
+          value={newProjected}
           onChange={event => {
-            setProjected(event.target.checked);
+            setNewProjected(event.target.checked);
           }}
         ></input>
       </div>
@@ -40,10 +46,10 @@ const AddClimbedBoulderForm = ({ saveClimbedBoulderToDatabase }) => {
           type="number"
           id="attempts"
           name="attempts"
-          value={attempts}
+          value={newAttempts}
           min="0"
           onChange={event => {
-            setAttempts(event.target.value);
+            setNewAttempts(event.target.value);
           }}
         ></input>
       </div>
@@ -56,9 +62,9 @@ const AddClimbedBoulderForm = ({ saveClimbedBoulderToDatabase }) => {
               id="zone"
               name="result"
               value="zone"
-              checked={result === 'zone'}
+              checked={newResult === 'zone' && 'checked'}
               onChange={event => {
-                setResult(event.target.value);
+                setNewResult(event.target.value);
               }}
             />
             <label htmlFor="zone">Zone</label>
@@ -69,9 +75,9 @@ const AddClimbedBoulderForm = ({ saveClimbedBoulderToDatabase }) => {
               id="top"
               name="result"
               value="top"
-              checked={result === 'top'}
+              checked={newResult === 'top' && 'checked'}
               onChange={event => {
-                setResult(event.target.value);
+                setNewResult(event.target.value);
               }}
             />
             <label htmlFor="top">Top</label>
@@ -82,9 +88,9 @@ const AddClimbedBoulderForm = ({ saveClimbedBoulderToDatabase }) => {
               id="flash"
               name="result"
               value="flash"
-              checked={result === 'flash'}
+              checked={newResult === 'flash' && 'checked'}
               onChange={event => {
-                setResult(event.target.value);
+                setNewResult(event.target.value);
               }}
             />
             <label htmlFor="flash">Flash</label>
@@ -92,7 +98,7 @@ const AddClimbedBoulderForm = ({ saveClimbedBoulderToDatabase }) => {
           <button
             type="button"
             onClick={() => {
-              setResult('');
+              setNewResult('');
             }}
           >
             x
@@ -106,9 +112,9 @@ const AddClimbedBoulderForm = ({ saveClimbedBoulderToDatabase }) => {
           type="checkbox"
           id="liked"
           name="liked"
-          value={liked}
+          value={newLiked}
           onChange={event => {
-            setLiked(event.target.checked);
+            setNewLiked(event.target.checked);
           }}
         ></input>
       </div>
@@ -121,9 +127,9 @@ const AddClimbedBoulderForm = ({ saveClimbedBoulderToDatabase }) => {
               id="tooeasy"
               name="levelFeedback"
               value="-1"
-              checked={levelFeedback === '-1'}
+              checked={newLevelFeedback === '-1' && 'checked'}
               onChange={event => {
-                setLevelFeedback(event.target.value);
+                setNewLevelFeedback(event.target.value);
               }}
             />
             <label htmlFor="tooeasy">Too easy</label>
@@ -134,9 +140,9 @@ const AddClimbedBoulderForm = ({ saveClimbedBoulderToDatabase }) => {
               id="justright"
               name="levelFeedback"
               value="0"
-              checked={levelFeedback === '0'}
+              checked={newLevelFeedback === '0' && 'checked'}
               onChange={event => {
-                setLevelFeedback(event.target.value);
+                setNewLevelFeedback(event.target.value);
               }}
             />
             <label htmlFor="justright">Just right</label>
@@ -147,9 +153,9 @@ const AddClimbedBoulderForm = ({ saveClimbedBoulderToDatabase }) => {
               id="toohard"
               name="levelFeedback"
               value="1"
-              checked={levelFeedback === '1'}
+              checked={newLevelFeedback === '1' && 'checked'}
               onChange={event => {
-                setLevelFeedback(event.target.value);
+                setNewLevelFeedback(event.target.value);
               }}
             />
             <label htmlFor="toohard">Too hard</label>
@@ -157,7 +163,7 @@ const AddClimbedBoulderForm = ({ saveClimbedBoulderToDatabase }) => {
           <button
             type="button"
             onClick={() => {
-              setLevelFeedback(0);
+              setNewLevelFeedback(0);
             }}
           >
             x
