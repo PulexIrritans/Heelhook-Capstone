@@ -12,7 +12,7 @@ const Add = () => {
   const [currentBoulder, setCurrentBoulder] = useState();
   const [climbedBoulder, setClimbedBoulder] = useState();
   const [formPrefilledClimbedBoulder, setFormPrefilledClimbedBoulder] =
-    useState();
+    useState({});
   const [error, setError] = useState(false);
 
   const fetchCurrentBoulder = () => {
@@ -28,7 +28,7 @@ const Add = () => {
   const fetchCurrentClimbedBoulder = () => {
     fetch(`${URL}/api/prefill/9999/${id}/`)
       .then(res => res.json())
-      .then(data => console.log(data, 'Test'))
+      .then(data => setFormPrefilledClimbedBoulder(data))
       .catch(error);
   };
 
@@ -78,6 +78,7 @@ const Add = () => {
             </BoulderList>
             <AddClimbedBoulderForm
               saveClimbedBoulderToDatabase={saveClimbedBoulderToDatabase}
+              formPrefilledClimbedBoulder={formPrefilledClimbedBoulder}
             />
           </>
         ) : (

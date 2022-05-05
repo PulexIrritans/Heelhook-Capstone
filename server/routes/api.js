@@ -31,8 +31,19 @@ router.get('/prefill/:climberID/:boulderID', (req, res, next) => {
     boulder_id: boulderID,
   })
     .then(data => {
-      console.log(data, 'Test');
-      res.send(data);
+      data === null
+        ? res.send({
+            _id: '',
+            climber_id: '',
+            boulder_id: '',
+            date: '',
+            projected: false,
+            attempts: '',
+            result: '',
+            liked: false,
+            level_feedback: 0,
+          })
+        : res.send(data);
     })
     .catch(() => {
       next();
