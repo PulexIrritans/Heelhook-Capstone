@@ -16,8 +16,6 @@ const Add = () => {
     useState({});
   const [error, setError] = useState(false);
 
-  console.log(USER_ID, 'TEST ID');
-
   const fetchCurrentBoulder = () => {
     fetch(`${URL}/api/add/${USER_ID}/${id}/`)
       .then(res => res.json())
