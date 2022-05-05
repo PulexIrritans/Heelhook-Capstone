@@ -42,6 +42,7 @@ describe('AddClimbedBoulderForm', () => {
     userEvent.click(submitButton);
 
     expect(handleAdd).toHaveBeenCalledTimes(1);
+    expect(handleAdd).toHaveBeenCalledWith(false, 7, 'top', true, 0);
   });
 });
 
