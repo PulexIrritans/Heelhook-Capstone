@@ -6,7 +6,7 @@ import { Climbed_boulder } from '../models/climbed_boulder.js';
 router.get('/', (req, res, next) => {
   Boulder.find({})
     .then(data => {
-      res.send(data);
+      res.status(200).send(data);
     })
     .catch(() => {
       next();
@@ -17,7 +17,7 @@ router.get('/add/:climberID/:boulderID', (req, res, next) => {
   const { boulderID } = req.params;
   Boulder.findById(boulderID)
     .then(data => {
-      res.send(data);
+      res.status(200).send(data);
     })
     .catch(() => {
       next();
@@ -31,19 +31,7 @@ router.get('/prefill/:climberID/:boulderID', (req, res, next) => {
     boulder_id: boulderID,
   })
     .then(data => {
-      data === null
-        ? res.send({
-            _id: '',
-            climber_id: '',
-            boulder_id: '',
-            date: '',
-            projected: false,
-            attempts: '',
-            result: '',
-            liked: false,
-            level_feedback: 0,
-          })
-        : res.send(data);
+      data === null ? res.status(200).send({}) : res.status(200).send(data);
     })
     .catch(() => {
       next();

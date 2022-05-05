@@ -29,11 +29,30 @@ describe('AddClimbedBoulderForm', () => {
     expect(submitButton).toBeInTheDocument();
   });
 
-  it('submits form data if none of the input fields is filled out', () => {
+  it('submits form data with the prefilled values', () => {
     const handleAdd = jest.fn();
     render(
       <AddClimbedBoulderForm
         formPrefilledClimbedBoulder={climbedBoulder}
+        saveClimbedBoulderToDatabase={handleAdd}
+      />
+    );
+    const submitButton = screen.getByRole('button', { name: /Save/i });
+
+    userEvent.click(submitButton);
+
+    expect(handleAdd).toHaveBeenCalledTimes(1);
+  });
+});
+
+const emptyClimbedBoulder = {};
+
+describe('AddClimbedBoulderForm', () => {
+  it('submits form data with an empty form', () => {
+    const handleAdd = jest.fn();
+    render(
+      <AddClimbedBoulderForm
+        formPrefilledClimbedBoulder={emptyClimbedBoulder}
         saveClimbedBoulderToDatabase={handleAdd}
       />
     );
