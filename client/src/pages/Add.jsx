@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 const URL = process.env.REACT_APP_URL;
+const USER_ID = 9999;
 
 const Add = () => {
   const { id } = useParams();
@@ -15,8 +16,10 @@ const Add = () => {
     useState({});
   const [error, setError] = useState(false);
 
+  console.log(USER_ID, 'TEST ID');
+
   const fetchCurrentBoulder = () => {
-    fetch(`${URL}/api/add/9999/${id}/`)
+    fetch(`${URL}/api/add/${USER_ID}/${id}/`)
       .then(res => res.json())
       .then(data => setCurrentBoulder(data));
   };
@@ -26,7 +29,7 @@ const Add = () => {
   }, []);
 
   const fetchCurrentClimbedBoulder = () => {
-    fetch(`${URL}/api/prefill/9999/${id}/`)
+    fetch(`${URL}/api/prefill/${USER_ID}/${id}/`)
       .then(res => res.json())
       .then(data => setFormPrefilledClimbedBoulder(data))
       .catch(error);
@@ -40,7 +43,7 @@ const Add = () => {
     levelFeedback
   ) => {
     const newClimbedBoulder = {
-      climber_id: 9999,
+      climber_id: USER_ID.toString(),
       boulder_id: id,
       date: new Date(),
       projected,
