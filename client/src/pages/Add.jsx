@@ -5,14 +5,16 @@ import AddClimbedBoulderForm from '../components/AddClimbedBoulderForm';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+const URL = process.env.REACT_APP_URL;
 
 const Add = () => {
   const { id } = useParams();
   const [currentBoulder, setCurrentBoulder] = useState();
-  const [newClimbedBoulder, setNewClimbedBoulder] = useState();
+  const [climbedBoulder, setClimbedBoulder] = useState();
+  const [error, setError] = useState(false);
 
   const fetchCurrentBoulder = () => {
-    fetch(`https://heelhook-backend.herokuapp.com/api/add/${id}`)
+    fetch(`${URL}/api/add/${id}/`)
       .then(res => res.json())
       .then(data => setCurrentBoulder(data));
   };
@@ -20,24 +22,41 @@ const Add = () => {
     fetchCurrentBoulder();
   }, []);
 
-  const saveClimbedBoulder = (
+  const saveClimbedBoulderToDatabase = (
     projected,
     attempts,
     result,
     liked,
     levelFeedback
   ) => {
-    setNewClimbedBoulder({
-      id: '999999',
-      climber_id: '9999999999',
+    const newClimbedBoulder = {
+      climber_id: 9999,
       boulder_id: id,
       date: new Date(),
-      projected: projected,
-      attempts: attempts,
-      result: result,
-      liked: liked,
+      projected,
+      attempts,
+      result,
+      liked,
       level_feedback: Number(levelFeedback),
-    });
+    };
+
+    console.log(newClimbedBoulder);
+
+    fetch(`${URL}/api/add/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newClimbedBoulder),
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        setClimbedBoulder(data);
+      })
+      .catch(error => {
+        setError(true);
+      });
   };
 
   return (
@@ -49,23 +68,27 @@ const Add = () => {
             <BoulderList role="list">
               <BoulderCard boulder={currentBoulder} detailedMode={true} />
             </BoulderList>
-            <AddClimbedBoulderForm saveClimbedBoulder={saveClimbedBoulder} />{' '}
+            <AddClimbedBoulderForm
+              saveClimbedBoulderToDatabase={saveClimbedBoulderToDatabase}
+            />
           </>
         ) : (
           <p>Sorry, could not load boulder.</p>
         )}
 
-        {newClimbedBoulder && (
+        {climbedBoulder && (
           <>
             <h3>You have successfully saved a new entry for this boulder!</h3>
-            <p>Climb Date: {newClimbedBoulder.date.toISOString()}</p>
-            <p>Projected: {newClimbedBoulder.projected ? 'true' : 'false'}</p>
-            <p>Attempts: {newClimbedBoulder.attempts}</p>
-            <p>Result: {newClimbedBoulder.result}</p>
-            <p>Liked: {newClimbedBoulder.liked ? 'true' : 'false'}</p>
-            <p>Level Feedback: {newClimbedBoulder.level_feedback}</p>
+            <p>Climb Date: {climbedBoulder.date}</p>
+            <p>Projected: {climbedBoulder.projected ? 'true' : 'false'}</p>
+            <p>Attempts: {climbedBoulder.attempts}</p>
+            <p>Result: {climbedBoulder.result}</p>
+            <p>Liked: {climbedBoulder.liked ? 'true' : 'false'}</p>
+            <p>Level Feedback: {climbedBoulder.level_feedback}</p>
           </>
         )}
+
+        {error && <p>Sorry, could not save new boulder entry.</p>}
       </main>
       <Navigation />
     </>

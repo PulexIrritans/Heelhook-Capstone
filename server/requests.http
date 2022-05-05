@@ -1,0 +1,13 @@
+POST http://localhost:3001/api/add/
+content-type: application/json
+
+{
+    "climber_id": "xxx",
+    "boulder_id": "5555",
+    "date": "2022-05-03T17:03:24.518Z",
+    "projected": true,
+    "attempts": 4,
+    "result": "top",
+    "liked": false,
+    "level_feedback": 1
+}

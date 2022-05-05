@@ -1,18 +1,24 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-const AddClimbedBoulderForm = ({ saveClimbedBoulder }) => {
+const AddClimbedBoulderForm = ({ saveClimbedBoulderToDatabase }) => {
   const [projected, setProjected] = useState(false);
   const [attempts, setAttempts] = useState('');
   const [result, setResult] = useState();
   const [liked, setLiked] = useState(false);
-  const [levelFeedback, setLevelFeedback] = useState();
+  const [levelFeedback, setLevelFeedback] = useState(0);
 
   return (
     <BoulderForm
       onSubmit={event => {
         event.preventDefault();
-        saveClimbedBoulder(projected, attempts, result, liked, levelFeedback);
+        saveClimbedBoulderToDatabase(
+          projected,
+          attempts,
+          result,
+          liked,
+          levelFeedback
+        );
       }}
     >
       <h3>Save your achievement!</h3>
@@ -84,8 +90,8 @@ const AddClimbedBoulderForm = ({ saveClimbedBoulder }) => {
             <label htmlFor="flash">Flash</label>
           </div>
           <button
-            onClick={event => {
-              event.preventDefault();
+            type="button"
+            onClick={() => {
               setResult('');
             }}
           >
@@ -149,9 +155,9 @@ const AddClimbedBoulderForm = ({ saveClimbedBoulder }) => {
             <label htmlFor="toohard">Too hard</label>
           </div>
           <button
-            onClick={event => {
-              event.preventDefault();
-              setLevelFeedback('');
+            type="button"
+            onClick={() => {
+              setLevelFeedback(0);
             }}
           >
             x
