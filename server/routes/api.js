@@ -38,6 +38,43 @@ router.get('/climbed_boulders/:climberID/:boulderID', (req, res, next) => {
     });
 });
 
+router.get('/climbed_boulders/:climberID', async (req, res, next) => {
+  const { climberID } = req.params;
+
+  const filteredSortedClimbedBoulders = await Climbed_boulder.find({
+    climber_id: climberID,
+  })
+
+    .then(data => {
+      const amountAll = data?.length;
+      const amountResultZone = data?.filter(
+        item => item.result === 'zone'
+      )?.length;
+      const amountResultTop = data?.filter(
+        item => item.result === 'top'
+      )?.length;
+      const amountResultFlash = data?.filter(
+        item => item.result === 'flash'
+      )?.length;
+      console.log(amountAll, amountResultZone);
+      res.status(200).send([
+        {
+          label: 'amountAll',
+          amount: amountAll,
+        },
+        { label: 'amountResultZone', amount: amountResultZone },
+        { label: 'amountResultTop', amount: amountResultTop },
+        {
+          label: 'amountResultFlash',
+          amount: amountResultFlash,
+        },
+      ]);
+    })
+    .catch(e => {
+      console.error(e);
+    });
+});
+
 router.post('/climbed_boulders/', async (req, res, next) => {
   const climber_id = req.body.climber_id;
   const boulder_id = req.body.boulder_id;
