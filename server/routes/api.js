@@ -3,15 +3,27 @@ const router = express.Router();
 import { Boulder } from '../models/boulder.js';
 import { Climbed_boulder } from '../models/climbed_boulder.js';
 
-router.get('/boulders', (req, res, next) => {
-  Boulder.find({})
-    .then(data => {
-      res.status(200).send(data);
+router.get('/boulders', async (req, res, next) => {
+  const all = await Boulder.find({});
+  const boulders = await Promise.all(
+    all.map(async boulder => {
+      const tempBoulders = await Climbed_boulder.find({
+        boulder_id: boulder.id,
+        liked: true,
+      });
+      const amount = tempBoulders?.length;
+      const copy = JSON.parse(JSON.stringify(boulder));
+      copy.likeAmount = amount;
+      return copy;
     })
-    .catch(() => {
-      next();
-    });
+  );
+  console.log(boulders);
+  res.status(200).send(boulders);
 });
+
+// router.get('/climbed_boulders', (req.res, next) => {
+
+// })
 
 router.get('/boulders/:climberID/:boulderID', (req, res, next) => {
   const { boulderID } = req.params;
