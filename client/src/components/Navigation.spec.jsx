@@ -12,6 +12,6 @@ describe('Navigation', () => {
 
     const links = screen.getAllByRole('link');
 
-    expect(links).toHaveLength(1);
+    expect(links).toHaveLength(2);
   });
 });
