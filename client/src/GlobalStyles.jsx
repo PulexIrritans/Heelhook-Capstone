@@ -12,17 +12,17 @@ export default createGlobalStyle`
     rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
   }
 
-*{
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-h1{
+h1, p {
   margin: 0;
 }
 
-body{
+body {
     max-width: 768px;
     height: 100vh;
     margin: 0 auto;
@@ -32,7 +32,7 @@ body{
     background-color: var(--color-black);
 }
 
-.App{
+.App {
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -44,7 +44,7 @@ main {
   overflow-y: auto;
 }
 
-input, label, textarea{
+input, label, textarea {
     font-size: 1em;
 }
 
