@@ -56,17 +56,23 @@ router.get('/climbed_boulders/:climberID', async (req, res, next) => {
       const amountResultFlash = data?.filter(
         item => item.result === 'flash'
       )?.length;
+      const amountResultFail =
+        amountAll - amountResultZone - amountResultTop - amountResultFlash;
       console.log(amountAll, amountResultZone);
       res.status(200).send([
         {
-          label: 'amountAll',
-          amount: amountAll,
+          type: 'Total Climbs',
+          value: amountAll,
         },
-        { label: 'amountResultZone', amount: amountResultZone },
-        { label: 'amountResultTop', amount: amountResultTop },
+        { type: 'Total Zone', value: amountResultZone },
+        { type: 'Total Top', value: amountResultTop },
         {
-          label: 'amountResultFlash',
-          amount: amountResultFlash,
+          type: 'Total Flash',
+          value: amountResultFlash,
+        },
+        {
+          type: 'Total Fail',
+          value: amountResultFail,
         },
       ]);
     })
