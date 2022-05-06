@@ -1,18 +1,25 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const AddClimbedBoulderForm = ({
   saveClimbedBoulderToDatabase,
   formPrefilledClimbedBoulder,
 }) => {
-  const { projected, attempts, result, liked, level_feedback } =
-    formPrefilledClimbedBoulder;
+  useEffect(() => {
+    const { projected, attempts, result, liked, level_feedback } =
+      formPrefilledClimbedBoulder;
+    setNewProjected(projected);
+    setNewAttempts(attempts);
+    setNewResult(result);
+    setNewLiked(liked);
+    setNewLevelFeedback(level_feedback);
+  }, [formPrefilledClimbedBoulder]);
 
-  const [newProjected, setNewProjected] = useState(projected);
-  const [newAttempts, setNewAttempts] = useState(attempts);
-  const [newResult, setNewResult] = useState(result);
-  const [newLiked, setNewLiked] = useState(liked);
-  const [newLevelFeedback, setNewLevelFeedback] = useState(level_feedback);
+  const [newProjected, setNewProjected] = useState();
+  const [newAttempts, setNewAttempts] = useState();
+  const [newResult, setNewResult] = useState();
+  const [newLiked, setNewLiked] = useState();
+  const [newLevelFeedback, setNewLevelFeedback] = useState();
 
   return (
     <BoulderForm
