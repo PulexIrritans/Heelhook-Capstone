@@ -18,6 +18,10 @@ export default createGlobalStyle`
     padding: 0;
 }
 
+h1{
+  margin: 0;
+}
+
 body{
     max-width: 768px;
     height: 100vh;

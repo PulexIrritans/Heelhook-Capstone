@@ -74,7 +74,7 @@ const WrapperLong = styled.li`
   display: grid;
   gap: 5px;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 1.3rem);
+  grid-template-rows: repeat(5, auto);
   background-color: var(--color-light-gray);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
@@ -91,7 +91,7 @@ const CardLink = styled(Link)`
   display: grid;
   gap: 5px;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(3, 1.3rem);
+  grid-template-rows: repeat(3, auto);
   padding: 0.2rem;
 `;
 
@@ -112,16 +112,16 @@ const Name = styled.h2`
   white-space: nowrap;
   overflow: hidden;
 `;
-const Likes = styled.p`
+const Likes = styled.div`
   grid-column: 5/6;
   grid-row: 1/2;
   justify-self: end;
 `;
-const Level = styled.p`
+const Level = styled.div`
   grid-column: 2/3;
   grid-row: 2/3;
 `;
-const Hold = styled.p`
+const Hold = styled.div`
   grid-column: 3/5;
   grid-row: 2/3;
 `;
@@ -130,7 +130,7 @@ const SectorIcon = styled.div`
   grid-row: 3/4;
 `;
 
-const Sector = styled.p`
+const Sector = styled.div`
   grid-column: 3/5;
   grid-row: 3/4;
 `;
@@ -150,12 +150,12 @@ const Tag = styled.li`
   background-color: var(--color-cyan);
 `;
 
-const Setter = styled.p`
+const Setter = styled.div`
   grid-column: 1/3;
   grid-row: 4/5;
 `;
 
-const Weighting = styled.p`
+const Weighting = styled.div`
   grid-column: 3/5;
   grid-row: 4/5;
 `;

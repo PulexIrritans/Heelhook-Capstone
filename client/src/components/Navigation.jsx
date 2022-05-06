@@ -1,11 +1,15 @@
 import { NavLink } from 'react-router-dom';
 import { ReactComponent as Search } from '../icons/search.svg';
+import { ReactComponent as Home } from '../icons/home.svg';
 import styled from 'styled-components';
 
 const Navigation = () => {
   return (
     <StyledNavigation>
       <StyledNavLink to="/">
+        <Home style={{ width: '50px' }} />
+      </StyledNavLink>
+      <StyledNavLink to="/find">
         <Search style={{ width: '50px' }} />
       </StyledNavLink>
     </StyledNavigation>
