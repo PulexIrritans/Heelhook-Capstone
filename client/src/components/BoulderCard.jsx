@@ -112,25 +112,25 @@ const Name = styled.h2`
   white-space: nowrap;
   overflow: hidden;
 `;
-const Likes = styled.div`
+const Likes = styled.p`
   grid-column: 5/6;
   grid-row: 1/2;
   justify-self: end;
 `;
-const Level = styled.div`
+const Level = styled.p`
   grid-column: 2/3;
   grid-row: 2/3;
 `;
-const Hold = styled.div`
+const Hold = styled.p`
   grid-column: 3/5;
   grid-row: 2/3;
 `;
-const SectorIcon = styled.div`
+const SectorIcon = styled.p`
   grid-column: 2/3;
   grid-row: 3/4;
 `;
 
-const Sector = styled.div`
+const Sector = styled.p`
   grid-column: 3/5;
   grid-row: 3/4;
 `;
@@ -150,12 +150,12 @@ const Tag = styled.li`
   background-color: var(--color-cyan);
 `;
 
-const Setter = styled.div`
+const Setter = styled.p`
   grid-column: 1/3;
   grid-row: 4/5;
 `;
 
-const Weighting = styled.div`
+const Weighting = styled.p`
   grid-column: 3/5;
   grid-row: 4/5;
 `;
