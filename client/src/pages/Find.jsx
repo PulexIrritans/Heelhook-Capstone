@@ -9,7 +9,7 @@ const Find = () => {
   const [bouldersList, setBouldersList] = useState([]);
 
   const fetchBouldersList = () => {
-    fetch(`${URL}/api`)
+    fetch(`${URL}/api/boulders`)
       .then(res => res.json())
       .then(data => setBouldersList(data));
   };

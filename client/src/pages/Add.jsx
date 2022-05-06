@@ -17,7 +17,7 @@ const Add = () => {
   const [error, setError] = useState(false);
 
   const fetchCurrentBoulder = () => {
-    fetch(`${URL}/api/add/${USER_ID}/${id}/`)
+    fetch(`${URL}/api/boulders/${USER_ID}/${id}/`)
       .then(res => res.json())
       .then(data => setCurrentBoulder(data));
   };
@@ -27,7 +27,7 @@ const Add = () => {
   }, []);
 
   const fetchCurrentClimbedBoulder = () => {
-    fetch(`${URL}/api/prefill/${USER_ID}/${id}/`)
+    fetch(`${URL}/api/climbed_boulders/${USER_ID}/${id}/`)
       .then(res => res.json())
       .then(data => setFormPrefilledClimbedBoulder(data))
       .catch(error);
@@ -51,7 +51,7 @@ const Add = () => {
       level_feedback: Number(levelFeedback),
     };
 
-    fetch(`${URL}/api/add/`, {
+    fetch(`${URL}/api/climbed_boulders/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
