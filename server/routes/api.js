@@ -21,10 +21,6 @@ router.get('/boulders', async (req, res, next) => {
   res.status(200).send(boulders);
 });
 
-// router.get('/climbed_boulders', (req.res, next) => {
-
-// })
-
 router.get('/boulders/:climberID/:boulderID', (req, res, next) => {
   const { boulderID } = req.params;
   Boulder.findById(boulderID)
