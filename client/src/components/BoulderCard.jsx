@@ -8,15 +8,28 @@ import boulderall from '../images/Boulder-all.jpg';
 import boulderstart from '../images/Boulder-start.jpg';
 
 const BoulderCard = ({ boulder, detailedMode }) => {
-  const { _id, name, sector, level, hold_color, tags, setter, weighting } =
-    boulder;
+  const {
+    _id,
+    name,
+    sector,
+    level,
+    hold_color,
+    tags,
+    img_start,
+    img_complete,
+    setter,
+    weighting,
+  } = boulder;
   const [isInDetailedMode, setIsInDetailedMode] = useState(detailedMode);
 
   return (
     <>
       {isInDetailedMode ? (
         <WrapperLong>
-          <StartPic src={boulderstart} alt="Boulder Start" />
+          <StartPic
+            src={require(`../images/${img_start}`)}
+            alt="Boulder Start"
+          />
           <Name>{name}</Name>
           <Level>Level: {level}</Level>
           <Hold>Hold: {hold_color}</Hold>
@@ -33,7 +46,10 @@ const BoulderCard = ({ boulder, detailedMode }) => {
               <Tag key={index}>{tag}</Tag>
             ))}
           </TagList>
-          <AllPic src={boulderall} alt="Boulder Complete"></AllPic>
+          <AllPic
+            src={require(`../images/${img_complete}`)}
+            alt="Boulder Complete"
+          ></AllPic>
         </WrapperLong>
       ) : (
         <WrapperShort>
@@ -41,7 +57,10 @@ const BoulderCard = ({ boulder, detailedMode }) => {
             onClick={() => setIsInDetailedMode(true)}
             to={`/add/${_id}`}
           >
-            <StartPic src={boulderstart} alt="Boulder Start" />
+            <StartPic
+              src={require(`../images/${img_start}`)}
+              alt="Boulder Start"
+            />
             <Name>{name}</Name>
             <Likes>
               <Heart style={{ width: '20px' }} />0
