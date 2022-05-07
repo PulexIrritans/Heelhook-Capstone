@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 import { ReactComponent as Map } from '../icons/map.svg';
 import { ReactComponent as Heart } from '../icons/heart.svg';
 import { ReactComponent as SetterIcon } from '../icons/setter.svg';
-import boulderall from '../images/Boulder-all.jpg';
-import boulderstart from '../images/Boulder-start.jpg';
 
 const BoulderCard = ({ boulder, detailedMode }) => {
   const {
@@ -115,12 +113,12 @@ const CardLink = styled(Link)`
 `;
 
 const StartPic = styled.img`
-  object-fit: contain;
+  object-fit: scale-down;
   max-width: 100%;
   max-height: 100%;
   border-radius: 100%;
   grid-column: 1/2;
-  grid-row: 1/3;
+  grid-row: 1/4;
 `;
 
 const Name = styled.h2`
