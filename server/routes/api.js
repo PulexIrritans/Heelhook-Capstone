@@ -38,10 +38,25 @@ router.get('/climbed_boulders/:climberID/:boulderID', (req, res, next) => {
     });
 });
 
+router.get('/climbed_boulders_days/:climberID', async (req, res, next) => {
+  const { climberID } = req.params;
+
+  await Climbed_boulder.find({
+    climber_id: climberID,
+  })
+    .sort({ date: -1 })
+    .then(data => {
+      res.status(200).send(data[0].date);
+    })
+    .catch(e => {
+      console.error(e);
+    });
+});
+
 router.get('/climbed_boulders/:climberID', async (req, res, next) => {
   const { climberID } = req.params;
 
-  const filteredSortedClimbedBoulders = await Climbed_boulder.find({
+  const filteredClimbedBoulders = await Climbed_boulder.find({
     climber_id: climberID,
   })
 
