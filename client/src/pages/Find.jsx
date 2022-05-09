@@ -7,37 +7,52 @@ const URL = process.env.REACT_APP_URL;
 
 const Find = () => {
   const [bouldersList, setBouldersList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchBouldersList = () => {
+    setIsLoading(true);
     fetch(`${URL}/api/boulders`)
       .then(res => res.json())
-      .then(data => setBouldersList(data));
+      .then(data => setBouldersList(data))
+      .then(setIsLoading(false));
   };
   useEffect(() => {
     fetchBouldersList();
   }, []);
 
-  return (
-    <>
-      <Header title="Heelhook" />
-      <main>
-        <BoulderList role="list">
-          {bouldersList.length > 0 ? (
-            bouldersList.map(boulder => (
-              <BoulderCard
-                key={boulder._id}
-                boulder={boulder}
-                detailedMode={false}
-              />
-            ))
-          ) : (
-            <p>Sorry, nothing found. Please try again.</p>
-          )}
-        </BoulderList>
-      </main>
-      <Navigation />
-    </>
-  );
+  if (isLoading) {
+    return (
+      <>
+        <Header title="Heelhook" />
+        <main>
+          <h2>Is Loading...</h2>
+        </main>
+        <Navigation />
+      </>
+    );
+  } else {
+    return (
+      <>
+        <Header title="Heelhook" />
+        <main>
+          <BoulderList role="list">
+            {bouldersList.length > 0 ? (
+              bouldersList.map(boulder => (
+                <BoulderCard
+                  key={boulder._id}
+                  boulder={boulder}
+                  detailedMode={false}
+                />
+              ))
+            ) : (
+              <p>Sorry, nothing found. Please try again.</p>
+            )}
+          </BoulderList>
+        </main>
+        <Navigation />
+      </>
+    );
+  }
 };
 
 export default Find;
