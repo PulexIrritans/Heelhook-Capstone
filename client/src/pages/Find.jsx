@@ -8,24 +8,59 @@ const URL = process.env.REACT_APP_URL;
 
 const Find = () => {
   const [bouldersList, setBouldersList] = useState([]);
+  const [filteredBouldersList, setFilteredBouldersList] =
+    useState(bouldersList);
+
+  const [filter, setFilter] = useState({
+    hold_color: '',
+    level: '',
+    sector: '',
+  });
 
   const fetchBouldersList = () => {
     fetch(`${URL}/api/boulders`)
       .then(res => res.json())
-      .then(data => setBouldersList(data));
+      .then(data => {
+        setBouldersList(data);
+        setFilteredBouldersList(data);
+      });
   };
+
+  const filterBouldersList = () => {
+    if (
+      filter.hold_color === '' &&
+      filter.level === '' &&
+      filter.sector === ''
+    ) {
+      setFilteredBouldersList([...bouldersList]);
+    } else {
+      setFilteredBouldersList(
+        bouldersList.filter(
+          boulder =>
+            boulder.hold_color === filter.hold_color ||
+            boulder.level === filter.level ||
+            boulder.sector === filter.sector
+        )
+      );
+    }
+  };
+
   useEffect(() => {
     fetchBouldersList();
   }, []);
+
+  useEffect(() => {
+    filterBouldersList();
+  }, [filter]);
 
   return (
     <>
       <Header title="Heelhook" />
       <main>
-        <Filter />
+        <Filter filter={filter} setFilter={setFilter} />
         <BoulderList role="list">
-          {bouldersList.length > 0 ? (
-            bouldersList.map(boulder => (
+          {filteredBouldersList.length > 0 ? (
+            filteredBouldersList.map(boulder => (
               <BoulderCard
                 key={boulder._id}
                 boulder={boulder}

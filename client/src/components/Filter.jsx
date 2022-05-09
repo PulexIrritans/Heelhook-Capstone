@@ -1,16 +1,20 @@
 import { useEffect, useState } from 'react';
 const URL = process.env.REACT_APP_URL;
-const USER_ID = 9999;
 
-const Filter = () => {
+const Filter = ({ filter, setFilter }) => {
   const [dropdownFilter, setDropdownFilter] = useState({
     hold_colors: [],
     levels: [],
     sectors: [],
   });
-  const [holdColorFilter, setHoldColorFilter] = useState('all_colors');
-  const [levelFilter, setLevelFilter] = useState('all_levels');
-  const [sectorFilter, setSectorFilter] = useState('all_sectors');
+  const [holdColorFilter, setHoldColorFilter] = useState('');
+  const [levelFilter, setLevelFilter] = useState('');
+  const [sectorFilter, setSectorFilter] = useState('');
+
+  //   const [filter, setFilter] = useState({
+  //     holdcolorFilter: 'all_colors',
+  //     levelFilter: 'all_levels',
+  //   });
 
   const fetchDropdownFilter = () => {
     fetch(`${URL}/api/boulders_filter`)
@@ -32,9 +36,16 @@ const Filter = () => {
             value={holdColorFilter}
             onChange={event => {
               setHoldColorFilter(event.target.value);
+              setLevelFilter('');
+              setSectorFilter('');
+              setFilter({
+                hold_color: event.target.value,
+                level: '',
+                sector: '',
+              });
             }}
           >
-            <option value="all_colors">Hold color</option>
+            <option value="">Hold color</option>
             {dropdownFilter.hold_colors.map(color => (
               <option key={color} value={color}>
                 {color.toUpperCase()}
@@ -52,9 +63,16 @@ const Filter = () => {
             value={levelFilter}
             onChange={event => {
               setLevelFilter(event.target.value);
+              setHoldColorFilter('');
+              setSectorFilter('');
+              setFilter({
+                level: event.target.value,
+                hold_color: '',
+                sector: '',
+              });
             }}
           >
-            <option value="all_levels">Level</option>
+            <option value="">Level</option>
             {dropdownFilter.levels.map(level => (
               <option key={level} value={level}>
                 {level}
@@ -72,9 +90,16 @@ const Filter = () => {
             value={sectorFilter}
             onChange={event => {
               setSectorFilter(event.target.value);
+              setHoldColorFilter('');
+              setLevelFilter('');
+              setFilter({
+                sector: event.target.value,
+                hold_color: '',
+                level: '',
+              });
             }}
           >
-            <option value="all_sectors">Sector</option>
+            <option value="">Sector</option>
             {dropdownFilter.sectors.map(sector => (
               <option key={sector} value={sector}>
                 {sector.toUpperCase()}
