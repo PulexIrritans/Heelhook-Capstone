@@ -48,6 +48,7 @@ const AddClimbedBoulderForm = ({
           name="attempts"
           value={newAttempts}
           min="0"
+          max="99"
           onChange={event => {
             setNewAttempts(event.target.value);
           }}
