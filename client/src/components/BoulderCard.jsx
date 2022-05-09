@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 import { ReactComponent as Map } from '../icons/map.svg';
 import { ReactComponent as Heart } from '../icons/heart.svg';
 import { ReactComponent as SetterIcon } from '../icons/setter.svg';
-import boulderall from '../images/Boulder-all.jpg';
-import boulderstart from '../images/Boulder-start.jpg';
 
 const BoulderCard = ({ boulder, detailedMode }) => {
   const {
@@ -15,6 +13,8 @@ const BoulderCard = ({ boulder, detailedMode }) => {
     level,
     hold_color,
     tags,
+    img_start,
+    img_complete,
     setter,
     weighting,
     likeAmount,
@@ -25,7 +25,10 @@ const BoulderCard = ({ boulder, detailedMode }) => {
     <>
       {isInDetailedMode ? (
         <WrapperLong>
-          <StartPic src={boulderstart} alt="Boulder Start" />
+          <StartPic
+            src={require(`../images/${img_start}`)}
+            alt="Boulder Start"
+          />
           <Name>{name}</Name>
           <Level>Level: {level}</Level>
           <Hold>Hold: {hold_color}</Hold>
@@ -42,7 +45,10 @@ const BoulderCard = ({ boulder, detailedMode }) => {
               <Tag key={index}>{tag}</Tag>
             ))}
           </TagList>
-          <AllPic src={boulderall} alt="Boulder Complete"></AllPic>
+          <AllPic
+            src={require(`../images/${img_complete}`)}
+            alt="Boulder Complete"
+          ></AllPic>
         </WrapperLong>
       ) : (
         <WrapperShort>
@@ -50,7 +56,10 @@ const BoulderCard = ({ boulder, detailedMode }) => {
             onClick={() => setIsInDetailedMode(true)}
             to={`/add/${_id}`}
           >
-            <StartPic src={boulderstart} alt="Boulder Start" />
+            <StartPic
+              src={require(`../images/${img_start}`)}
+              alt="Boulder Start"
+            />
             <Name>{name}</Name>
             <Likes>
               <Heart style={{ width: '20px' }} />
@@ -106,12 +115,12 @@ const CardLink = styled(Link)`
 `;
 
 const StartPic = styled.img`
-  object-fit: contain;
+  object-fit: scale-down;
   max-width: 100%;
   max-height: 100%;
   border-radius: 100%;
   grid-column: 1/2;
-  grid-row: 1/3;
+  grid-row: 1/4;
 `;
 
 const Name = styled.h2`
