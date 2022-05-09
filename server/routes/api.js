@@ -17,7 +17,6 @@ router.get('/boulders', async (req, res, next) => {
       return copy;
     })
   );
-  console.log(boulders);
   res.status(200).send(boulders);
 });
 
