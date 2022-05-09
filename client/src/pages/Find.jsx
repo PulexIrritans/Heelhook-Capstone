@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Navigation from '../components/Navigation';
+import Filter from '../components/Filter';
 import BoulderCard from '../components/BoulderCard';
 import styled from 'styled-components';
 const URL = process.env.REACT_APP_URL;
@@ -21,6 +22,7 @@ const Find = () => {
     <>
       <Header title="Heelhook" />
       <main>
+        <Filter />
         <BoulderList role="list">
           {bouldersList.length > 0 ? (
             bouldersList.map(boulder => (
