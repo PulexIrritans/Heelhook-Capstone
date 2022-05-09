@@ -17,6 +17,7 @@ const BoulderCard = ({ boulder, detailedMode }) => {
     img_complete,
     setter,
     weighting,
+    likeAmount,
   } = boulder;
   const [isInDetailedMode, setIsInDetailedMode] = useState(detailedMode);
 
@@ -61,7 +62,8 @@ const BoulderCard = ({ boulder, detailedMode }) => {
             />
             <Name>{name}</Name>
             <Likes>
-              <Heart style={{ width: '20px' }} />0
+              <Heart style={{ width: '20px' }} />
+              {likeAmount}
             </Likes>
             <Level>Level: {level}</Level>
             <Hold>Hold: {hold_color}</Hold>
