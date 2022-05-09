@@ -33,13 +33,17 @@ const DayCounter = () => {
   return (
     <Counter>
       <p>Last session was </p>
-      <p>{dateDifference}</p>
+      <p>
+        <strong>{dateDifference}</strong>
+      </p>
       <p>ago.</p>
     </Counter>
   );
 };
 
 const Counter = styled.div`
+  width: 150px;
+  height: 150px;
   display: flex;
   flex-direction: column;
   justify-content: center;
