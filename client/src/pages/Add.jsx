@@ -87,15 +87,7 @@ const Add = () => {
         )}
 
         {climbedBoulder && (
-          <>
             <h3>You have successfully saved a new entry for this boulder!</h3>
-            <p>Climb Date: {climbedBoulder.date}</p>
-            <p>Projected: {climbedBoulder.projected ? 'true' : 'false'}</p>
-            <p>Attempts: {climbedBoulder.attempts}</p>
-            <p>Result: {climbedBoulder.result}</p>
-            <p>Liked: {climbedBoulder.liked ? 'true' : 'false'}</p>
-            <p>Level Feedback: {climbedBoulder.level_feedback}</p>
-          </>
         )}
 
         {error && <p>Sorry, could not save new boulder entry.</p>}
