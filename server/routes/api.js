@@ -20,6 +20,35 @@ router.get('/boulders', async (req, res, next) => {
   res.status(200).send(boulders);
 });
 
+router.get('/boulders_filter', (req, res, next) => {
+  Boulder.find({})
+    .then(data => {
+      function onlyUnique(value, index, self) {
+        return self.indexOf(value) === index;
+      }
+      const holdColorArray = [];
+      const levelArray = [];
+      const sectorArray = [];
+      data.map(boulderItem => {
+        holdColorArray.push(boulderItem.hold_color);
+        levelArray.push(boulderItem.level);
+        sectorArray.push(boulderItem.sector);
+      });
+      const uniqueHoldColors = holdColorArray.filter(onlyUnique).sort();
+      const uniqueLevels = levelArray.filter(onlyUnique).sort();
+      const uniqueSectors = sectorArray.filter(onlyUnique).sort();
+      const filter = {
+        hold_colors: uniqueHoldColors,
+        levels: uniqueLevels,
+        sectors: uniqueSectors,
+      };
+      res.status(200).send(filter);
+    })
+    .catch(() => {
+      next();
+    });
+});
+
 router.get('/boulders/:climberID/:boulderID', (req, res, next) => {
   const { boulderID } = req.params;
   Boulder.findById(boulderID)
@@ -65,7 +94,6 @@ router.get('/climbed_boulders/:climberID', async (req, res, next) => {
       )?.length;
       const amountResultFail =
         amountAll - amountResultZone - amountResultTop - amountResultFlash;
-      console.log(amountAll, amountResultZone);
       res.status(200).send([
         {
           type: 'Total Climbs',
@@ -84,7 +112,7 @@ router.get('/climbed_boulders/:climberID', async (req, res, next) => {
       ]);
     })
     .catch(e => {
-      console.error(e);
+      next();
     });
 });
 
