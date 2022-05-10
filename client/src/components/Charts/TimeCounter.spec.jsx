@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
-import DayCounter from './DayCounter';
+import TimeCounter from './TimeCounter';
 
-describe('DayCounter', () => {
+describe('TimeCounter', () => {
   it('renders text', () => {
-    render(<DayCounter />);
+    render(<TimeCounter />);
 
     const counterIntro = screen.getByText(/Last session was/i);
     const counterCount = screen.getByText(/a few seconds/i);

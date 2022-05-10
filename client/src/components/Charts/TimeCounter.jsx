@@ -8,13 +8,13 @@ dayjs.extend(relativeTime);
 const URL = process.env.REACT_APP_URL;
 const USER_ID = 9999;
 
-const DayCounter = () => {
+const TimeCounter = () => {
   const [lastSessionDate, setLastSessionDate] = useState();
-  const [dateDifference, setDateDifference] = useState();
+  const [timePeriod, setTimePeriod] = useState();
 
   const calculateDateDifference = () => {
     const difference = dayjs(lastSessionDate).fromNow(true);
-    setDateDifference(difference);
+    setTimePeriod(difference);
   };
 
   const fetchDayOfLastBoulderSession = () => {
@@ -32,11 +32,11 @@ const DayCounter = () => {
 
   return (
     <Counter>
-      <p>Last session was </p>
       <p>
-        <strong>{dateDifference}</strong>
+        Last session was
+        <Timer>{timePeriod}</Timer>
+        ago.
       </p>
-      <p>ago.</p>
     </Counter>
   );
 };
@@ -45,9 +45,8 @@ const Counter = styled.div`
   width: 150px;
   height: 150px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  text-align: center;
   padding: 1rem;
   border: 2px solid var(--border-color);
   border-radius: 50%;
@@ -57,4 +56,8 @@ const Counter = styled.div`
   }
 `;
 
-export default DayCounter;
+const Timer = styled.strong`
+  display: block;
+`;
+
+export default TimeCounter;
