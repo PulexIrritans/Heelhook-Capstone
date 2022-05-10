@@ -1,5 +1,6 @@
 import Header from '../components/Header';
 import Navigation from '../components/Navigation';
+import SessionStats from '../components/Charts/SessionStats';
 import OverallStats from '../components/Charts/OverallStats';
 import TimeCounter from '../components/Charts/TimeCounter';
 const Main = () => {
@@ -11,6 +12,9 @@ const Main = () => {
         <ul>
           <li>
             <TimeCounter />
+          </li>
+          <li>
+            <SessionStats />
           </li>
           <li>
             <OverallStats />
