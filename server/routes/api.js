@@ -1,5 +1,6 @@
 import express from 'express';
 const router = express.Router();
+import dayjs from 'dayjs';
 import { Boulder } from '../models/boulder.js';
 import { Climbed_boulder } from '../models/climbed_boulder.js';
 
@@ -60,10 +61,50 @@ router.get('/climbed_boulders_days/:climberID', async (req, res, next) => {
     });
 });
 
+router.get('/climbed_boulders_session/:climberID', async (req, res, next) => {
+  const { climberID } = req.params;
+
+  const allClimbedBoulders = await Climbed_boulder.find({
+    climber_id: climberID,
+  }).sort({ date: -1 });
+  const latestDateISO = allClimbedBoulders[0].date;
+  const allLatestSessionClimbs = allClimbedBoulders.filter(climbedBoulder =>
+    dayjs(climbedBoulder.date).isSame(dayjs(latestDateISO), 'day')
+  );
+  const amountAll = allLatestSessionClimbs?.length;
+  const amountResultZone = allLatestSessionClimbs?.filter(
+    item => item.result === 'zone'
+  )?.length;
+  const amountResultTop = allLatestSessionClimbs?.filter(
+    item => item.result === 'top'
+  )?.length;
+  const amountResultFlash = allLatestSessionClimbs?.filter(
+    item => item.result === 'flash'
+  )?.length;
+  const amountResultFail =
+    amountAll - amountResultZone - amountResultTop - amountResultFlash;
+  res.status(200).send([
+    {
+      type: 'Total Climbs',
+      value: amountAll,
+    },
+    {
+      type: 'Flash',
+      value: amountResultFlash,
+    },
+    { type: 'Top', value: amountResultTop },
+    { type: 'Zone', value: amountResultZone },
+    {
+      type: 'Just touched',
+      value: amountResultFail,
+    },
+  ]);
+});
+
 router.get('/climbed_boulders/:climberID', async (req, res, next) => {
   const { climberID } = req.params;
 
-  const filteredClimbedBoulders = await Climbed_boulder.find({
+  await Climbed_boulder.find({
     climber_id: climberID,
   })
 
@@ -80,20 +121,19 @@ router.get('/climbed_boulders/:climberID', async (req, res, next) => {
       )?.length;
       const amountResultFail =
         amountAll - amountResultZone - amountResultTop - amountResultFlash;
-      console.log(amountAll, amountResultZone);
       res.status(200).send([
         {
           type: 'Total Climbs',
           value: amountAll,
         },
-        { type: 'Total Zone', value: amountResultZone },
-        { type: 'Total Top', value: amountResultTop },
         {
-          type: 'Total Flash',
+          type: 'Flash',
           value: amountResultFlash,
         },
+        { type: 'Top', value: amountResultTop },
+        { type: 'Zone', value: amountResultZone },
         {
-          type: 'Total Fail',
+          type: 'Just touched',
           value: amountResultFail,
         },
       ]);
