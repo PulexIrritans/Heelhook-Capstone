@@ -6,7 +6,13 @@ import BoulderCard from '../components/BoulderCard';
 import styled from 'styled-components';
 const URL = process.env.REACT_APP_URL;
 
-const Find = () => {
+const BoulderList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+`;
+
+export default function Find() {
   const [bouldersList, setBouldersList] = useState([]);
   const [filteredBouldersList, setFilteredBouldersList] =
     useState(bouldersList);
@@ -26,8 +32,7 @@ const Find = () => {
         setBouldersList(data);
         setFilteredBouldersList(data);
       })
-     .then(setIsLoading(false));
-    ;
+      .then(setIsLoading(false));
   };
 
   const filterBouldersList = () => {
@@ -53,12 +58,11 @@ const Find = () => {
     fetchBouldersList();
   }, []);
 
-
   useEffect(() => {
     filterBouldersList();
   }, [filter]);
 
-   if (isLoading) {
+  if (isLoading) {
     return (
       <>
         <Header title="Heelhook" />
@@ -70,33 +74,26 @@ const Find = () => {
     );
   } else {
     return (
-    <>
-      <Header title="Heelhook" />
-      <main>
-        <Filter filter={filter} setFilter={setFilter} />
-        <BoulderList role="list">
-          {filteredBouldersList.length > 0 ? (
-            filteredBouldersList.map(boulder => (
-              <BoulderCard
-                key={boulder._id}
-                boulder={boulder}
-                detailedMode={false}
-              />
-            ))
-          ) : (
-            <p>Sorry, nothing found. Please try again.</p>
-          )}
-        </BoulderList>
-      </main>
-      <Navigation />
-    </>
-  );
-};
-
-export default Find;
-
-const BoulderList = styled.ul`
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-`;
+      <>
+        <Header title="Heelhook" />
+        <main>
+          <Filter filter={filter} setFilter={setFilter} />
+          <BoulderList role="list">
+            {filteredBouldersList.length > 0 ? (
+              filteredBouldersList.map(boulder => (
+                <BoulderCard
+                  key={boulder._id}
+                  boulder={boulder}
+                  detailedMode={false}
+                />
+              ))
+            ) : (
+              <p>Sorry, nothing found. Please try again.</p>
+            )}
+          </BoulderList>
+        </main>
+        <Navigation />
+      </>
+    );
+  }
+}
