@@ -19,7 +19,7 @@ const SessionStats = () => {
   const config = {
     appendPadding: 10,
     data:
-      climberSessionStats?.filter(stat => stat.type != 'Total Climbs') || [],
+      climberSessionStats?.filter(stat => stat.type !== 'Total Climbs') || [],
     angleField: 'value',
     colorField: 'type',
     radius: 1,
