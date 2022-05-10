@@ -16,14 +16,18 @@ const Find = () => {
     level: '',
     sector: '',
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchBouldersList = () => {
+    setIsLoading(true);
     fetch(`${URL}/api/boulders`)
       .then(res => res.json())
       .then(data => {
         setBouldersList(data);
         setFilteredBouldersList(data);
-      });
+      })
+     .then(setIsLoading(false));
+    ;
   };
 
   const filterBouldersList = () => {
@@ -49,11 +53,23 @@ const Find = () => {
     fetchBouldersList();
   }, []);
 
+
   useEffect(() => {
     filterBouldersList();
   }, [filter]);
 
-  return (
+   if (isLoading) {
+    return (
+      <>
+        <Header title="Heelhook" />
+        <main>
+          <h2>Is Loading...</h2>
+        </main>
+        <Navigation />
+      </>
+    );
+  } else {
+    return (
     <>
       <Header title="Heelhook" />
       <main>
