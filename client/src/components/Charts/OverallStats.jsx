@@ -19,7 +19,7 @@ const OverallStats = () => {
   const config = {
     appendPadding: 10,
     data:
-      climberOverallStats?.filter(stat => stat.type != 'Total Climbs') || [],
+      climberOverallStats?.filter(stat => stat.type !== 'Total Climbs') || [],
     angleField: 'value',
     colorField: 'type',
     radius: 1,
@@ -30,7 +30,7 @@ const OverallStats = () => {
       content: '{value}',
       style: {
         textAlign: 'center',
-        fontSize: 14,
+        fontSize: 16,
       },
     },
     interactions: [

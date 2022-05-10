@@ -15,11 +15,11 @@ const AddClimbedBoulderForm = ({
     setNewLevelFeedback(level_feedback);
   }, [formPrefilledClimbedBoulder]);
 
-  const [newProjected, setNewProjected] = useState();
-  const [newAttempts, setNewAttempts] = useState();
-  const [newResult, setNewResult] = useState();
-  const [newLiked, setNewLiked] = useState();
-  const [newLevelFeedback, setNewLevelFeedback] = useState();
+  const [newProjected, setNewProjected] = useState('');
+  const [newAttempts, setNewAttempts] = useState('');
+  const [newResult, setNewResult] = useState('');
+  const [newLiked, setNewLiked] = useState('');
+  const [newLevelFeedback, setNewLevelFeedback] = useState('');
 
   return (
     <BoulderForm

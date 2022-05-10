@@ -1,24 +1,60 @@
 import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Navigation from '../components/Navigation';
+import Filter from '../components/Filter';
 import BoulderCard from '../components/BoulderCard';
 import styled from 'styled-components';
 const URL = process.env.REACT_APP_URL;
 
-const Find = () => {
+export default function Find() {
   const [bouldersList, setBouldersList] = useState([]);
+  const [filteredBouldersList, setFilteredBouldersList] =
+    useState(bouldersList);
+
+  const [filter, setFilter] = useState({
+    hold_color: '',
+    level: '',
+    sector: '',
+  });
   const [isLoading, setIsLoading] = useState(false);
 
   const fetchBouldersList = () => {
     setIsLoading(true);
     fetch(`${URL}/api/boulders`)
       .then(res => res.json())
-      .then(data => setBouldersList(data))
+      .then(data => {
+        setBouldersList(data);
+        setFilteredBouldersList(data);
+      })
       .then(setIsLoading(false));
   };
+
+  const filterBouldersList = () => {
+    if (
+      filter.hold_color === '' &&
+      filter.level === '' &&
+      filter.sector === ''
+    ) {
+      setFilteredBouldersList([...bouldersList]);
+    } else {
+      setFilteredBouldersList(
+        bouldersList.filter(
+          boulder =>
+            boulder.hold_color === filter.hold_color ||
+            boulder.level === filter.level ||
+            boulder.sector === filter.sector
+        )
+      );
+    }
+  };
+
   useEffect(() => {
     fetchBouldersList();
   }, []);
+
+  useEffect(() => {
+    filterBouldersList();
+  }, [filter]);
 
   if (isLoading) {
     return (
@@ -35,9 +71,10 @@ const Find = () => {
       <>
         <Header title="Heelhook" />
         <main>
+          <Filter filter={filter} setFilter={setFilter} />
           <BoulderList role="list">
-            {bouldersList.length > 0 ? (
-              bouldersList.map(boulder => (
+            {filteredBouldersList.length > 0 ? (
+              filteredBouldersList.map(boulder => (
                 <BoulderCard
                   key={boulder._id}
                   boulder={boulder}
@@ -53,9 +90,7 @@ const Find = () => {
       </>
     );
   }
-};
-
-export default Find;
+}
 
 const BoulderList = styled.ul`
   display: flex;
