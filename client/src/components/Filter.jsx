@@ -11,11 +11,6 @@ const Filter = ({ filter, setFilter }) => {
   const [levelFilter, setLevelFilter] = useState('');
   const [sectorFilter, setSectorFilter] = useState('');
 
-  //   const [filter, setFilter] = useState({
-  //     holdcolorFilter: 'all_colors',
-  //     levelFilter: 'all_levels',
-  //   });
-
   const fetchDropdownFilter = () => {
     fetch(`${URL}/api/boulders_filter`)
       .then(res => res.json())

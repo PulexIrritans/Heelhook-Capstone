@@ -6,12 +6,6 @@ import BoulderCard from '../components/BoulderCard';
 import styled from 'styled-components';
 const URL = process.env.REACT_APP_URL;
 
-const BoulderList = styled.ul`
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-`;
-
 export default function Find() {
   const [bouldersList, setBouldersList] = useState([]);
   const [filteredBouldersList, setFilteredBouldersList] =
@@ -97,3 +91,9 @@ export default function Find() {
     );
   }
 }
+
+const BoulderList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+`;
