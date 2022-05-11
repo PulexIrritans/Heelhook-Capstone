@@ -97,7 +97,7 @@ const WrapperLong = styled.li`
   background-color: var(--color-light-gray);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
-  padding: 0.2rem;
+  padding: 0.5rem;
   &:hover {
     background-color: var(--color-medium-gray);
   }
@@ -111,7 +111,7 @@ const CardLink = styled(Link)`
   gap: 5px;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(3, auto);
-  padding: 0.2rem;
+  padding: 0.5rem;
 `;
 
 const StartPic = styled.img`
