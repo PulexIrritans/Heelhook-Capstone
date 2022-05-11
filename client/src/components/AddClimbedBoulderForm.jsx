@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { FaUndoAlt } from 'react-icons/fa';
-import { AiOutlineMinusCircle, AiOutlinePlusCircle } from 'react-icons/ai';
+import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 
 import styled from 'styled-components';
 import Button from './Button';
@@ -43,9 +43,9 @@ const AddClimbedBoulderForm = ({
           );
         }}
       >
-        <div>
-          <label htmlFor="projected">Projected:</label>
-          <input
+        <CheckboxWrapper>
+          <label htmlFor="projected">Projected: </label>
+          <CheckboxInput
             type="checkbox"
             id="projected"
             name="projected"
@@ -53,8 +53,8 @@ const AddClimbedBoulderForm = ({
             onChange={event => {
               setNewProjected(event.target.checked);
             }}
-          ></input>
-        </div>
+          ></CheckboxInput>
+        </CheckboxWrapper>
         <AttemptsWrapper>
           <AttemptsLabel htmlFor="attempts">Attempts: </AttemptsLabel>
           <NumberInput
@@ -133,9 +133,9 @@ const AddClimbedBoulderForm = ({
             </ResetButton>
           </RadioButtonWrapper>
         </fieldset>
-        <div>
+        <CheckboxWrapper>
           <label htmlFor="liked">Like: </label>
-          <input
+          <CheckboxInput
             type="checkbox"
             id="liked"
             name="liked"
@@ -143,8 +143,8 @@ const AddClimbedBoulderForm = ({
             onChange={event => {
               setNewLiked(event.target.checked);
             }}
-          ></input>
-        </div>
+          ></CheckboxInput>
+        </CheckboxWrapper>
         <fieldset>
           <legend className="sr-only">Level Feedback</legend>
           <RadioButtonWrapper>
@@ -271,7 +271,6 @@ const AttemptsLabel = styled.label`
 `;
 
 const NumberInput = styled.input`
-  background-color: inherit;
   color: inherit;
   border: 2px solid var(--color-cyan);
   height: 3rem;
@@ -303,14 +302,51 @@ const CounterButton = styled.button`
   border: none;
 `;
 
-const MinusIcon = styled(AiOutlineMinusCircle)`
+const MinusIcon = styled(AiOutlineMinus)`
   opacity: 0.5;
   width: 100%;
   height: 100%;
 `;
 
-const PlusIcon = styled(AiOutlinePlusCircle)`
+const PlusIcon = styled(AiOutlinePlus)`
   opacity: 0.5;
   width: 100%;
   height: 100%;
+`;
+
+const CheckboxInput = styled.input`
+  position: relative;
+  width: 2rem;
+  height: 1rem;
+  -webkit-appearance: none;
+  background: #c6c6c6;
+  outline: none;
+  border-radius: 20px;
+  box-shadow: inset 0 0 5px rgba(255, 0, 0, 0.2);
+  transition: 0.7s;
+  &:checked {
+    background: var(--color-cyan);
+  }
+  &:before {
+    content: '';
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 20px;
+    top: 0;
+    left: 0;
+    background: #ffffff;
+    transform: scale(1.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: 0.5s;
+  }
+  &:checked&:before {
+    left: 1rem;
+  }
+`;
+
+const CheckboxWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 `;
