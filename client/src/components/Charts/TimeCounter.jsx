@@ -42,7 +42,7 @@ const TimeCounter = () => {
 
 const Counter = styled.div`
   position: absolute;
-  top: -20px;
+  top: -30px;
   right: -10px;
   width: 100px;
   height: 100px;

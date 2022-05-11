@@ -44,6 +44,6 @@ const ChartsList = styled.ul`
   height: 90%;
   display: flex;
   flex-direction: column;
-  margin: 1rem 0;
+  margin: 1.5rem 0;
   gap: 1rem;
 `;
