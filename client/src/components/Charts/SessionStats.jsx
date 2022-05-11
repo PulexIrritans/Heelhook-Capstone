@@ -30,7 +30,7 @@ const SessionStats = () => {
       content: '{value}',
       style: {
         textAlign: 'center',
-        fontSize: 14,
+        fontSize: 16,
       },
     },
     interactions: [

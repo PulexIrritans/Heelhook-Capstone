@@ -1,3 +1,4 @@
+import styled from 'styled-components';
 import Header from '../components/Header';
 import Navigation from '../components/Navigation';
 import SessionStats from '../components/Charts/SessionStats';
@@ -8,18 +9,17 @@ const Main = () => {
     <>
       <Header title="Heelhook" />
       <main>
-        <h2>My overall climb stats</h2>
-        <ul>
-          <li>
+        <ChartsList>
+          <Wrapper>
+            <h2>Latest session climbs</h2>
             <TimeCounter />
-          </li>
-          <li>
             <SessionStats />
-          </li>
-          <li>
+          </Wrapper>
+          <Wrapper>
+            <h2>Overall climbs</h2>
             <OverallStats />
-          </li>
-        </ul>
+          </Wrapper>
+        </ChartsList>
       </main>
       <Navigation />
     </>
@@ -27,3 +27,22 @@ const Main = () => {
 };
 
 export default Main;
+
+const Wrapper = styled.li`
+  position: relative;
+  height: 70%;
+  background-color: var(--color-light-gray);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  &:hover {
+    background-color: var(--color-medium-gray);
+  }
+`;
+
+const ChartsList = styled.ul`
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+  gap: 1rem;
+`;

@@ -6,6 +6,7 @@ export default createGlobalStyle`
     --color-light-gray: rgb(248, 249, 250);
     --color-medium-gray: rgb(241, 243, 245);
     --color-cyan: rgb(16, 152, 173);
+    --color-dark-gray: rgb(46, 45, 45);
     --border-color:rgb(69, 69, 69);
     --border-radius: 5px;
     --box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, 
@@ -16,6 +17,7 @@ export default createGlobalStyle`
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    color: var(--color-dark-gray)
 }
 
 h1, p {

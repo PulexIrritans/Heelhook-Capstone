@@ -33,7 +33,6 @@ const TimeCounter = () => {
   return (
     <Counter>
       <p>
-        Last session was
         <Timer>{timePeriod}</Timer>
         ago.
       </p>
@@ -42,9 +41,13 @@ const TimeCounter = () => {
 };
 
 const Counter = styled.div`
-  width: 150px;
-  height: 150px;
+  position: absolute;
+  top: -20px;
+  right: -10px;
+  width: 100px;
+  height: 100px;
   display: flex;
+  justify-content: center;
   align-items: center;
   text-align: center;
   padding: 1rem;
