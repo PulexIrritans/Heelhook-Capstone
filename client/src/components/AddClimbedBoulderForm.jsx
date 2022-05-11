@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { FaUndoAlt } from 'react-icons/fa';
+import { AiOutlineMinusCircle, AiOutlinePlusCircle } from 'react-icons/ai';
+
 import styled from 'styled-components';
 import Button from './Button';
 
@@ -42,7 +44,7 @@ const AddClimbedBoulderForm = ({
         }}
       >
         <div>
-          <label htmlFor="projected">Projected: </label>
+          <label htmlFor="projected">Projected:</label>
           <input
             type="checkbox"
             id="projected"
@@ -54,7 +56,7 @@ const AddClimbedBoulderForm = ({
           ></input>
         </div>
         <AttemptsWrapper>
-          <label htmlFor="attempts">Attempts: </label>
+          <AttemptsLabel htmlFor="attempts">Attempts: </AttemptsLabel>
           <NumberInput
             type="number"
             id="attempts"
@@ -66,26 +68,29 @@ const AddClimbedBoulderForm = ({
               setNewAttempts(event.target.value);
             }}
           ></NumberInput>
-          <Button
-            title="+"
-            myFunction={() => {
-              setNewAttempts(newAttempts + 1);
-            }}
-            type="button"
-          />
-          <Button
-            title="-"
-            myFunction={() => {
-              setNewAttempts(newAttempts - 1);
-            }}
-            type="button"
-          />
+          <ButtonWrapper>
+            <CounterButton
+              onClick={() => {
+                setNewAttempts(newAttempts + 1);
+              }}
+              type="button"
+            >
+              <PlusIcon />
+            </CounterButton>
+            <CounterButton
+              onClick={() => {
+                setNewAttempts(newAttempts - 1);
+              }}
+              type="button"
+            >
+              <MinusIcon />
+            </CounterButton>
+          </ButtonWrapper>
         </AttemptsWrapper>
         <fieldset>
           <legend className="sr-only">Your result:</legend>
           <RadioButtonWrapper>
             <RadioInput
-              className="sr-only"
               type="radio"
               id="zone"
               name="result"
@@ -97,7 +102,6 @@ const AddClimbedBoulderForm = ({
             />
             <RadioLabel htmlFor="zone">Zone</RadioLabel>
             <RadioInput
-              className="sr-only"
               type="radio"
               id="top"
               name="result"
@@ -109,7 +113,6 @@ const AddClimbedBoulderForm = ({
             />
             <RadioLabel htmlFor="top">Top</RadioLabel>
             <RadioInput
-              className="sr-only"
               type="radio"
               id="flash"
               name="result"
@@ -188,7 +191,7 @@ const AddClimbedBoulderForm = ({
             </ResetButton>
           </RadioButtonWrapper>
         </fieldset>
-        <button>Save</button>
+        <Button type="submit" title="Save" myFunction={() => {}} />
       </BoulderForm>
     </FormWrapper>
   );
@@ -198,7 +201,7 @@ export default AddClimbedBoulderForm;
 
 const FormWrapper = styled.div`
   padding: 0.5rem;
-  margin-top: 2rem;
+  margin-top: 1rem;
   background-color: var(--color-light-gray);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
@@ -208,31 +211,35 @@ const FormWrapper = styled.div`
 `;
 
 const BoulderForm = styled.form`
-  margin-top: 1.5rem;
+  margin-top: 0.5rem;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 `;
 
+// Radio-Button Group
+
 const RadioButtonWrapper = styled.div`
   display: flex;
-  gap: 2px;
   overflow: hidden;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 `;
 
 const RadioLabel = styled.label`
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 0.4rem 0.7rem;
   width: 25%;
+  height: 3rem;
   border: 2px solid var(--color-cyan);
   cursor: pointer;
   transition: background-color 0.1s;
 `;
 
 const RadioInput = styled.input`
-  display: none;
+  opacity: 0;
   &:checked + label {
     background-color: var(--color-cyan);
     color: white;
@@ -240,6 +247,7 @@ const RadioInput = styled.input`
 `;
 
 const ResetButton = styled.button`
+  margin-left: 1rem;
   text-align: center;
   padding: 0.1rem;
   width: 6%;
@@ -248,7 +256,28 @@ const ResetButton = styled.button`
   cursor: pointer;
 `;
 
+// Attempts Input
+const AttemptsWrapper = styled.div`
+  display: flex;
+  gap: 14px;
+`;
+
+const AttemptsLabel = styled.label`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 14px;
+  width: 25%;
+`;
+
 const NumberInput = styled.input`
+  background-color: inherit;
+  color: inherit;
+  border: 2px solid var(--color-cyan);
+  height: 3rem;
+  width: 25%;
+  text-align: center;
+  font-size: 2rem;
   ::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
@@ -260,7 +289,28 @@ const NumberInput = styled.input`
   -moz-appearance: textfield !important;
 `;
 
-const AttemptsWrapper = styled.div`
+const ButtonWrapper = styled.div`
+  width: 25%;
   display: flex;
-  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+`;
+
+const CounterButton = styled.button`
+  width: 50%;
+  height: 100%;
+  background-color: inherit;
+  border: none;
+`;
+
+const MinusIcon = styled(AiOutlineMinusCircle)`
+  opacity: 0.5;
+  width: 100%;
+  height: 100%;
+`;
+
+const PlusIcon = styled(AiOutlinePlusCircle)`
+  opacity: 0.5;
+  width: 100%;
+  height: 100%;
 `;
