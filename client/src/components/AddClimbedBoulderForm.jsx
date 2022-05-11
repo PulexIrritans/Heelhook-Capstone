@@ -55,8 +55,18 @@ const AddClimbedBoulderForm = ({
             }}
           ></CheckboxInput>
         </CheckboxWrapper>
+        <AttemptsLabel htmlFor="attempts">Attempts: </AttemptsLabel>
         <AttemptsWrapper>
-          <AttemptsLabel htmlFor="attempts">Attempts: </AttemptsLabel>
+          <ButtonWrapperLeft>
+            <CounterButton
+              onClick={() => {
+                setNewAttempts(newAttempts - 1);
+              }}
+              type="button"
+            >
+              <MinusIcon />
+            </CounterButton>
+          </ButtonWrapperLeft>
           <NumberInput
             type="number"
             id="attempts"
@@ -76,14 +86,6 @@ const AddClimbedBoulderForm = ({
               type="button"
             >
               <PlusIcon />
-            </CounterButton>
-            <CounterButton
-              onClick={() => {
-                setNewAttempts(newAttempts - 1);
-              }}
-              type="button"
-            >
-              <MinusIcon />
             </CounterButton>
           </ButtonWrapper>
         </AttemptsWrapper>
@@ -262,13 +264,7 @@ const AttemptsWrapper = styled.div`
   gap: 14px;
 `;
 
-const AttemptsLabel = styled.label`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: 14px;
-  width: 25%;
-`;
+const AttemptsLabel = styled.label``;
 
 const NumberInput = styled.input`
   color: inherit;
@@ -288,6 +284,14 @@ const NumberInput = styled.input`
   -moz-appearance: textfield !important;
 `;
 
+const ButtonWrapperLeft = styled.div`
+  margin-left: 14px;
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const ButtonWrapper = styled.div`
   width: 25%;
   display: flex;
@@ -300,6 +304,7 @@ const CounterButton = styled.button`
   height: 100%;
   background-color: inherit;
   border: none;
+  cursor: pointer;
 `;
 
 const MinusIcon = styled(AiOutlineMinus)`
