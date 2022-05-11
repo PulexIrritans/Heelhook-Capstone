@@ -29,6 +29,7 @@ const Main = () => {
 export default Main;
 
 const Wrapper = styled.li`
+  padding: 0.5rem;
   position: relative;
   height: 70%;
   background-color: var(--color-light-gray);

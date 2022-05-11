@@ -126,7 +126,6 @@ const StartPic = styled.img`
 const Name = styled.h2`
   grid-column: 2/5;
   grid-row: 1/2;
-  font-size: 1rem;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -141,6 +140,9 @@ const Level = styled.p`
   grid-row: 2/3;
 `;
 const Hold = styled.p`
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   grid-column: 3/5;
   grid-row: 2/3;
 `;
@@ -150,6 +152,9 @@ const SectorIcon = styled.p`
 `;
 
 const Sector = styled.p`
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   grid-column: 3/5;
   grid-row: 3/4;
 `;
@@ -170,11 +175,17 @@ const Tag = styled.li`
 `;
 
 const Setter = styled.p`
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   grid-column: 1/3;
   grid-row: 4/5;
 `;
 
 const Weighting = styled.p`
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   grid-column: 3/5;
   grid-row: 4/5;
 `;

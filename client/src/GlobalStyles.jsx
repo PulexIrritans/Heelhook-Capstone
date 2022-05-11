@@ -24,6 +24,10 @@ h1, p {
   margin: 0;
 }
 
+h2 {
+  font-size: 1rem;
+}
+
 body {
     max-width: 768px;
     height: 100vh;
