@@ -60,7 +60,6 @@ const Add = () => {
     })
       .then(response => response.json())
       .then(data => {
-        console.log(data);
         setClimbedBoulder(data);
       })
       .catch(error => {
