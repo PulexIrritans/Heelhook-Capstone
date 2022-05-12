@@ -4,6 +4,7 @@ import Navigation from '../components/Navigation';
 import SessionStats from '../components/Charts/SessionStats';
 import OverallStats from '../components/Charts/OverallStats';
 import TimeCounter from '../components/Charts/TimeCounter';
+import ResultsByLevel from '../components/Charts/ResultsByLevel';
 const Main = () => {
   return (
     <>
@@ -14,6 +15,9 @@ const Main = () => {
             <h2>Latest session climbs</h2>
             <TimeCounter />
             <SessionStats />
+          </Wrapper>
+          <Wrapper>
+            <ResultsByLevel />
           </Wrapper>
           <Wrapper>
             <h2>Overall climbs</h2>
@@ -41,7 +45,7 @@ const Wrapper = styled.li`
 `;
 
 const ChartsList = styled.ul`
-  height: 90%;
+  height: 135%;
   display: flex;
   flex-direction: column;
   margin: 1.5rem 0;

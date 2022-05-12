@@ -201,7 +201,7 @@ router.post('/climbed_boulders/', async (req, res, next) => {
   }
 });
 
-router.get('/boulders_by_level/:climberID', async (req, res, next) => {
+router.get('/climbed_boulders_by_level/:climberID', async (req, res, next) => {
   const { climberID } = req.params;
 
   const filteredClimbedBoulder = await Climbed_boulder.find({
@@ -223,9 +223,9 @@ router.get('/boulders_by_level/:climberID', async (req, res, next) => {
     })
   );
 
-  const mylevel = climbsPerLevel['4'];
-  const myvalue = mylevel['zone'];
-  const myvalue2 = climbsPerLevel['4']['zone']; // equivalent zu ^
+  // const mylevel = climbsPerLevel['4'];
+  // const myvalue = mylevel['zone'];
+  // const myvalue2 = climbsPerLevel['4']['zone']; // equivalent zu ^
 
   // das array für den graph
   const climbsPerLevelChartData = [];
@@ -243,8 +243,8 @@ router.get('/boulders_by_level/:climberID', async (req, res, next) => {
       // holen wir uns den dazu gehörigen wert
       const value = climbsPerLevel[levelKey][climbTypeKey];
       climbsPerLevelChartData.push({
-        level: levelKey,
-        climbType: climbTypeKey,
+        level: `Lvl ${levelKey}`,
+        climbType: climbTypeKey.charAt(0).toUpperCase() + climbTypeKey.slice(1),
         value: value,
       });
     }
