@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import styled from 'styled-components';
 const URL = process.env.REACT_APP_URL;
 
 const Filter = ({ filter, setFilter }) => {
@@ -12,7 +13,7 @@ const Filter = ({ filter, setFilter }) => {
   const [sectorFilter, setSectorFilter] = useState('');
 
   const fetchDropdownFilter = () => {
-    fetch(`${URL}/api/boulders_filter`)
+    fetch(`${URL}/boulders_filter`)
       .then(res => res.json())
       .then(data => setDropdownFilter(data));
   };
@@ -21,11 +22,13 @@ const Filter = ({ filter, setFilter }) => {
   }, []);
 
   return (
-    <>
+    <FilterWrapper>
       {dropdownFilter.hold_colors.length > 0 && (
         <>
-          <label for="hold_color">Choose a hold color:</label>
-          <select
+          <label className="sr-only" for="hold_color">
+            Choose a hold color:
+          </label>
+          <FilterSelect
             id="hold_color"
             name="hold_color"
             value={holdColorFilter}
@@ -46,13 +49,15 @@ const Filter = ({ filter, setFilter }) => {
                 {color.toUpperCase()}
               </option>
             ))}
-          </select>
+          </FilterSelect>
         </>
       )}
       {dropdownFilter.levels.length > 0 && (
         <>
-          <label for="level">Choose a level:</label>
-          <select
+          <label className="sr-only" for="level">
+            Choose a level:
+          </label>
+          <FilterSelect
             id="level"
             name="level"
             value={levelFilter}
@@ -73,13 +78,15 @@ const Filter = ({ filter, setFilter }) => {
                 {level}
               </option>
             ))}
-          </select>
+          </FilterSelect>
         </>
       )}
       {dropdownFilter.sectors.length > 0 && (
         <>
-          <label for="sector">Choose a sector:</label>
-          <select
+          <label className="sr-only" for="sector">
+            Choose a sector:
+          </label>
+          <FilterSelect
             id="sector"
             name="sector"
             value={sectorFilter}
@@ -100,11 +107,37 @@ const Filter = ({ filter, setFilter }) => {
                 {sector.toUpperCase()}
               </option>
             ))}
-          </select>
+          </FilterSelect>
         </>
       )}
-    </>
+    </FilterWrapper>
   );
 };
 
 export default Filter;
+
+const FilterWrapper = styled.div`
+  padding: 0.5rem;
+  position: relative;
+  height: 30%;
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+  background-color: var(--color-light-gray);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  &:hover {
+    background-color: var(--color-medium-gray);
+  }
+`;
+
+const FilterSelect = styled.select`
+  height: 30%;
+  border: none;
+  background-color: white;
+  padding: 0.5rem;
+  &:focus {
+    border: 1px solid var(--color-cyan);
+  }
+`;
