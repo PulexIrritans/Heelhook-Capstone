@@ -139,10 +139,7 @@ const Level = styled.p`
   grid-column: 2/3;
   grid-row: 2/3;
 `;
-const Hold = styled.p`
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
+const Hold = styled(Text)`
   grid-column: 3/5;
   grid-row: 2/3;
 `;
@@ -151,10 +148,7 @@ const SectorIcon = styled.p`
   grid-row: 3/4;
 `;
 
-const Sector = styled.p`
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
+const Sector = styled(Text)`
   grid-column: 3/5;
   grid-row: 3/4;
 `;
@@ -174,18 +168,12 @@ const Tag = styled.li`
   background-color: var(--color-cyan);
 `;
 
-const Setter = styled.p`
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
+const Setter = styled(Text)`
   grid-column: 1/3;
   grid-row: 4/5;
 `;
 
-const Weighting = styled.p`
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
+const Weighting = styled(Text)`
   grid-column: 3/5;
   grid-row: 4/5;
 `;
@@ -196,4 +184,10 @@ const AllPic = styled.img`
   max-height: 100%;
   grid-column: 5/6;
   grid-row: 1/6;
+`;
+
+const Text = styled.p`
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 `;

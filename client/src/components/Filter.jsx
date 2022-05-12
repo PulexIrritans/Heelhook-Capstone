@@ -116,7 +116,7 @@ const Filter = ({ filter, setFilter }) => {
 
 export default Filter;
 
-const FilterWrapper = styled.div`
+const FilterWrapper = styled.form`
   padding: 0.5rem;
   position: relative;
   height: 30%;

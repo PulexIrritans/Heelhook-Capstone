@@ -11,7 +11,6 @@ const Button = ({ title, type, myFunction }) => {
 export default Button;
 
 const DefaultButton = styled.button`
-  background-color: inherit;
   border: none;
   background-color: var(--color-cyan);
   border-radius: var(--border-radius);
