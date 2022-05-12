@@ -18,7 +18,7 @@ const TimeCounter = () => {
   };
 
   const fetchDayOfLastBoulderSession = () => {
-    fetch(`${URL}/api/climbed_boulders_days/${USER_ID}/`)
+    fetch(`${URL}/climbed_boulders_days/${USER_ID}/`)
       .then(res => res.json())
       .then(data => setLastSessionDate(data));
   };
@@ -33,18 +33,21 @@ const TimeCounter = () => {
   return (
     <Counter>
       <p>
-        Last session was
         <Timer>{timePeriod}</Timer>
-        ago.
+        ago
       </p>
     </Counter>
   );
 };
 
 const Counter = styled.div`
-  width: 150px;
-  height: 150px;
+  position: absolute;
+  top: -30px;
+  right: -10px;
+  width: 100px;
+  height: 100px;
   display: flex;
+  justify-content: center;
   align-items: center;
   text-align: center;
   padding: 1rem;

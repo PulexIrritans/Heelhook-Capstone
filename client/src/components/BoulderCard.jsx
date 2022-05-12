@@ -97,7 +97,7 @@ const WrapperLong = styled.li`
   background-color: var(--color-light-gray);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
-  padding: 0.2rem;
+  padding: 0.5rem;
   &:hover {
     background-color: var(--color-medium-gray);
   }
@@ -111,7 +111,13 @@ const CardLink = styled(Link)`
   gap: 5px;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(3, auto);
-  padding: 0.2rem;
+  padding: 0.5rem;
+`;
+
+const Text = styled.p`
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 `;
 
 const StartPic = styled.img`
@@ -126,7 +132,6 @@ const StartPic = styled.img`
 const Name = styled.h2`
   grid-column: 2/5;
   grid-row: 1/2;
-  font-size: 1rem;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -140,7 +145,7 @@ const Level = styled.p`
   grid-column: 2/3;
   grid-row: 2/3;
 `;
-const Hold = styled.p`
+const Hold = styled(Text)`
   grid-column: 3/5;
   grid-row: 2/3;
 `;
@@ -149,7 +154,7 @@ const SectorIcon = styled.p`
   grid-row: 3/4;
 `;
 
-const Sector = styled.p`
+const Sector = styled(Text)`
   grid-column: 3/5;
   grid-row: 3/4;
 `;
@@ -169,12 +174,12 @@ const Tag = styled.li`
   background-color: var(--color-cyan);
 `;
 
-const Setter = styled.p`
+const Setter = styled(Text)`
   grid-column: 1/3;
   grid-row: 4/5;
 `;
 
-const Weighting = styled.p`
+const Weighting = styled(Text)`
   grid-column: 3/5;
   grid-row: 4/5;
 `;

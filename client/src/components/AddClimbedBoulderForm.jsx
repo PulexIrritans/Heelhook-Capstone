@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react';
+import { FaUndoAlt } from 'react-icons/fa';
+import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
+import ScreenReaderOnly from './ScreenReaderOnly';
+
 import styled from 'styled-components';
+import Button from './Button';
 
 const AddClimbedBoulderForm = ({
   saveClimbedBoulderToDatabase,
@@ -16,56 +21,79 @@ const AddClimbedBoulderForm = ({
   }, [formPrefilledClimbedBoulder]);
 
   const [newProjected, setNewProjected] = useState('');
-  const [newAttempts, setNewAttempts] = useState('');
+  const [newAttempts, setNewAttempts] = useState(0);
   const [newResult, setNewResult] = useState('');
   const [newLiked, setNewLiked] = useState('');
   const [newLevelFeedback, setNewLevelFeedback] = useState('');
 
   return (
-    <BoulderForm
-      onSubmit={event => {
-        event.preventDefault();
-        saveClimbedBoulderToDatabase(
-          newProjected,
-          newAttempts,
-          newResult,
-          newLiked,
-          newLevelFeedback
-        );
-      }}
-    >
-      <h3>Save your achievement!</h3>
-      <div>
-        <label htmlFor="projected">Projected: </label>
-        <input
-          type="checkbox"
-          id="projected"
-          name="projected"
-          value={newProjected}
-          onChange={event => {
-            setNewProjected(event.target.checked);
-          }}
-        ></input>
-      </div>
-      <div>
-        <label htmlFor="attempts">Attempts: </label>
-        <input
-          type="number"
-          id="attempts"
-          name="attempts"
-          value={newAttempts}
-          min="0"
-          max="99"
-          onChange={event => {
-            setNewAttempts(event.target.value);
-          }}
-        ></input>
-      </div>
-      <fieldset>
-        <legend>Your result:</legend>
-        <RadioButtonWrapper>
-          <div>
-            <input
+    <FormWrapper>
+      <h2 id="form-heading">Your climb</h2>
+      <p id="form-description">Use this form to save your climb data.</p>
+      <BoulderForm
+        aria-labelledby="form-heading"
+        aria-describedby="form-description"
+        onSubmit={event => {
+          event.preventDefault();
+          saveClimbedBoulderToDatabase(
+            newProjected,
+            newAttempts,
+            newResult,
+            newLiked,
+            newLevelFeedback
+          );
+        }}
+      >
+        <CheckboxWrapper>
+          <CheckboxLabel htmlFor="projected">Projected: </CheckboxLabel>
+          <CheckboxInput
+            type="checkbox"
+            id="projected"
+            name="projected"
+            value={newProjected}
+            onChange={event => {
+              setNewProjected(event.target.checked);
+            }}
+          ></CheckboxInput>
+        </CheckboxWrapper>
+        <AttemptsLabel htmlFor="attempts">Attempts: </AttemptsLabel>
+        <AttemptsWrapper>
+          <ButtonWrapperLeft>
+            <CounterButton
+              onClick={() => {
+                setNewAttempts(newAttempts - 1);
+              }}
+              type="button"
+            >
+              <MinusIcon />
+            </CounterButton>
+          </ButtonWrapperLeft>
+          <NumberInput
+            type="number"
+            id="attempts"
+            name="attempts"
+            value={newAttempts}
+            min="0"
+            max="99"
+            onChange={event => {
+              setNewAttempts(event.target.value);
+            }}
+          ></NumberInput>
+          <ButtonWrapper>
+            <CounterButton
+              onClick={() => {
+                setNewAttempts(newAttempts + 1);
+              }}
+              type="button"
+            >
+              <PlusIcon />
+            </CounterButton>
+          </ButtonWrapper>
+        </AttemptsWrapper>
+        <fieldset>
+          <ScreenReaderOnly as="legend">Your result:</ScreenReaderOnly>
+          <RadioButtonWrapper>
+            <RadioInput
               type="radio"
               id="zone"
               name="result"
@@ -75,10 +103,8 @@ const AddClimbedBoulderForm = ({
                 setNewResult(event.target.value);
               }}
             />
-            <label htmlFor="zone">Zone</label>
-          </div>
-          <div>
-            <input
+            <RadioLabel htmlFor="zone">Zone</RadioLabel>
+            <RadioInput
               type="radio"
               id="top"
               name="result"
@@ -88,10 +114,8 @@ const AddClimbedBoulderForm = ({
                 setNewResult(event.target.value);
               }}
             />
-            <label htmlFor="top">Top</label>
-          </div>
-          <div>
-            <input
+            <RadioLabel htmlFor="top">Top</RadioLabel>
+            <RadioInput
               type="radio"
               id="flash"
               name="result"
@@ -101,36 +125,33 @@ const AddClimbedBoulderForm = ({
                 setNewResult(event.target.value);
               }}
             />
-            <label htmlFor="flash">Flash</label>
-          </div>
-          <button
-            type="button"
-            onClick={() => {
-              setNewResult('');
+            <RadioLabel htmlFor="flash">Flash</RadioLabel>
+            <ResetButton
+              type="button"
+              onClick={() => {
+                setNewResult('');
+              }}
+            >
+              <FaUndoAlt />
+            </ResetButton>
+          </RadioButtonWrapper>
+        </fieldset>
+        <CheckboxWrapper>
+          <CheckboxLabel htmlFor="liked">Like: </CheckboxLabel>
+          <CheckboxInput
+            type="checkbox"
+            id="liked"
+            name="liked"
+            value={newLiked}
+            onChange={event => {
+              setNewLiked(event.target.checked);
             }}
-          >
-            x
-          </button>
-        </RadioButtonWrapper>
-      </fieldset>
-      <h3>Give us your feedback!</h3>
-      <div>
-        <label htmlFor="liked">Like: </label>
-        <input
-          type="checkbox"
-          id="liked"
-          name="liked"
-          value={newLiked}
-          onChange={event => {
-            setNewLiked(event.target.checked);
-          }}
-        ></input>
-      </div>
-      <fieldset>
-        <legend>Level Feedback</legend>
-        <RadioButtonWrapper>
-          <div>
-            <input
+          ></CheckboxInput>
+        </CheckboxWrapper>
+        <fieldset>
+          <ScreenReaderOnly as="legend">Level Feedback</ScreenReaderOnly>
+          <RadioButtonWrapper>
+            <RadioInput
               type="radio"
               id="tooeasy"
               name="levelFeedback"
@@ -140,10 +161,8 @@ const AddClimbedBoulderForm = ({
                 setNewLevelFeedback(event.target.value);
               }}
             />
-            <label htmlFor="tooeasy">Too easy</label>
-          </div>
-          <div>
-            <input
+            <RadioLabel htmlFor="tooeasy">Too easy</RadioLabel>
+            <RadioInput
               type="radio"
               id="justright"
               name="levelFeedback"
@@ -153,10 +172,8 @@ const AddClimbedBoulderForm = ({
                 setNewLevelFeedback(event.target.value);
               }}
             />
-            <label htmlFor="justright">Just right</label>
-          </div>
-          <div>
-            <input
+            <RadioLabel htmlFor="justright">Just right</RadioLabel>
+            <RadioInput
               type="radio"
               id="toohard"
               name="levelFeedback"
@@ -166,34 +183,181 @@ const AddClimbedBoulderForm = ({
                 setNewLevelFeedback(event.target.value);
               }}
             />
-            <label htmlFor="toohard">Too hard</label>
-          </div>
-          <button
-            type="button"
-            onClick={() => {
-              setNewLevelFeedback(0);
-            }}
-          >
-            x
-          </button>
-        </RadioButtonWrapper>
-      </fieldset>
-      <button>Save</button>
-    </BoulderForm>
+            <RadioLabel htmlFor="toohard">Too hard</RadioLabel>
+            <ResetButton
+              type="button"
+              onClick={() => {
+                setNewLevelFeedback(0);
+              }}
+            >
+              <FaUndoAlt />
+            </ResetButton>
+          </RadioButtonWrapper>
+        </fieldset>
+        <Button type="submit" title="Save" myFunction={() => {}} />
+      </BoulderForm>
+    </FormWrapper>
   );
 };
 
 export default AddClimbedBoulderForm;
 
+const FormWrapper = styled.div`
+  padding: 0.5rem;
+  margin-top: 1rem;
+  background-color: var(--color-light-gray);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  &:hover {
+    background-color: var(--color-medium-gray);
+  }
+`;
+
 const BoulderForm = styled.form`
-  margin: 0.5rem auto;
-  max-width: 90%;
+  margin-top: 0.5rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.75rem;
 `;
+
+// Radio-Button Group
 
 const RadioButtonWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  overflow: hidden;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
+const RadioLabel = styled.label`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem 0.7rem;
+  width: 25%;
+  height: 3rem;
+  border: 2px solid var(--color-cyan);
+  cursor: pointer;
+  transition: background-color 0.1s;
+`;
+
+const RadioInput = styled.input`
+  opacity: 0;
+  &:checked + label {
+    background-color: var(--color-cyan);
+    color: white;
+  }
+`;
+
+const ResetButton = styled.button`
+  margin-left: 1rem;
+  text-align: center;
+  padding: 0.1rem;
+  width: 6%;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+`;
+
+// Attempts Input
+const AttemptsWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 14px;
+`;
+
+const AttemptsLabel = styled.label``;
+
+const NumberInput = styled.input`
+  color: inherit;
+  border: 2px solid var(--color-cyan);
+  height: 3rem;
+  width: 25%;
+  text-align: center;
+  font-size: 2rem;
+  ::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  ::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  -moz-appearance: textfield !important;
+`;
+
+const ButtonWrapperLeft = styled.div`
+  margin-left: 14px;
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ButtonWrapper = styled.div`
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const CounterButton = styled.button`
+  width: 50%;
+  height: 100%;
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+`;
+
+const MinusIcon = styled(AiOutlineMinus)`
+  opacity: 0.5;
+  width: 100%;
+  height: 100%;
+`;
+
+const PlusIcon = styled(AiOutlinePlus)`
+  opacity: 0.5;
+  width: 100%;
+  height: 100%;
+`;
+
+const CheckboxInput = styled.input`
+  position: relative;
+  width: 2rem;
+  height: 1rem;
+  -webkit-appearance: none;
+  background: #c6c6c6;
+  outline: none;
+  border-radius: 20px;
+  box-shadow: inset 0 0 5px rgba(255, 0, 0, 0.2);
+  transition: 0.7s;
+  &:checked {
+    background: var(--color-cyan);
+  }
+  &:before {
+    content: '';
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 20px;
+    top: 0;
+    left: 0;
+    background: #ffffff;
+    transform: scale(1.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: 0.5s;
+  }
+  &:checked&:before {
+    left: 1rem;
+  }
+`;
+
+const CheckboxWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+`;
+
+const CheckboxLabel = styled.label`
+  width: 65px;
 `;
