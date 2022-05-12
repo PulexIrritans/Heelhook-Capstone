@@ -44,7 +44,7 @@ const AddClimbedBoulderForm = ({
         }}
       >
         <CheckboxWrapper>
-          <label htmlFor="projected">Projected: </label>
+          <CheckboxLabel htmlFor="projected">Projected: </CheckboxLabel>
           <CheckboxInput
             type="checkbox"
             id="projected"
@@ -136,7 +136,7 @@ const AddClimbedBoulderForm = ({
           </RadioButtonWrapper>
         </fieldset>
         <CheckboxWrapper>
-          <label htmlFor="liked">Like: </label>
+          <CheckboxLabel htmlFor="liked">Like: </CheckboxLabel>
           <CheckboxInput
             type="checkbox"
             id="liked"
@@ -354,4 +354,8 @@ const CheckboxWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+`;
+
+const CheckboxLabel = styled.label`
+  width: 65px;
 `;
