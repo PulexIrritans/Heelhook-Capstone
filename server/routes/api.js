@@ -136,7 +136,6 @@ router.get('/climbed_boulders/:climberID', async (req, res, next) => {
   await Climbed_boulder.find({
     climber_id: climberID,
   })
-
     .then(data => {
       const amountAll = data?.length;
       const amountResultZone = data?.filter(
@@ -200,6 +199,61 @@ router.post('/climbed_boulders/', async (req, res, next) => {
         next();
       });
   }
+});
+
+router.get('/boulders_by_level/:climberID', async (req, res, next) => {
+  const { climberID } = req.params;
+
+  const filteredClimbedBoulder = await Climbed_boulder.find({
+    climber_id: climberID,
+  });
+
+  const climbsPerLevel = {};
+  await Promise.all(
+    filteredClimbedBoulder.map(async e => {
+      const boulder = await Boulder.findOne({
+        _id: e.boulder_id,
+      });
+      if (climbsPerLevel[boulder.level] === undefined) {
+        climbsPerLevel[boulder.level] = {};
+      }
+      const levelObject = climbsPerLevel[boulder.level];
+      const climbType = e.result || 'none';
+      levelObject[climbType] = (levelObject[climbType] || 0) + 1;
+    })
+  );
+
+  const mylevel = climbsPerLevel['4'];
+  const myvalue = mylevel['zone'];
+  const myvalue2 = climbsPerLevel['4']['zone']; // equivalent zu ^
+
+  // das array für den graph
+  const climbsPerLevelChartData = [];
+  // alle 'level' keys aus unserem 'climbsPerLevel' object (e.g. 1, 2, 4, 7)
+  const levelKeys = Object.keys(climbsPerLevel);
+  for (const levelKey of levelKeys) {
+    // mit dem key holen wir uns das eigentlich object für das level
+    // e.g. aus climbsPerLevel['4'] holen wir uns dann { zone: 3, tops: 6 }
+    const level = climbsPerLevel[levelKey];
+    // dann holen wir uns wieder alle keys aus dem level object
+    // das wären dann e.g. 'zone' und 'tops'
+    const climbTypeKeys = Object.keys(level);
+    for (const climbTypeKey of climbTypeKeys) {
+      // für jeden key aus dem level object (welcher 'zone order 'tops) entspicht
+      // holen wir uns den dazu gehörigen wert
+      const value = climbsPerLevel[levelKey][climbTypeKey];
+      climbsPerLevelChartData.push({
+        level: levelKey,
+        climbType: climbTypeKey,
+        value: value,
+      });
+    }
+  }
+
+  res.status(200).send({
+    asObject: climbsPerLevel,
+    asArray: climbsPerLevelChartData,
+  });
 });
 
 export default router;
