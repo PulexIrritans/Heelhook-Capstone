@@ -1,7 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { RiHome2Line } from 'react-icons/ri';
 import { ReactComponent as Search } from '../icons/search.svg';
-import { ReactComponent as Home } from '../icons/home.svg';
 import styled from 'styled-components';
 
 const Navigation = () => {
