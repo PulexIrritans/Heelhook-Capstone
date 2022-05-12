@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { FaUndoAlt } from 'react-icons/fa';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
+import ScreenReaderOnly from './ScreenReaderOnly';
 
 import styled from 'styled-components';
 import Button from './Button';
@@ -90,7 +91,9 @@ const AddClimbedBoulderForm = ({
           </ButtonWrapper>
         </AttemptsWrapper>
         <fieldset>
-          <legend className="sr-only">Your result:</legend>
+          <ScreenReaderOnly as="legend" className="sr-only">
+            Your result:
+          </ScreenReaderOnly>
           <RadioButtonWrapper>
             <RadioInput
               type="radio"
