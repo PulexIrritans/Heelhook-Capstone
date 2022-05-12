@@ -114,6 +114,12 @@ const CardLink = styled(Link)`
   padding: 0.5rem;
 `;
 
+const Text = styled.p`
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+`;
+
 const StartPic = styled.img`
   object-fit: scale-down;
   max-width: 100%;
@@ -184,10 +190,4 @@ const AllPic = styled.img`
   max-height: 100%;
   grid-column: 5/6;
   grid-row: 1/6;
-`;
-
-const Text = styled.p`
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
 `;
