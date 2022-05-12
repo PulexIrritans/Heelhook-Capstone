@@ -8,7 +8,7 @@ const SessionStats = () => {
   const [climberSessionStats, setClimberSessionStats] = useState();
 
   const fetchClimberSessionStats = () => {
-    fetch(`${URL}/api/climbed_boulders_session/${USER_ID}/`)
+    fetch(`${URL}/climbed_boulders_session/${USER_ID}/`)
       .then(res => res.json())
       .then(data => setClimberSessionStats(data));
   };

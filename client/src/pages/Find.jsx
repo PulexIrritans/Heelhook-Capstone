@@ -20,7 +20,7 @@ export default function Find() {
 
   const fetchBouldersList = () => {
     setIsLoading(true);
-    fetch(`${URL}/api/boulders`)
+    fetch(`${URL}/boulders`)
       .then(res => res.json())
       .then(data => {
         setBouldersList(data);

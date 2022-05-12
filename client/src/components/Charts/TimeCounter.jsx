@@ -18,7 +18,7 @@ const TimeCounter = () => {
   };
 
   const fetchDayOfLastBoulderSession = () => {
-    fetch(`${URL}/api/climbed_boulders_days/${USER_ID}/`)
+    fetch(`${URL}/climbed_boulders_days/${USER_ID}/`)
       .then(res => res.json())
       .then(data => setLastSessionDate(data));
   };
@@ -34,7 +34,7 @@ const TimeCounter = () => {
     <Counter>
       <p>
         <Timer>{timePeriod}</Timer>
-        ago.
+        ago
       </p>
     </Counter>
   );
