@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import ScreenReaderOnly from './ScreenReaderOnly';
 const URL = process.env.REACT_APP_URL;
 
 const Filter = ({ filter, setFilter }) => {
@@ -25,9 +26,9 @@ const Filter = ({ filter, setFilter }) => {
     <FilterWrapper>
       {dropdownFilter.hold_colors.length > 0 && (
         <>
-          <label className="sr-only" for="hold_color">
+          <ScreenReaderOnly as="label" for="hold_color">
             Choose a hold color:
-          </label>
+          </ScreenReaderOnly>
           <FilterSelect
             id="hold_color"
             name="hold_color"
@@ -54,9 +55,9 @@ const Filter = ({ filter, setFilter }) => {
       )}
       {dropdownFilter.levels.length > 0 && (
         <>
-          <label className="sr-only" for="level">
+          <ScreenReaderOnly as="label" for="level">
             Choose a level:
-          </label>
+          </ScreenReaderOnly>
           <FilterSelect
             id="level"
             name="level"
@@ -83,9 +84,9 @@ const Filter = ({ filter, setFilter }) => {
       )}
       {dropdownFilter.sectors.length > 0 && (
         <>
-          <label className="sr-only" for="sector">
+          <ScreenReaderOnly as="label" for="sector">
             Choose a sector:
-          </label>
+          </ScreenReaderOnly>
           <FilterSelect
             id="sector"
             name="sector"

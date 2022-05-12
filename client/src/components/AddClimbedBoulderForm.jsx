@@ -91,9 +91,7 @@ const AddClimbedBoulderForm = ({
           </ButtonWrapper>
         </AttemptsWrapper>
         <fieldset>
-          <ScreenReaderOnly as="legend" className="sr-only">
-            Your result:
-          </ScreenReaderOnly>
+          <ScreenReaderOnly as="legend">Your result:</ScreenReaderOnly>
           <RadioButtonWrapper>
             <RadioInput
               type="radio"
@@ -151,7 +149,7 @@ const AddClimbedBoulderForm = ({
           ></CheckboxInput>
         </CheckboxWrapper>
         <fieldset>
-          <legend className="sr-only">Level Feedback</legend>
+          <ScreenReaderOnly as="legend">Level Feedback</ScreenReaderOnly>
           <RadioButtonWrapper>
             <RadioInput
               type="radio"
@@ -264,6 +262,7 @@ const ResetButton = styled.button`
 // Attempts Input
 const AttemptsWrapper = styled.div`
   display: flex;
+  align-items: center;
   gap: 14px;
 `;
 
