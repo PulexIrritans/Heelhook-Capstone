@@ -24,6 +24,21 @@ const SessionStats = () => {
     colorField: 'type',
     radius: 1,
     innerRadius: 0.6,
+    legend: {
+      position: 'right',
+      offsetX: 8,
+      title: false,
+      itemName: {
+        formatter: (text, item) => {
+          return text;
+        },
+        style: {
+          opacity: 0.9,
+          fontSize: 16,
+        },
+      },
+      itemValue: false,
+    },
     label: {
       type: 'inner',
       offset: '-50%',

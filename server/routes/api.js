@@ -124,7 +124,7 @@ router.get('/climbed_boulders_session/:climberID', async (req, res, next) => {
     { type: 'Top', value: amountResultTop },
     { type: 'Zone', value: amountResultZone },
     {
-      type: 'Just touched',
+      type: 'Touched',
       value: amountResultFail,
     },
   ]);
@@ -162,7 +162,7 @@ router.get('/climbed_boulders/:climberID', async (req, res, next) => {
         { type: 'Top', value: amountResultTop },
         { type: 'Zone', value: amountResultZone },
         {
-          type: 'Just touched',
+          type: 'Touched',
           value: amountResultFail,
         },
       ]);
