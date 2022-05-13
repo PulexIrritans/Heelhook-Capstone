@@ -98,37 +98,37 @@ const AddClimbedBoulderForm = ({
           <RadioButtonWrapper>
             <RadioInput
               type="radio"
-              id="zone"
+              id="Zone"
               name="result"
-              value="zone"
-              checked={newResult === 'zone' && 'checked'}
+              value="Zone"
+              checked={newResult === 'Zone' && 'checked'}
               onChange={event => {
                 setNewResult(event.target.value);
               }}
             />
-            <RadioLabel htmlFor="zone">Zone</RadioLabel>
+            <RadioLabel htmlFor="Zone">Zone</RadioLabel>
             <RadioInput
               type="radio"
-              id="top"
+              id="Top"
               name="result"
-              value="top"
-              checked={newResult === 'top' && 'checked'}
+              value="Top"
+              checked={newResult === 'Top' && 'checked'}
               onChange={event => {
                 setNewResult(event.target.value);
               }}
             />
-            <RadioLabel htmlFor="top">Top</RadioLabel>
+            <RadioLabel htmlFor="Top">Top</RadioLabel>
             <RadioInput
               type="radio"
-              id="flash"
+              id="Flash"
               name="result"
-              value="flash"
-              checked={newResult === 'flash' && 'checked'}
+              value="Flash"
+              checked={newResult === 'Flash' && 'checked'}
               onChange={event => {
                 setNewResult(event.target.value);
               }}
             />
-            <RadioLabel htmlFor="flash">Flash</RadioLabel>
+            <RadioLabel htmlFor="Flash">Flash</RadioLabel>
             <ResetButton
               type="button"
               onClick={() => {

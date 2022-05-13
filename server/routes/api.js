@@ -4,17 +4,28 @@ import dayjs from 'dayjs';
 import { Boulder } from '../models/boulder.js';
 import { Climbed_boulder } from '../models/climbed_boulder.js';
 
-router.get('/boulders', async (req, res, next) => {
+router.get('/boulders_all/:climberID', async (req, res, next) => {
+  const { climberID } = req.params;
   const all = await Boulder.find({});
   const boulders = await Promise.all(
     all.map(async boulder => {
-      const tempBoulders = await Climbed_boulder.find({
+      const likedBoulders = await Climbed_boulder.find({
         boulder_id: boulder.id,
         liked: true,
       });
-      const amount = tempBoulders?.length;
+      const amount = likedBoulders?.length;
       const copy = JSON.parse(JSON.stringify(boulder));
+
+      const resultBoulder = await Climbed_boulder.findOne({
+        boulder_id: boulder.id,
+        climber_id: climberID,
+        // $and: [{ result: { $ne: '' } }, { result: { $ne: 'Zone' } }],
+        result: { $ne: '' },
+      });
+      console.log(resultBoulder);
+
       copy.likeAmount = amount;
+      copy.climbed = resultBoulder?.result;
       return copy;
     })
   );
@@ -102,13 +113,13 @@ router.get('/climbed_boulders_session/:climberID', async (req, res, next) => {
   );
   const amountAll = allLatestSessionClimbs?.length;
   const amountResultZone = allLatestSessionClimbs?.filter(
-    item => item.result === 'zone'
+    item => item.result === 'Zone'
   )?.length;
   const amountResultTop = allLatestSessionClimbs?.filter(
-    item => item.result === 'top'
+    item => item.result === 'Top'
   )?.length;
   const amountResultFlash = allLatestSessionClimbs?.filter(
-    item => item.result === 'flash'
+    item => item.result === 'Flash'
   )?.length;
   const amountResultFail =
     amountAll - amountResultZone - amountResultTop - amountResultFlash;
@@ -139,13 +150,13 @@ router.get('/climbed_boulders/:climberID', async (req, res, next) => {
     .then(data => {
       const amountAll = data?.length;
       const amountResultZone = data?.filter(
-        item => item.result === 'zone'
+        item => item.result === 'Zone'
       )?.length;
       const amountResultTop = data?.filter(
-        item => item.result === 'top'
+        item => item.result === 'Top'
       )?.length;
       const amountResultFlash = data?.filter(
-        item => item.result === 'flash'
+        item => item.result === 'Flash'
       )?.length;
       const amountResultFail =
         amountAll - amountResultZone - amountResultTop - amountResultFlash;
@@ -232,7 +243,7 @@ router.get('/climbed_boulders_by_level/:climberID', async (req, res, next) => {
       const value = climbsPerLevel[levelKey][climbTypeKey];
       climbsPerLevelChartData.push({
         level: `Lvl ${levelKey}`,
-        climbType: climbTypeKey.charAt(0).toUpperCase() + climbTypeKey.slice(1),
+        climbType: climbTypeKey,
         value: value,
       });
     }

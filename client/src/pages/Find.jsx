@@ -5,6 +5,7 @@ import Filter from '../components/Filter';
 import BoulderCard from '../components/BoulderCard';
 import styled from 'styled-components';
 const URL = process.env.REACT_APP_URL;
+const USER_ID = 9999;
 
 export default function Find() {
   const [bouldersList, setBouldersList] = useState([]);
@@ -20,7 +21,7 @@ export default function Find() {
 
   const fetchBouldersList = () => {
     setIsLoading(true);
-    fetch(`${URL}/boulders`)
+    fetch(`${URL}/boulders_all/${USER_ID}`)
       .then(res => res.json())
       .then(data => {
         setBouldersList(data);
