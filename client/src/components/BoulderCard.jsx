@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { ReactComponent as Map } from '../icons/map.svg';
 import { ReactComponent as Heart } from '../icons/heart.svg';
 import { ReactComponent as SetterIcon } from '../icons/setter.svg';
+import { AiOutlineCheck } from 'react-icons/ai';
 
 const BoulderCard = ({ boulder, detailedMode }) => {
   const {
@@ -18,6 +19,7 @@ const BoulderCard = ({ boulder, detailedMode }) => {
     setter,
     weighting,
     likeAmount,
+    climbed,
   } = boulder;
   const [isInDetailedMode, setIsInDetailedMode] = useState(detailedMode);
 
@@ -65,6 +67,14 @@ const BoulderCard = ({ boulder, detailedMode }) => {
               <Heart style={{ width: '20px' }} />
               {likeAmount}
             </Likes>
+            {climbed !== 'None' ? <Climbed>{climbed}</Climbed> : ''}
+            {climbed !== 'Zone' &&
+            climbed !== 'None' &&
+            climbed !== undefined ? (
+              <Checked />
+            ) : (
+              ''
+            )}
             <Level>Level: {level}</Level>
             <Hold>Hold: {hold_color}</Hold>
             <SectorIcon>
@@ -141,6 +151,13 @@ const Likes = styled.p`
   grid-row: 1/2;
   justify-self: end;
 `;
+
+const Climbed = styled.p`
+  grid-column: 5/6;
+  grid-row: 2/3;
+  justify-self: end;
+`;
+
 const Level = styled.p`
   grid-column: 2/3;
   grid-row: 2/3;
@@ -190,4 +207,12 @@ const AllPic = styled.img`
   max-height: 100%;
   grid-column: 5/6;
   grid-row: 1/6;
+`;
+
+const Checked = styled(AiOutlineCheck)`
+  justify-self: end;
+  grid-column: 5/6;
+  grid-row: 3/4;
+  width: 20px;
+  height: 20px;
 `;

@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FaUndoAlt } from 'react-icons/fa';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 import ScreenReaderOnly from './ScreenReaderOnly';
+import { ReactComponent as Heart } from '../icons/heart.svg';
 
 import styled from 'styled-components';
 import Button from './Button';
@@ -10,6 +12,7 @@ const AddClimbedBoulderForm = ({
   saveClimbedBoulderToDatabase,
   formPrefilledClimbedBoulder,
 }) => {
+  const navigate = useNavigate();
   useEffect(() => {
     const { projected, attempts, result, liked, level_feedback } =
       formPrefilledClimbedBoulder;
@@ -22,7 +25,7 @@ const AddClimbedBoulderForm = ({
 
   const [newProjected, setNewProjected] = useState('');
   const [newAttempts, setNewAttempts] = useState(0);
-  const [newResult, setNewResult] = useState('');
+  const [newResult, setNewResult] = useState('None');
   const [newLiked, setNewLiked] = useState('');
   const [newLevelFeedback, setNewLevelFeedback] = useState('');
 
@@ -42,6 +45,7 @@ const AddClimbedBoulderForm = ({
             newLiked,
             newLevelFeedback
           );
+          navigate('/find');
         }}
       >
         <CheckboxWrapper>
@@ -95,41 +99,41 @@ const AddClimbedBoulderForm = ({
           <RadioButtonWrapper>
             <RadioInput
               type="radio"
-              id="zone"
+              id="Zone"
               name="result"
-              value="zone"
-              checked={newResult === 'zone' && 'checked'}
+              value="Zone"
+              checked={newResult === 'Zone' && 'checked'}
               onChange={event => {
                 setNewResult(event.target.value);
               }}
             />
-            <RadioLabel htmlFor="zone">Zone</RadioLabel>
+            <RadioLabel htmlFor="Zone">Zone</RadioLabel>
             <RadioInput
               type="radio"
-              id="top"
+              id="Top"
               name="result"
-              value="top"
-              checked={newResult === 'top' && 'checked'}
+              value="Top"
+              checked={newResult === 'Top' && 'checked'}
               onChange={event => {
                 setNewResult(event.target.value);
               }}
             />
-            <RadioLabel htmlFor="top">Top</RadioLabel>
+            <RadioLabel htmlFor="Top">Top</RadioLabel>
             <RadioInput
               type="radio"
-              id="flash"
+              id="Flash"
               name="result"
-              value="flash"
-              checked={newResult === 'flash' && 'checked'}
+              value="Flash"
+              checked={newResult === 'Flash' && 'checked'}
               onChange={event => {
                 setNewResult(event.target.value);
               }}
             />
-            <RadioLabel htmlFor="flash">Flash</RadioLabel>
+            <RadioLabel htmlFor="Flash">Flash</RadioLabel>
             <ResetButton
               type="button"
               onClick={() => {
-                setNewResult('');
+                setNewResult('None');
               }}
             >
               <FaUndoAlt />
@@ -137,7 +141,9 @@ const AddClimbedBoulderForm = ({
           </RadioButtonWrapper>
         </fieldset>
         <CheckboxWrapper>
-          <CheckboxLabel htmlFor="liked">Like: </CheckboxLabel>
+          <CheckboxLabel htmlFor="liked">
+            <Heart style={{ width: '20px' }} /> Like:{' '}
+          </CheckboxLabel>
           <CheckboxInput
             type="checkbox"
             id="liked"

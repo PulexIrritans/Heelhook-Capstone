@@ -5,6 +5,7 @@ import Filter from '../components/Filter';
 import BoulderCard from '../components/BoulderCard';
 import styled from 'styled-components';
 const URL = process.env.REACT_APP_URL;
+const USER_ID = 9999;
 
 export default function Find() {
   const [bouldersList, setBouldersList] = useState([]);
@@ -15,12 +16,13 @@ export default function Find() {
     hold_color: '',
     level: '',
     sector: '',
+    climb_result: '',
   });
   const [isLoading, setIsLoading] = useState(false);
 
   const fetchBouldersList = () => {
     setIsLoading(true);
-    fetch(`${URL}/boulders`)
+    fetch(`${URL}/boulders_all/${USER_ID}`)
       .then(res => res.json())
       .then(data => {
         setBouldersList(data);
@@ -33,7 +35,8 @@ export default function Find() {
     if (
       filter.hold_color === '' &&
       filter.level === '' &&
-      filter.sector === ''
+      filter.sector === '' &&
+      filter.climb_result === ''
     ) {
       setFilteredBouldersList([...bouldersList]);
     } else {
@@ -42,7 +45,8 @@ export default function Find() {
           boulder =>
             boulder.hold_color === filter.hold_color ||
             boulder.level === filter.level ||
-            boulder.sector === filter.sector
+            boulder.sector === filter.sector ||
+            boulder.climbed === filter.climb_result
         )
       );
     }
@@ -73,6 +77,7 @@ export default function Find() {
         <main>
           <Filter filter={filter} setFilter={setFilter} />
           <BoulderList role="list">
+            <h2>Click on a card to enter your climb.</h2>
             {filteredBouldersList.length > 0 ? (
               filteredBouldersList.map(boulder => (
                 <BoulderCard

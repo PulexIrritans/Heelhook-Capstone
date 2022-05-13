@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { RiHome2Line } from 'react-icons/ri';
+import { AiOutlineBarChart } from 'react-icons/ai';
 import { ReactComponent as Search } from '../icons/search.svg';
 import styled from 'styled-components';
 
@@ -18,7 +18,7 @@ const Navigation = () => {
 
 export default Navigation;
 
-const HomeIcon = styled(RiHome2Line)`
+const HomeIcon = styled(AiOutlineBarChart)`
   width: 50px;
   height: 50px;
 `;
