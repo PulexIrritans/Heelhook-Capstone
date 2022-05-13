@@ -1,48 +1,47 @@
-# Getting Started with Express React Template
+# Heelhook
 
-This project contains an express server application and a react app bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Capstone project - Web Development Bootcamp @neuefische
 
-To get started run `npm run install:all` in the project directory.
+## Description
 
-After that:
-To start developing run `npm run dev` in the project directory to start the `express` server and the `React` app. Start coding!
+Picture will come here...
 
-## Available Scripts
+### An app for boulder sport enthusiasts
 
-In the project directory, you can run:
+Heelhook is the boulder buddy that you waited for. It shows you all boulder routes available in your boulder club. Search and select a route to explore it's details. Track your climbs, give feedback. And see valuable insights about your achievements displayed in easy to undertand graphical charts. See yourself grow as a climber and compare yourself with other climbers if you like.
 
-### `npm run server`
+### Demo
 
-Runs the express server with nodemon, so the server will restart when you make changes.
-The server serves api routes and the latest build of the react app from the client/build folder.
-Open [http://localhost:5000](http://localhost:5000) to view the latest build of the react app in your browser.
+Have a look at the hosted version on Vercel: [Heelhook Demo](https://heelhook-capstone.vercel.app/)
 
-### `npm run client`
+Important: This demo is optimized for mobile screen!
 
-Runs the react app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Tech Stack
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+#### MERN:
 
-### `npm run dev`
+- React (React Router, React Hooks, React Testing Library)
+- Node.js
+- mongoose
+- Express
+- MongoDB Atlas
 
-Runs the express server with nodemon and the react app in the development mode.\
-This command should be used during development.\
+#### Plus:
 
-Open [http://localhost:3000](http://localhost:3000) to view the react app in development mode in your browser.\
-Open [http://localhost:5000](http://localhost:5000) to view the latest build of the react app in your browser.
+- Styled Components
+- Storybook
+- ant design charts
+- Jest
+- Vercel
+- Heroku
 
-### `npm run build`
+### Project Setup
 
-Builds the react app for production to the `client/build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run install:all`
-
-Installs all dependencies for the root project, the client project and the server project.
+- Clone this respository
+- run $ npm install:all (Installs all dependencies for the root project, the client project and the server project.)
+- Set up your env.s
+- Add your mongodb uri
+- Run app in development mode via $ npm run dev
+- Open [http://localhost:3000](http://localhost:3000/) to view it in your browser
+- Run tests with $ npm test
+- Run storybook with $ npm run storybook
