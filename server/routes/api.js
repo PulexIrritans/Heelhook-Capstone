@@ -223,24 +223,12 @@ router.get('/climbed_boulders_by_level/:climberID', async (req, res, next) => {
     })
   );
 
-  // const mylevel = climbsPerLevel['4'];
-  // const myvalue = mylevel['zone'];
-  // const myvalue2 = climbsPerLevel['4']['zone']; // equivalent zu ^
-
-  // das array für den graph
   const climbsPerLevelChartData = [];
-  // alle 'level' keys aus unserem 'climbsPerLevel' object (e.g. 1, 2, 4, 7)
   const levelKeys = Object.keys(climbsPerLevel);
   for (const levelKey of levelKeys) {
-    // mit dem key holen wir uns das eigentlich object für das level
-    // e.g. aus climbsPerLevel['4'] holen wir uns dann { zone: 3, tops: 6 }
     const level = climbsPerLevel[levelKey];
-    // dann holen wir uns wieder alle keys aus dem level object
-    // das wären dann e.g. 'zone' und 'tops'
     const climbTypeKeys = Object.keys(level);
     for (const climbTypeKey of climbTypeKeys) {
-      // für jeden key aus dem level object (welcher 'zone order 'tops) entspicht
-      // holen wir uns den dazu gehörigen wert
       const value = climbsPerLevel[levelKey][climbTypeKey];
       climbsPerLevelChartData.push({
         level: `Lvl ${levelKey}`,
