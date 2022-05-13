@@ -54,7 +54,7 @@ const AddClimbedBoulderForm = ({
             type="checkbox"
             id="projected"
             name="projected"
-            value={newProjected}
+            checked={newProjected}
             onChange={event => {
               setNewProjected(event.target.checked);
             }}
@@ -148,7 +148,7 @@ const AddClimbedBoulderForm = ({
             type="checkbox"
             id="liked"
             name="liked"
-            value={newLiked}
+            checked={newLiked}
             onChange={event => {
               setNewLiked(event.target.checked);
             }}
