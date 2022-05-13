@@ -142,7 +142,7 @@ const Filter = ({ filter, setFilter }) => {
               });
             }}
           >
-            <option value="">Climb Result</option>
+            <option value="">Climbed by result</option>
             {dropdownFilter.climb_results?.map(result => (
               <option key={result} value={result}>
                 {result.toUpperCase()}

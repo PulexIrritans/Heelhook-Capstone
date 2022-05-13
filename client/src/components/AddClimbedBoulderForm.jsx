@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaUndoAlt } from 'react-icons/fa';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 import ScreenReaderOnly from './ScreenReaderOnly';
+import { ReactComponent as Heart } from '../icons/heart.svg';
 
 import styled from 'styled-components';
 import Button from './Button';
@@ -140,7 +141,9 @@ const AddClimbedBoulderForm = ({
           </RadioButtonWrapper>
         </fieldset>
         <CheckboxWrapper>
-          <CheckboxLabel htmlFor="liked">Like: </CheckboxLabel>
+          <CheckboxLabel htmlFor="liked">
+            <Heart style={{ width: '20px' }} /> Like:{' '}
+          </CheckboxLabel>
           <CheckboxInput
             type="checkbox"
             id="liked"

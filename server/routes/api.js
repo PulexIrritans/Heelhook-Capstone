@@ -19,6 +19,7 @@ router.get('/boulders_all/:climberID', async (req, res, next) => {
       const resultBoulder = await Climbed_boulder.findOne({
         boulder_id: boulder.id,
         climber_id: climberID,
+        $and: [{ result: { $ne: '' } }, { result: { $ne: 'None' } }],
       });
 
       copy.likeAmount = amount;
@@ -57,11 +58,14 @@ router.get('/boulders_filter/:climberID', async (req, res, next) => {
     climbResultsArray.push(climbedBoulderItem.result);
   });
   const uniqueClimbResults = climbResultsArray.filter(onlyUnique).sort();
+  const uniqueCorrectedClimbResults = uniqueClimbResults.filter(
+    result => result !== 'None'
+  );
   const filter = {
     hold_colors: uniqueHoldColors,
     levels: uniqueLevels,
     sectors: uniqueSectors,
-    climb_results: uniqueClimbResults,
+    climb_results: uniqueCorrectedClimbResults,
   };
   res.status(200).send(filter);
 });
@@ -84,7 +88,15 @@ router.get('/climbed_boulders/:climberID/:boulderID', (req, res, next) => {
     boulder_id: boulderID,
   })
     .then(data => {
-      data === null ? res.status(200).send({}) : res.status(200).send(data);
+      data === null
+        ? res.status(200).send({
+            projected: false,
+            attempts: 0,
+            result: 'None',
+            liked: false,
+            level_feedback: '',
+          })
+        : res.status(200).send(data);
     })
     .catch(() => {
       next();
