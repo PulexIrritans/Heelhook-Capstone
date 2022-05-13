@@ -67,8 +67,8 @@ const BoulderCard = ({ boulder, detailedMode }) => {
               <Heart style={{ width: '20px' }} />
               {likeAmount}
             </Likes>
-            {climbed ? <Climbed>{climbed}</Climbed> : ''}
-            {climbed != 'Zone' && climbed !== undefined ? <Checked /> : ''}
+            {climbed !=='None' ? (<Climbed>{climbed}</Climbed>) : ''}
+            {climbed !== 'Zone' && climbed !== 'None' ? <Checked /> : ''}
             <Level>Level: {level}</Level>
             <Hold>Hold: {hold_color}</Hold>
             <SectorIcon>

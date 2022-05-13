@@ -19,10 +19,7 @@ router.get('/boulders_all/:climberID', async (req, res, next) => {
       const resultBoulder = await Climbed_boulder.findOne({
         boulder_id: boulder.id,
         climber_id: climberID,
-        // $and: [{ result: { $ne: '' } }, { result: { $ne: 'Zone' } }],
-        result: { $ne: '' },
       });
-      console.log(resultBoulder);
 
       copy.likeAmount = amount;
       copy.climbed = resultBoulder?.result;
@@ -32,33 +29,41 @@ router.get('/boulders_all/:climberID', async (req, res, next) => {
   res.status(200).send(boulders);
 });
 
-router.get('/boulders_filter', (req, res, next) => {
-  Boulder.find({})
-    .then(data => {
-      function onlyUnique(value, index, self) {
-        return self.indexOf(value) === index;
-      }
-      const holdColorArray = [];
-      const levelArray = [];
-      const sectorArray = [];
-      data.map(boulderItem => {
-        holdColorArray.push(boulderItem.hold_color);
-        levelArray.push(boulderItem.level);
-        sectorArray.push(boulderItem.sector);
-      });
-      const uniqueHoldColors = holdColorArray.filter(onlyUnique).sort();
-      const uniqueLevels = levelArray.filter(onlyUnique).sort();
-      const uniqueSectors = sectorArray.filter(onlyUnique).sort();
-      const filter = {
-        hold_colors: uniqueHoldColors,
-        levels: uniqueLevels,
-        sectors: uniqueSectors,
-      };
-      res.status(200).send(filter);
-    })
-    .catch(() => {
-      next();
-    });
+router.get('/boulders_filter/:climberID', async (req, res, next) => {
+  const { climberID } = req.params;
+  const allBoulders = await Boulder.find({});
+  const userClimbedBoulders = await Climbed_boulder.find({
+    climber_id: climberID,
+  });
+
+  function onlyUnique(value, index, self) {
+    return self.indexOf(value) === index;
+  }
+
+  const holdColorArray = [];
+  const levelArray = [];
+  const sectorArray = [];
+  allBoulders.map(boulderItem => {
+    holdColorArray.push(boulderItem.hold_color);
+    levelArray.push(boulderItem.level);
+    sectorArray.push(boulderItem.sector);
+  });
+  const uniqueHoldColors = holdColorArray.filter(onlyUnique).sort();
+  const uniqueLevels = levelArray.filter(onlyUnique).sort();
+  const uniqueSectors = sectorArray.filter(onlyUnique).sort();
+
+  const climbResultsArray = [];
+  userClimbedBoulders.map(climbedBoulderItem => {
+    climbResultsArray.push(climbedBoulderItem.result);
+  });
+  const uniqueClimbResults = climbResultsArray.filter(onlyUnique).sort();
+  const filter = {
+    hold_colors: uniqueHoldColors,
+    levels: uniqueLevels,
+    sectors: uniqueSectors,
+    climb_results: uniqueClimbResults,
+  };
+  res.status(200).send(filter);
 });
 
 router.get('/boulders/:climberID/:boulderID', (req, res, next) => {

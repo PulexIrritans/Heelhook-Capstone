@@ -2,19 +2,22 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import ScreenReaderOnly from './ScreenReaderOnly';
 const URL = process.env.REACT_APP_URL;
+const USER_ID = 9999;
 
 const Filter = ({ filter, setFilter }) => {
   const [dropdownFilter, setDropdownFilter] = useState({
     hold_colors: [],
     levels: [],
     sectors: [],
+    climb_results: [],
   });
   const [holdColorFilter, setHoldColorFilter] = useState('');
   const [levelFilter, setLevelFilter] = useState('');
   const [sectorFilter, setSectorFilter] = useState('');
+  const [climbResultFilter, setClimbResultFilter] = useState('');
 
   const fetchDropdownFilter = () => {
-    fetch(`${URL}/boulders_filter`)
+    fetch(`${URL}/boulders_filter/${USER_ID}`)
       .then(res => res.json())
       .then(data => setDropdownFilter(data));
   };
@@ -37,10 +40,12 @@ const Filter = ({ filter, setFilter }) => {
               setHoldColorFilter(event.target.value);
               setLevelFilter('');
               setSectorFilter('');
+              setClimbResultFilter('');
               setFilter({
                 hold_color: event.target.value,
                 level: '',
                 sector: '',
+                climb_result: '',
               });
             }}
           >
@@ -66,10 +71,12 @@ const Filter = ({ filter, setFilter }) => {
               setLevelFilter(event.target.value);
               setHoldColorFilter('');
               setSectorFilter('');
+              setClimbResultFilter('');
               setFilter({
                 level: event.target.value,
                 hold_color: '',
                 sector: '',
+                climb_result: '',
               });
             }}
           >
@@ -95,10 +102,12 @@ const Filter = ({ filter, setFilter }) => {
               setSectorFilter(event.target.value);
               setHoldColorFilter('');
               setLevelFilter('');
+              setClimbResultFilter('');
               setFilter({
                 sector: event.target.value,
                 hold_color: '',
                 level: '',
+                climb_result: '',
               });
             }}
           >
@@ -106,6 +115,37 @@ const Filter = ({ filter, setFilter }) => {
             {dropdownFilter.sectors.map(sector => (
               <option key={sector} value={sector}>
                 {sector.toUpperCase()}
+              </option>
+            ))}
+          </FilterSelect>
+        </>
+      )}
+      {dropdownFilter.hold_colors.length > 0 && (
+        <>
+          <ScreenReaderOnly as="label" for="result">
+            Choose climb result:
+          </ScreenReaderOnly>
+          <FilterSelect
+            id="result"
+            name="result"
+            value={climbResultFilter}
+            onChange={event => {
+              setHoldColorFilter('');
+              setLevelFilter('');
+              setSectorFilter('');
+              setClimbResultFilter(event.target.value);
+              setFilter({
+                hold_color: '',
+                level: '',
+                sector: '',
+                climb_result: event.target.value,
+              });
+            }}
+          >
+            <option value="">Climb Result</option>
+            {dropdownFilter.climb_results?.map(result => (
+              <option key={result} value={result}>
+                {result.toUpperCase()}
               </option>
             ))}
           </FilterSelect>
@@ -120,11 +160,12 @@ export default Filter;
 const FilterWrapper = styled.form`
   padding: 0.5rem;
   position: relative;
-  height: 30%;
+  height: 20%;
   margin-bottom: 1rem;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, auto);
   gap: 5px;
-  flex-direction: column;
   background-color: var(--color-light-gray);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
@@ -134,7 +175,6 @@ const FilterWrapper = styled.form`
 `;
 
 const FilterSelect = styled.select`
-  height: 30%;
   border: none;
   background-color: white;
   padding: 0.5rem;

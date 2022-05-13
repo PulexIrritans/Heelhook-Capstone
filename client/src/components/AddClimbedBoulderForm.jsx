@@ -24,7 +24,7 @@ const AddClimbedBoulderForm = ({
 
   const [newProjected, setNewProjected] = useState('');
   const [newAttempts, setNewAttempts] = useState(0);
-  const [newResult, setNewResult] = useState('');
+  const [newResult, setNewResult] = useState('None');
   const [newLiked, setNewLiked] = useState('');
   const [newLevelFeedback, setNewLevelFeedback] = useState('');
 
@@ -132,7 +132,7 @@ const AddClimbedBoulderForm = ({
             <ResetButton
               type="button"
               onClick={() => {
-                setNewResult('');
+                setNewResult('None');
               }}
             >
               <FaUndoAlt />
