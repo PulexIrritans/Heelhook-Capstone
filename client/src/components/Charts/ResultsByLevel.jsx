@@ -25,20 +25,7 @@ const ResultsByLevel = () => {
     yAxis: {
       tickInterval: 1,
     },
-    label: {
-      position: 'middle',
-      layout: [
-        {
-          type: 'interval-adjust-position',
-        },
-        {
-          type: 'interval-hide-overlap',
-        },
-        {
-          type: 'adjust-color',
-        },
-      ],
-    },
+    label: false,
   };
   return <Column {...config} />;
 };

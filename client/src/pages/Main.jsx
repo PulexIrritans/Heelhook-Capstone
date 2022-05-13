@@ -17,6 +17,7 @@ const Main = () => {
             <SessionStats />
           </Wrapper>
           <Wrapper>
+            <h2>Overall climbs by level</h2>
             <ResultsByLevel />
           </Wrapper>
           <Wrapper>

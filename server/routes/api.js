@@ -218,7 +218,7 @@ router.get('/climbed_boulders_by_level/:climberID', async (req, res, next) => {
         climbsPerLevel[boulder.level] = {};
       }
       const levelObject = climbsPerLevel[boulder.level];
-      const climbType = e.result || 'none';
+      const climbType = e.result || 'Touched';
       levelObject[climbType] = (levelObject[climbType] || 0) + 1;
     })
   );
