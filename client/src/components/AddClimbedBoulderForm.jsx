@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FaUndoAlt } from 'react-icons/fa';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 import ScreenReaderOnly from './ScreenReaderOnly';
@@ -10,6 +11,7 @@ const AddClimbedBoulderForm = ({
   saveClimbedBoulderToDatabase,
   formPrefilledClimbedBoulder,
 }) => {
+  const navigate = useNavigate();
   useEffect(() => {
     const { projected, attempts, result, liked, level_feedback } =
       formPrefilledClimbedBoulder;
@@ -42,6 +44,7 @@ const AddClimbedBoulderForm = ({
             newLiked,
             newLevelFeedback
           );
+          navigate('/find');
         }}
       >
         <CheckboxWrapper>
