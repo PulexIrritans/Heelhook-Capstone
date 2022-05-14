@@ -11,10 +11,6 @@ const Filter = ({ filter, setFilter }) => {
     sectors: [],
     climb_results: [],
   });
-  const [holdColorFilter, setHoldColorFilter] = useState('');
-  const [levelFilter, setLevelFilter] = useState('');
-  const [sectorFilter, setSectorFilter] = useState('');
-  const [climbResultFilter, setClimbResultFilter] = useState('');
 
   const fetchDropdownFilter = () => {
     fetch(`${URL}/boulders_filter/${USER_ID}`)
@@ -35,12 +31,8 @@ const Filter = ({ filter, setFilter }) => {
           <FilterSelect
             id="hold_color"
             name="hold_color"
-            value={holdColorFilter}
+            value={filter.hold_color}
             onChange={event => {
-              setHoldColorFilter(event.target.value);
-              setLevelFilter('');
-              setSectorFilter('');
-              setClimbResultFilter('');
               setFilter({
                 hold_color: event.target.value,
                 level: '',
@@ -66,12 +58,8 @@ const Filter = ({ filter, setFilter }) => {
           <FilterSelect
             id="level"
             name="level"
-            value={levelFilter}
+            value={filter.level}
             onChange={event => {
-              setLevelFilter(event.target.value);
-              setHoldColorFilter('');
-              setSectorFilter('');
-              setClimbResultFilter('');
               setFilter({
                 level: event.target.value,
                 hold_color: '',
@@ -97,12 +85,8 @@ const Filter = ({ filter, setFilter }) => {
           <FilterSelect
             id="sector"
             name="sector"
-            value={sectorFilter}
+            value={filter.sector}
             onChange={event => {
-              setSectorFilter(event.target.value);
-              setHoldColorFilter('');
-              setLevelFilter('');
-              setClimbResultFilter('');
               setFilter({
                 sector: event.target.value,
                 hold_color: '',
@@ -128,12 +112,8 @@ const Filter = ({ filter, setFilter }) => {
           <FilterSelect
             id="result"
             name="result"
-            value={climbResultFilter}
+            value={filter.climb_result}
             onChange={event => {
-              setHoldColorFilter('');
-              setLevelFilter('');
-              setSectorFilter('');
-              setClimbResultFilter(event.target.value);
               setFilter({
                 hold_color: '',
                 level: '',
