@@ -39,7 +39,7 @@ Important: This demo is optimized for mobile screen!
 
 - Clone this respository
 - run $ npm install:all (Installs all dependencies for the root project, the client project and the server project.)
-- Set up your env.s
+- Set up your .env
 - Add your mongodb uri
 - Run app in development mode via $ npm run dev
 - Open [http://localhost:3000](http://localhost:3000/) to view it in your browser
