@@ -63,7 +63,7 @@ export default function Find() {
   if (isLoading) {
     return (
       <>
-        <Header title="Heelhook" />
+        <Header title="Find Boulder" />
         <main>
           <h2>Is Loading...</h2>
         </main>
@@ -73,7 +73,7 @@ export default function Find() {
   } else {
     return (
       <>
-        <Header title="Heelhook" />
+        <Header title="Find Boulder" />
         <main>
           <Filter filter={filter} setFilter={setFilter} />
           <BoulderList role="list">
