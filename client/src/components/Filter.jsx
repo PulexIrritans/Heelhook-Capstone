@@ -4,7 +4,7 @@ import ScreenReaderOnly from './ScreenReaderOnly';
 const URL = process.env.REACT_APP_URL;
 const USER_ID = 9999;
 
-const Filter = ({ filter, setFilter }) => {
+const Filter = ({ filter, setFilter, saveFilterToLocalStorage }) => {
   const [dropdownFilter, setDropdownFilter] = useState({
     hold_colors: [],
     levels: [],
@@ -39,6 +39,12 @@ const Filter = ({ filter, setFilter }) => {
                 sector: '',
                 climb_result: '',
               });
+              saveFilterToLocalStorage({
+                hold_color: event.target.value,
+                level: '',
+                sector: '',
+                climb_result: '',
+              });
             }}
           >
             <option value="">Hold color</option>
@@ -66,6 +72,12 @@ const Filter = ({ filter, setFilter }) => {
                 sector: '',
                 climb_result: '',
               });
+              saveFilterToLocalStorage({
+                hold_color: '',
+                level: event.target.value,
+                sector: '',
+                climb_result: '',
+              });
             }}
           >
             <option value="">Level</option>
@@ -88,6 +100,12 @@ const Filter = ({ filter, setFilter }) => {
             value={filter.sector}
             onChange={event => {
               setFilter({
+                sector: event.target.value,
+                hold_color: '',
+                level: '',
+                climb_result: '',
+              });
+              saveFilterToLocalStorage({
                 sector: event.target.value,
                 hold_color: '',
                 level: '',
@@ -120,9 +138,15 @@ const Filter = ({ filter, setFilter }) => {
                 sector: '',
                 climb_result: event.target.value,
               });
+              saveFilterToLocalStorage({
+                hold_color: '',
+                level: '',
+                sector: '',
+                climb_result: event.target.value,
+              });
             }}
           >
-            <option value="">Climbed by result</option>
+            <option value="">Climb result</option>
             {dropdownFilter.climb_results?.map(result => (
               <option key={result} value={result}>
                 {result.toUpperCase()}
