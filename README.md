@@ -8,7 +8,7 @@ Picture will come here...
 
 ### An app for boulder sport enthusiasts
 
-Heelhook is the boulder buddy that you waited for. It shows you all boulder routes available in your boulder club. Search and select a route to explore it's details. Track your climbs, give feedback. And see valuable insights about your achievements displayed in easy to undertand graphical charts. See yourself grow as a climber and compare yourself with other climbers if you like.
+Heelhook is the boulder buddy that you waited for. It shows you all boulder routes available in your boulder club. Search and select a route to explore it's details. Track your climbs, give feedback. And see valuable insights about your achievements displayed in easy to understand graphical charts. See yourself grow as a climber and compare yourself with other climbers if you like.
 
 ### Demo
 
