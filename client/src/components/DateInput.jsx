@@ -1,6 +1,15 @@
 import styled from 'styled-components';
 
-const DateInput = ({ title, text_content, required, min, max, disabled }) => {
+const DateInput = ({
+  title,
+  text_content,
+  required,
+  min,
+  max,
+  disabled,
+  value,
+  myFunction,
+}) => {
   return (
     <Wrapper>
       <label htmlFor={title}>{text_content}</label>
@@ -12,6 +21,8 @@ const DateInput = ({ title, text_content, required, min, max, disabled }) => {
         max={max}
         required={required}
         disabled={disabled}
+        value={value}
+        onInput={myFunction}
       ></Input>
     </Wrapper>
   );

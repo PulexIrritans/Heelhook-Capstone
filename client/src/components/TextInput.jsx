@@ -23,6 +23,7 @@ const TextInput = ({
         minLength={minLength}
         maxLength={maxLength}
         disabled={disabled}
+        value={value}
       ></TextFieldInput>
     </Wrapper>
   );
