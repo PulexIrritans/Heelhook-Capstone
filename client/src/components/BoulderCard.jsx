@@ -69,8 +69,8 @@ const BoulderCard = ({ boulder, detailedMode }) => {
             </Likes>
             {climbed !== 'None' ? <Climbed>{climbed}</Climbed> : ''}
             {climbed !== 'Zone' &&
-            climbed !== 'None' &&
-            climbed !== undefined ? (
+            climbed !== 'Touched' &&
+            climbed !== 'None' ? (
               <Checked />
             ) : (
               ''
