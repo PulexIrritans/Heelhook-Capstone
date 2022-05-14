@@ -4,6 +4,8 @@ import dayjs from 'dayjs';
 import { Boulder } from '../models/boulder.js';
 import { Climbed_boulder } from '../models/climbed_boulder.js';
 
+// Boulder list for Find page
+
 router.get('/boulders_all/:climberID', async (req, res, next) => {
   const { climberID } = req.params;
   const all = await Boulder.find({});
@@ -19,16 +21,18 @@ router.get('/boulders_all/:climberID', async (req, res, next) => {
       const resultBoulder = await Climbed_boulder.findOne({
         boulder_id: boulder.id,
         climber_id: climberID,
-        $and: [{ result: { $ne: '' } }, { result: { $ne: 'None' } }],
+        // $and: [{ result: { $ne: '' } }, { result: { $ne: 'None' } }],
       });
 
       copy.likeAmount = amount;
-      copy.climbed = resultBoulder?.result;
+      copy.climbed = resultBoulder ? resultBoulder.result : 'None';
       return copy;
     })
   );
   res.status(200).send(boulders);
 });
+
+// Boulder Filter for Find page
 
 router.get('/boulders_filter/:climberID', async (req, res, next) => {
   const { climberID } = req.params;
@@ -57,18 +61,20 @@ router.get('/boulders_filter/:climberID', async (req, res, next) => {
   userClimbedBoulders.map(climbedBoulderItem => {
     climbResultsArray.push(climbedBoulderItem.result);
   });
-  const uniqueClimbResults = climbResultsArray.filter(onlyUnique).sort();
-  const uniqueCorrectedClimbResults = uniqueClimbResults.filter(
-    result => result !== 'None'
-  );
+  const uniqueClimbResults = climbResultsArray.filter(onlyUnique);
+  if (userClimbedBoulders.length < allBoulders.length)
+    uniqueClimbResults.push('None');
+  uniqueClimbResults.sort();
   const filter = {
     hold_colors: uniqueHoldColors,
     levels: uniqueLevels,
     sectors: uniqueSectors,
-    climb_results: uniqueCorrectedClimbResults,
+    climb_results: uniqueClimbResults,
   };
   res.status(200).send(filter);
 });
+
+// Boulder Card for Add page
 
 router.get('/boulders/:climberID/:boulderID', (req, res, next) => {
   const { boulderID } = req.params;
@@ -80,6 +86,8 @@ router.get('/boulders/:climberID/:boulderID', (req, res, next) => {
       next();
     });
 });
+
+// Prefilled Climbed boulder for Add page
 
 router.get('/climbed_boulders/:climberID/:boulderID', (req, res, next) => {
   const { climberID, boulderID } = req.params;
@@ -103,6 +111,8 @@ router.get('/climbed_boulders/:climberID/:boulderID', (req, res, next) => {
     });
 });
 
+// Latest session date for main page
+
 router.get('/climbed_boulders_days/:climberID', async (req, res, next) => {
   const { climberID } = req.params;
 
@@ -117,6 +127,8 @@ router.get('/climbed_boulders_days/:climberID', async (req, res, next) => {
       console.error(e);
     });
 });
+
+// Climbed boulders for latest session on main page
 
 router.get('/climbed_boulders_session/:climberID', async (req, res, next) => {
   const { climberID } = req.params;
@@ -157,6 +169,8 @@ router.get('/climbed_boulders_session/:climberID', async (req, res, next) => {
     },
   ]);
 });
+
+// Overall climbed boulders for main page
 
 router.get('/climbed_boulders/:climberID', async (req, res, next) => {
   const { climberID } = req.params;
@@ -199,6 +213,8 @@ router.get('/climbed_boulders/:climberID', async (req, res, next) => {
     });
 });
 
+// Save or replace new climbed boulder in db from add page
+
 router.post('/climbed_boulders/', async (req, res, next) => {
   const climber_id = req.body.climber_id;
   const boulder_id = req.body.boulder_id;
@@ -229,6 +245,8 @@ router.post('/climbed_boulders/', async (req, res, next) => {
   }
 });
 
+// Overall climbed boulders by level
+
 router.get('/climbed_boulders_by_level/:climberID', async (req, res, next) => {
   const { climberID } = req.params;
 
@@ -246,7 +264,7 @@ router.get('/climbed_boulders_by_level/:climberID', async (req, res, next) => {
         climbsPerLevel[boulder.level] = {};
       }
       const levelObject = climbsPerLevel[boulder.level];
-      const climbType = e.result || 'Touched';
+      const climbType = e.result || 'None';
       levelObject[climbType] = (levelObject[climbType] || 0) + 1;
     })
   );
