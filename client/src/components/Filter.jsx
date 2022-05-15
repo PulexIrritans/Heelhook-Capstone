@@ -4,7 +4,7 @@ import ScreenReaderOnly from './ScreenReaderOnly';
 const URL = process.env.REACT_APP_URL;
 const USER_ID = 9999;
 
-const Filter = ({ filter, setFilter, saveFilterToLocalStorage }) => {
+const Filter = ({ filter, setFilter, saveFilterToSessionStorage }) => {
   const [dropdownFilter, setDropdownFilter] = useState({
     hold_colors: [],
     levels: [],
@@ -39,7 +39,7 @@ const Filter = ({ filter, setFilter, saveFilterToLocalStorage }) => {
                 sector: '',
                 climb_result: '',
               });
-              saveFilterToLocalStorage({
+              saveFilterToSessionStorage({
                 hold_color: event.target.value,
                 level: '',
                 sector: '',
@@ -72,7 +72,7 @@ const Filter = ({ filter, setFilter, saveFilterToLocalStorage }) => {
                 sector: '',
                 climb_result: '',
               });
-              saveFilterToLocalStorage({
+              saveFilterToSessionStorage({
                 hold_color: '',
                 level: event.target.value,
                 sector: '',
@@ -105,7 +105,7 @@ const Filter = ({ filter, setFilter, saveFilterToLocalStorage }) => {
                 level: '',
                 climb_result: '',
               });
-              saveFilterToLocalStorage({
+              saveFilterToSessionStorage({
                 sector: event.target.value,
                 hold_color: '',
                 level: '',
@@ -138,7 +138,7 @@ const Filter = ({ filter, setFilter, saveFilterToLocalStorage }) => {
                 sector: '',
                 climb_result: event.target.value,
               });
-              saveFilterToLocalStorage({
+              saveFilterToSessionStorage({
                 hold_color: '',
                 level: '',
                 sector: '',

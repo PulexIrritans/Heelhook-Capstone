@@ -22,7 +22,7 @@ export default function Find() {
       .then(data => {
         setBouldersList(data);
         setFilteredBouldersList(data);
-        getFilterFromLocalStorage();
+        getFilterFromSessionStorage();
         setIsLoading(false);
       });
   };
@@ -48,20 +48,20 @@ export default function Find() {
     }
   };
 
-  const saveFilterToLocalStorage = newfilter => {
-    localStorage.setItem('filter', JSON.stringify(newfilter));
+  const saveFilterToSessionStorage = newfilter => {
+    sessionStorage.setItem('filter', JSON.stringify(newfilter));
   };
 
-  const getFilterFromLocalStorage = () => {
-    const localStorageReturn = JSON.parse(localStorage.getItem('filter'));
-    localStorageReturn === null
+  const getFilterFromSessionStorage = () => {
+    const sessionStorageReturn = JSON.parse(sessionStorage.getItem('filter'));
+    sessionStorageReturn === null
       ? setFilter({
           hold_color: '',
           level: '',
           sector: '',
           climb_result: '',
         })
-      : setFilter(localStorageReturn);
+      : setFilter(sessionStorageReturn);
   };
 
   useEffect(() => {
@@ -90,7 +90,7 @@ export default function Find() {
           <Filter
             filter={filter}
             setFilter={setFilter}
-            saveFilterToLocalStorage={saveFilterToLocalStorage}
+            saveFilterToSessionStorage={saveFilterToSessionStorage}
           />
           <BoulderList role="list">
             <h2>Click on a card to enter your climb.</h2>
