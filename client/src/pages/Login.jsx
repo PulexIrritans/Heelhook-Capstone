@@ -1,7 +1,7 @@
-import Signup from '../components/Firebase/Signup';
+import Login from '../components/Firebase/Signup';
 
 const Login = () => {
-  return <Signup />;
+  return <Login />;
 };
 
 export default Login;
