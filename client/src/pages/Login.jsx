@@ -1,7 +1,7 @@
 import Login from '../components/Firebase/Signup';
 
-const Login = () => {
+const LoginPage = () => {
   return <Login />;
 };
 
-export default Login;
+export default LoginPage;

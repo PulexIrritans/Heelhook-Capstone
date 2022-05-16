@@ -1,7 +1,7 @@
 import Signup from '../components/Firebase/Signup';
 
-const Signup = () => {
+const SignupPage = () => {
   return <Signup />;
 };
 
-export default Signup;
+export default SignupPage;
