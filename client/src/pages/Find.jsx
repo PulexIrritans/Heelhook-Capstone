@@ -12,12 +12,7 @@ export default function Find() {
   const [filteredBouldersList, setFilteredBouldersList] =
     useState(bouldersList);
 
-  const [filter, setFilter] = useState({
-    hold_color: '',
-    level: '',
-    sector: '',
-    climb_result: '',
-  });
+  const [filter, setFilter] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
   const fetchBouldersList = () => {
@@ -27,8 +22,9 @@ export default function Find() {
       .then(data => {
         setBouldersList(data);
         setFilteredBouldersList(data);
-      })
-      .then(setIsLoading(false));
+        getFilterFromSessionStorage();
+        setIsLoading(false);
+      });
   };
 
   const filterBouldersList = () => {
@@ -50,6 +46,22 @@ export default function Find() {
         )
       );
     }
+  };
+
+  const saveFilterToSessionStorage = newfilter => {
+    sessionStorage.setItem('filter', JSON.stringify(newfilter));
+  };
+
+  const getFilterFromSessionStorage = () => {
+    const sessionStorageReturn = JSON.parse(sessionStorage.getItem('filter'));
+    sessionStorageReturn === null
+      ? setFilter({
+          hold_color: '',
+          level: '',
+          sector: '',
+          climb_result: '',
+        })
+      : setFilter(sessionStorageReturn);
   };
 
   useEffect(() => {
@@ -75,7 +87,11 @@ export default function Find() {
       <>
         <Header title="Heelhook" />
         <main>
-          <Filter filter={filter} setFilter={setFilter} />
+          <Filter
+            filter={filter}
+            setFilter={setFilter}
+            saveFilterToSessionStorage={saveFilterToSessionStorage}
+          />
           <BoulderList role="list">
             <h2>Click on a card to enter your climb.</h2>
             {filteredBouldersList.length > 0 ? (

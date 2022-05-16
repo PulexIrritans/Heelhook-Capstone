@@ -4,17 +4,13 @@ import ScreenReaderOnly from './ScreenReaderOnly';
 const URL = process.env.REACT_APP_URL;
 const USER_ID = 9999;
 
-const Filter = ({ filter, setFilter }) => {
+const Filter = ({ filter, setFilter, saveFilterToSessionStorage }) => {
   const [dropdownFilter, setDropdownFilter] = useState({
     hold_colors: [],
     levels: [],
     sectors: [],
     climb_results: [],
   });
-  const [holdColorFilter, setHoldColorFilter] = useState('');
-  const [levelFilter, setLevelFilter] = useState('');
-  const [sectorFilter, setSectorFilter] = useState('');
-  const [climbResultFilter, setClimbResultFilter] = useState('');
 
   const fetchDropdownFilter = () => {
     fetch(`${URL}/boulders_filter/${USER_ID}`)
@@ -35,13 +31,15 @@ const Filter = ({ filter, setFilter }) => {
           <FilterSelect
             id="hold_color"
             name="hold_color"
-            value={holdColorFilter}
+            value={filter.hold_color}
             onChange={event => {
-              setHoldColorFilter(event.target.value);
-              setLevelFilter('');
-              setSectorFilter('');
-              setClimbResultFilter('');
               setFilter({
+                hold_color: event.target.value,
+                level: '',
+                sector: '',
+                climb_result: '',
+              });
+              saveFilterToSessionStorage({
                 hold_color: event.target.value,
                 level: '',
                 sector: '',
@@ -66,15 +64,17 @@ const Filter = ({ filter, setFilter }) => {
           <FilterSelect
             id="level"
             name="level"
-            value={levelFilter}
+            value={filter.level}
             onChange={event => {
-              setLevelFilter(event.target.value);
-              setHoldColorFilter('');
-              setSectorFilter('');
-              setClimbResultFilter('');
               setFilter({
                 level: event.target.value,
                 hold_color: '',
+                sector: '',
+                climb_result: '',
+              });
+              saveFilterToSessionStorage({
+                hold_color: '',
+                level: event.target.value,
                 sector: '',
                 climb_result: '',
               });
@@ -97,13 +97,15 @@ const Filter = ({ filter, setFilter }) => {
           <FilterSelect
             id="sector"
             name="sector"
-            value={sectorFilter}
+            value={filter.sector}
             onChange={event => {
-              setSectorFilter(event.target.value);
-              setHoldColorFilter('');
-              setLevelFilter('');
-              setClimbResultFilter('');
               setFilter({
+                sector: event.target.value,
+                hold_color: '',
+                level: '',
+                climb_result: '',
+              });
+              saveFilterToSessionStorage({
                 sector: event.target.value,
                 hold_color: '',
                 level: '',
@@ -128,13 +130,15 @@ const Filter = ({ filter, setFilter }) => {
           <FilterSelect
             id="result"
             name="result"
-            value={climbResultFilter}
+            value={filter.climb_result}
             onChange={event => {
-              setHoldColorFilter('');
-              setLevelFilter('');
-              setSectorFilter('');
-              setClimbResultFilter(event.target.value);
               setFilter({
+                hold_color: '',
+                level: '',
+                sector: '',
+                climb_result: event.target.value,
+              });
+              saveFilterToSessionStorage({
                 hold_color: '',
                 level: '',
                 sector: '',
@@ -142,7 +146,7 @@ const Filter = ({ filter, setFilter }) => {
               });
             }}
           >
-            <option value="">Climbed by result</option>
+            <option value="">Climb result</option>
             {dropdownFilter.climb_results?.map(result => (
               <option key={result} value={result}>
                 {result.toUpperCase()}
