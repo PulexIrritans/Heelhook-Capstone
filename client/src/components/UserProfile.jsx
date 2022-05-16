@@ -5,6 +5,7 @@ import profilePic from '../images/ProfilePic.jpg';
 import Button from './Button';
 import DateInput from './DateInput';
 import dayjs from 'dayjs';
+
 const URL = process.env.REACT_APP_URL;
 const USER_ID = 9999;
 
@@ -63,91 +64,89 @@ const UserProfile = () => {
   };
 
   return (
-    <>
-      <ProfileFormWrapper>
-        <Picture src={profilePic} alt="ProfilePic" />
-        <ProfileForm
-          onSubmit={event => {
-            event.preventDefault();
-            saveClimberToDatabase();
+    <ProfileFormWrapper>
+      <Picture src={profilePic} alt="ProfilePic" />
+      <ProfileForm
+        onSubmit={event => {
+          event.preventDefault();
+          saveClimberToDatabase();
+        }}
+      >
+        <TextInput
+          title={'User name*'}
+          required
+          minLength={8}
+          maxLength={20}
+          placeholder={'BoulderQueen'}
+          disabled={false}
+          value={climber.user_name}
+          myFunction={event => {
+            const newClimber = { ...climber };
+            newClimber.user_name = event.target.value;
+            setClimber(newClimber);
           }}
-        >
-          <TextInput
-            title={'User name*'}
-            required
-            minLength={8}
-            maxLength={20}
-            placeholder={'BoulderQueen'}
+        />
+        <TextInput
+          title={'First name*'}
+          required
+          minLength={2}
+          maxLength={40}
+          placeholder={'Jane'}
+          disabled={false}
+          value={climber.first_name}
+          myFunction={event => {
+            const newClimber = { ...climber };
+            newClimber.first_name = event.target.value;
+            setClimber(newClimber);
+          }}
+        />
+        <TextInput
+          title={'Last name*'}
+          required
+          minLength={2}
+          maxLength={40}
+          placeholder={'Doe'}
+          disabled={false}
+          value={climber.last_name}
+          myFunction={event => {
+            const newClimber = { ...climber };
+            newClimber.last_name = event.target.value;
+            setClimber(newClimber);
+          }}
+        />
+        <DateWrapper>
+          <DateInput
+            title={'Birthday'}
+            text_content={'Birthday'}
+            required={false}
             disabled={false}
-            value={climber.user_name}
+            value={climber.birthday}
             myFunction={event => {
               const newClimber = { ...climber };
-              newClimber.user_name = event.target.value;
+              newClimber.birthday = event.target.value;
               setClimber(newClimber);
             }}
           />
-          <TextInput
-            title={'First name*'}
-            required
-            minLength={2}
-            maxLength={40}
-            placeholder={'Jane'}
+          <DateInput
+            title={'Climb_Career_Start'}
+            text_content={'Started with climbing'}
+            required={false}
             disabled={false}
-            value={climber.first_name}
+            value={climber.boulder_start_date}
             myFunction={event => {
               const newClimber = { ...climber };
-              newClimber.first_name = event.target.value;
+              newClimber.boulder_start_date = event.target.value;
               setClimber(newClimber);
             }}
           />
-          <TextInput
-            title={'Last name*'}
-            required
-            minLength={2}
-            maxLength={40}
-            placeholder={'Doe'}
-            disabled={false}
-            value={climber.last_name}
-            myFunction={event => {
-              const newClimber = { ...climber };
-              newClimber.last_name = event.target.value;
-              setClimber(newClimber);
-            }}
-          />
-          <DateWrapper>
-            <DateInput
-              title={'Birthday'}
-              text_content={'Birthday'}
-              required={false}
-              disabled={false}
-              value={climber.birthday}
-              myFunction={event => {
-                const newClimber = { ...climber };
-                newClimber.birthday = event.target.value;
-                setClimber(newClimber);
-              }}
-            />
-            <DateInput
-              title={'Climb_Career_Start'}
-              text_content={'Started with climbing'}
-              required={false}
-              disabled={false}
-              value={climber.boulder_start_date}
-              myFunction={event => {
-                const newClimber = { ...climber };
-                newClimber.boulder_start_date = event.target.value;
-                setClimber(newClimber);
-              }}
-            />
-          </DateWrapper>
-          <p>*required fields</p>
-          <Button type="submit" title="Save" myFunction={() => {}} />
-          {success && <p>Your profile was saved successfully.</p>}
-          {errorGet && <p>Sorry, could not load user profile.</p>}
-          {errorSave && <p>Sorry, could not save user profile.</p>}
-        </ProfileForm>
-      </ProfileFormWrapper>
-    </>
+        </DateWrapper>
+        <p>*required fields</p>
+        <Button type="submit" title="Save" myFunction={() => {}} />
+        {success && <p>Your profile was saved successfully.</p>}
+        {errorGet && <p>Sorry, could not load user profile.</p>}
+        {errorSave && <p>Sorry, could not save user profile.</p>}
+      </ProfileForm>
+    </ProfileFormWrapper>
   );
 };
 

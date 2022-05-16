@@ -37,6 +37,9 @@ const Wrapper = styled.div`
 const Input = styled.input`
   height: 3rem;
   padding: 0.5rem;
-  background-color: white !important;
+  -webkit-calendar-picker-indicator: {
+    background-color: white;
+  }
+  background-color: white;
   border: 1px solid var(--border-color);
 `;
