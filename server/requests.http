@@ -11,3 +11,13 @@ content-type: application/json
     "liked": false,
     "level_feedback": 1
 }
+
+###
+POST http://localhost:3001/api/climber/9999/
+content-type: application/json
+
+{
+    "user_name": "BoulderQueen",
+    "first_name": "Lisa",
+    "last_name": "Simpson"
+}

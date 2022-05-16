@@ -3,6 +3,7 @@ const router = express.Router();
 import dayjs from 'dayjs';
 import { Boulder } from '../models/boulder.js';
 import { Climbed_boulder } from '../models/climbed_boulder.js';
+import { Climber } from '../models/climber.js';
 
 // Boulder list for Find page
 
@@ -21,7 +22,6 @@ router.get('/boulders_all/:climberID', async (req, res, next) => {
       const resultBoulder = await Climbed_boulder.findOne({
         boulder_id: boulder.id,
         climber_id: climberID,
-        // $and: [{ result: { $ne: '' } }, { result: { $ne: 'None' } }],
       });
 
       copy.likeAmount = amount;
@@ -235,6 +235,61 @@ router.post('/climbed_boulders/', async (req, res, next) => {
       });
   } else {
     Climbed_boulder(newClimbedBoulder)
+      .save()
+      .then(data => {
+        res.status(201).send(data);
+      })
+      .catch(() => {
+        next();
+      });
+  }
+});
+
+// Get climber profile for profile page
+
+router.get('/climber/:climberID', (req, res, next) => {
+  const { climberID } = req.params;
+  Climber.findOne({
+    climber_id: climberID,
+  })
+    .then(data => {
+      data === null
+        ? res.status(200).send({
+            climber_id: climberID,
+            user_name: '',
+            first_name: '',
+            last_name: '',
+            birthday: '',
+            boulder_start_date: '',
+          })
+        : res.status(200).send(data);
+    })
+    .catch(error => {
+      next();
+    });
+});
+
+// Save climber profile
+
+router.post('/climber/:climberID', async (req, res, next) => {
+  const { climberID } = req.params;
+  const newClimber = req.body;
+  console.log(newClimber, 123);
+
+  const climberCheck = await Climber.findOne({
+    climber_id: climberID,
+  });
+
+  if (climberCheck) {
+    Climber.replaceOne(climberCheck, newClimber)
+      .then(data => {
+        res.status(200).send(newClimber);
+      })
+      .catch(() => {
+        next();
+      });
+  } else {
+    Climber(newClimber)
       .save()
       .then(data => {
         res.status(201).send(data);
