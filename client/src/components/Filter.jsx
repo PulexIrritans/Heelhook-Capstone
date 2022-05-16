@@ -179,10 +179,10 @@ const FilterWrapper = styled.form`
 `;
 
 const FilterSelect = styled.select`
-  border: none;
+  border: 1px solid var(--color-cyan);
   background-color: white;
   padding: 0.5rem;
   &:focus {
-    border: 1px solid var(--color-cyan);
+    background-color: rgb(16, 152, 173, 0.1);
   }
 `;
