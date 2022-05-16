@@ -183,6 +183,6 @@ const FilterSelect = styled.select`
   background-color: white;
   padding: 0.5rem;
   &:focus {
-    background-color: rgb(16, 152, 173, 0.1);
+    border: 2px solid var(--color-cyan);
   }
 `;
