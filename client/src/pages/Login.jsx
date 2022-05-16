@@ -1,4 +1,4 @@
-import Login from '../components/Firebase/Signup';
+import Login from '../components/Firebase/Login';
 
 const LoginPage = () => {
   return <Login />;

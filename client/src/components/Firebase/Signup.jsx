@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
 const Signup = () => {
@@ -21,11 +22,7 @@ const Signup = () => {
     try {
       setError('');
       setLoading(true);
-      await signup(
-        emailRef.current.value,
-        passwordRef.current.value,
-        passwordRef.current.value
-      );
+      await signup(emailRef.current.value, passwordRef.current.value);
     } catch {
       setError('Failed to create an account');
     }
@@ -67,9 +64,11 @@ const Signup = () => {
             ref={passwordConfirmRef}
           />
         </div>
-        <button disabled={loading}>Save</button>
+        <button disabled={loading}>Sign up</button>
       </form>
-      <p>Already have an account?</p>
+      <p>
+        Already have an account? <Link to="/login">Log In</Link>
+      </p>
     </>
   );
 };
