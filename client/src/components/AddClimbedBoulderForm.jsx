@@ -65,7 +65,9 @@ const AddClimbedBoulderForm = ({
           <ButtonWrapperLeft>
             <CounterButton
               onClick={() => {
-                setNewAttempts(newAttempts - 1);
+                setNewAttempts(
+                  newAttempts === 0 ? newAttempts : newAttempts - 1
+                );
               }}
               type="button"
             >
@@ -127,6 +129,7 @@ const AddClimbedBoulderForm = ({
               checked={newResult === 'Flash' && 'checked'}
               onChange={event => {
                 setNewResult(event.target.value);
+                setNewAttempts(0);
               }}
             />
             <RadioLabel htmlFor="Flash">Flash</RadioLabel>
