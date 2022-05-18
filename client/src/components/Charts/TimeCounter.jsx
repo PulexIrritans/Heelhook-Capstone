@@ -44,8 +44,8 @@ const Counter = styled.div`
   position: absolute;
   top: -30px;
   right: -10px;
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   display: flex;
   justify-content: center;
   align-items: center;
