@@ -65,9 +65,7 @@ const AddClimbedBoulderForm = ({
           <ButtonWrapperLeft>
             <CounterButton
               onClick={() => {
-                setNewAttempts(
-                  newAttempts === 0 ? newAttempts : newAttempts - 1
-                );
+                setNewAttempts(newAttempts > 0 ? newAttempts - 1 : newAttempts);
               }}
               type="button"
             >
