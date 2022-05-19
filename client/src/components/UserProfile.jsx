@@ -19,8 +19,7 @@ const UserProfile = () => {
     boulder_start_date: '',
   });
 
-  const [errorSave, setErrorSave] = useState(false);
-  const [errorGet, setErrorGet] = useState(false);
+  const [error, setError] = useState();
   const [success, setSuccess] = useState(false);
 
   const fetchClimber = () => {
@@ -34,15 +33,14 @@ const UserProfile = () => {
         setClimber(data);
       })
       .catch(error => {
-        setErrorGet(true);
+        setError('Sorry, could not load user profile.');
       });
   };
 
   useEffect(() => {
     fetchClimber();
     setSuccess(false);
-    setErrorGet(false);
-    setErrorSave(false);
+    setError(false);
   }, []);
 
   const saveClimberToDatabase = () => {
@@ -57,15 +55,20 @@ const UserProfile = () => {
       .then(data => {
         setClimber(data);
         setSuccess(true);
+        setTimeout(() => setSuccess(false), 2000);
       })
       .catch(error => {
-        setErrorSave(true);
+        setError('Sorry, could not save user profile.');
       });
   };
 
   return (
     <ProfileFormWrapper>
-      <Picture src={profilePic} alt="ProfilePic" />
+      {error && <Error>{error}</Error>}
+      <PicInfoWrapper>
+        <Info success={success}>Saved successfully.</Info>
+        <Picture src={profilePic} alt="ProfilePic" />
+      </PicInfoWrapper>
       <ProfileForm
         onSubmit={event => {
           event.preventDefault();
@@ -142,9 +145,6 @@ const UserProfile = () => {
         </DateWrapper>
         <p>*required fields</p>
         <Button type="submit" title="Save" myFunction={() => {}} />
-        {success && <p>Your profile was saved successfully.</p>}
-        {errorGet && <p>Sorry, could not load user profile.</p>}
-        {errorSave && <p>Sorry, could not save user profile.</p>}
       </ProfileForm>
     </ProfileFormWrapper>
   );
@@ -166,10 +166,17 @@ const ProfileFormWrapper = styled.div`
   }
 `;
 
-const ProfileForm = styled.form`
+const PicInfoWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 15px;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const Info = styled.p`
+  padding: 0.5rem;
+  border-radius: var(--border-radius);
+  background-color: var(--color-cyan-transparent);
+  visibility: ${props => (props.success ? 'visible' : 'hidden')};
 `;
 
 const Picture = styled.img`
@@ -178,9 +185,22 @@ const Picture = styled.img`
   align-self: flex-end;
 `;
 
+const ProfileForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+`;
+
 const DateWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 5px;
   margin-bottom: 1rem;
+`;
+
+const Error = styled.p`
+  background-color: rgb(255, 0, 0, 0.2);
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: var(--border-radius);
 `;

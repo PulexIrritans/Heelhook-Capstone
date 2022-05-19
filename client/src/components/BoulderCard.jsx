@@ -53,7 +53,7 @@ const BoulderCard = ({ boulder, detailedMode }) => {
           ></AllPic>
         </WrapperLong>
       ) : (
-        <WrapperShort>
+        <WrapperShort climbed={climbed}>
           <CardLink
             onClick={() => setIsInDetailedMode(true)}
             to={`/add/${_id}`}
@@ -91,7 +91,10 @@ const BoulderCard = ({ boulder, detailedMode }) => {
 export default BoulderCard;
 
 const WrapperShort = styled.li`
-  background-color: var(--color-light-gray);
+  background-color: ${props =>
+    props.climbed === 'Flash' || props.climbed === 'Top'
+      ? 'var(--color-cyan-transparent)'
+      : 'var(--color-light-gray)'};
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
   &:hover {
