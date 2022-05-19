@@ -17,5 +17,5 @@ const StyledHeader = styled.header`
 
 const HeaderH1 = styled.h1`
   color: inherit;
-  padding: 0.5rem 0;
+  padding: 0.4rem 0;
 `;
