@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-const Button = ({ title, type, myFunction, disabled }) => {
+const Button = ({ title, type, myFunction }) => {
   return (
-    <DefaultButton disabled={disabled} type={type} onClick={myFunction}>
+    <DefaultButton type={type} onClick={myFunction}>
       {title}
     </DefaultButton>
   );

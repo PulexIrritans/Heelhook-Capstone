@@ -6,7 +6,6 @@ export default createGlobalStyle`
     --color-light-gray: rgb(248, 249, 250);
     --color-medium-gray: rgb(241, 243, 245);
     --color-cyan: rgb(16, 152, 173);
-    --color-cyan-transparent: rgb(16, 152, 173, 0.1);
     --color-dark-gray: rgb(46, 45, 45);
     --border-color:rgb(16, 152, 173);
     --border-radius: 5px;
