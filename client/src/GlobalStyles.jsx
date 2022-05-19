@@ -5,10 +5,11 @@ export default createGlobalStyle`
 :root {
     --color-light-gray: rgb(248, 249, 250);
     --color-medium-gray: rgb(241, 243, 245);
-    --color-cyan: rgb(16, 152, 173);
+    --color-cyan: rgb(128, 172, 237);
+    --color-cyan-transparent: rgb(128, 172, 237, 0.2);
     --color-dark-gray: rgb(46, 45, 45);
-    --border-color:rgb(16, 152, 173);
-    --border-radius: 5px;
+    --border-color:rgb(128, 172, 237);
+    --border-radius: 6px;
     --box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, 
     rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
   }

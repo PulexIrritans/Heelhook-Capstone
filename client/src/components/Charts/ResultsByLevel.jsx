@@ -22,6 +22,15 @@ const ResultsByLevel = () => {
     xField: 'level',
     yField: 'value',
     seriesField: 'climbType',
+    color: ({ climbType }) => {
+      if (climbType === 'Flash') {
+        return 'rgb(98, 147, 249)';
+      } else if (climbType === 'Top') {
+        return 'rgb(97, 217, 169)';
+      } else if (climbType === 'Zone') {
+        return 'rgb(100, 118, 150)';
+      } else return 'rgb(240, 189, 42)';
+    },
     yAxis: {
       tickInterval: 1,
     },

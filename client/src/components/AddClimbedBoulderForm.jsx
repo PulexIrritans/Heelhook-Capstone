@@ -31,7 +31,7 @@ const AddClimbedBoulderForm = ({
 
   return (
     <FormWrapper>
-      <h2 id="form-heading">Your climb</h2>
+      <FormHeader id="form-heading">Your climb</FormHeader>
       <p id="form-description">Use this form to save your climb data.</p>
       <BoulderForm
         aria-labelledby="form-heading"
@@ -65,7 +65,7 @@ const AddClimbedBoulderForm = ({
           <ButtonWrapperLeft>
             <CounterButton
               onClick={() => {
-                setNewAttempts(newAttempts - 1);
+                setNewAttempts(newAttempts > 0 ? newAttempts - 1 : newAttempts);
               }}
               type="button"
             >
@@ -127,6 +127,7 @@ const AddClimbedBoulderForm = ({
               checked={newResult === 'Flash' && 'checked'}
               onChange={event => {
                 setNewResult(event.target.value);
+                setNewAttempts(0);
               }}
             />
             <RadioLabel htmlFor="Flash">Flash</RadioLabel>
@@ -224,6 +225,10 @@ const BoulderForm = styled.form`
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+`;
+
+const FormHeader = styled.h2`
+  margin: 0;
 `;
 
 // Radio-Button Group

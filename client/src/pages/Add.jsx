@@ -84,11 +84,6 @@ const Add = () => {
         ) : (
           <p>Sorry, could not load boulder.</p>
         )}
-
-        {climbedBoulder && (
-          <p>You have successfully saved a new entry for this boulder!</p>
-        )}
-
         {error && <p>Sorry, could not save new boulder entry.</p>}
       </main>
       <Navigation />

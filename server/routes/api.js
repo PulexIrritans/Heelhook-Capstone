@@ -274,7 +274,6 @@ router.get('/climber/:climberID', (req, res, next) => {
 router.post('/climber/:climberID', async (req, res, next) => {
   const { climberID } = req.params;
   const newClimber = req.body;
-  console.log(newClimber, 123);
 
   const climberCheck = await Climber.findOne({
     climber_id: climberID,
