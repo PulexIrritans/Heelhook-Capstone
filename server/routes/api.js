@@ -100,7 +100,7 @@ router.get('/climbed_boulders/:climberID/:boulderID', (req, res, next) => {
         ? res.status(200).send({
             projected: false,
             attempts: 0,
-            result: 'None',
+            result: 'Touched',
             liked: false,
             level_feedback: '',
           })
