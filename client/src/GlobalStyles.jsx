@@ -35,9 +35,7 @@ body {
     margin: 0 auto;
     padding: 0;
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
-    color: var(--color-white);
-    background-color: var(--color-black);
-}
+  }
 
 .App {
   height: 100vh;
