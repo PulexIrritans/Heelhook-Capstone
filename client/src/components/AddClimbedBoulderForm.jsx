@@ -23,10 +23,10 @@ const AddClimbedBoulderForm = ({
     setNewLevelFeedback(level_feedback);
   }, [formPrefilledClimbedBoulder]);
 
-  const [newProjected, setNewProjected] = useState('');
+  const [newProjected, setNewProjected] = useState(false);
   const [newAttempts, setNewAttempts] = useState(0);
   const [newResult, setNewResult] = useState('Touched');
-  const [newLiked, setNewLiked] = useState('');
+  const [newLiked, setNewLiked] = useState(false);
   const [newLevelFeedback, setNewLevelFeedback] = useState('');
 
   return (
@@ -102,7 +102,7 @@ const AddClimbedBoulderForm = ({
               id="Zone"
               name="result"
               value="Zone"
-              checked={newResult === 'Zone' && 'checked'}
+              checked={newResult === 'Zone' && true}
               onChange={event => {
                 setNewResult(event.target.value);
               }}
@@ -113,7 +113,7 @@ const AddClimbedBoulderForm = ({
               id="Top"
               name="result"
               value="Top"
-              checked={newResult === 'Top' && 'checked'}
+              checked={newResult === 'Top' && true}
               onChange={event => {
                 setNewResult(event.target.value);
               }}
@@ -124,10 +124,10 @@ const AddClimbedBoulderForm = ({
               id="Flash"
               name="result"
               value="Flash"
-              checked={newResult === 'Flash' && 'checked'}
+              checked={newResult === 'Flash' && true}
               onChange={event => {
                 setNewResult(event.target.value);
-                setNewAttempts(0);
+                setNewAttempts(1);
               }}
             />
             <RadioLabel htmlFor="Flash">Flash</RadioLabel>
@@ -163,9 +163,9 @@ const AddClimbedBoulderForm = ({
               id="tooeasy"
               name="levelFeedback"
               value="-1"
-              checked={newLevelFeedback === '-1' && 'checked'}
+              checked={newLevelFeedback === -1 && true}
               onChange={event => {
-                setNewLevelFeedback(event.target.value);
+                setNewLevelFeedback(Number(event.target.value));
               }}
             />
             <RadioLabel htmlFor="tooeasy">Too easy</RadioLabel>
@@ -174,9 +174,9 @@ const AddClimbedBoulderForm = ({
               id="justright"
               name="levelFeedback"
               value="0"
-              checked={newLevelFeedback === '0' && 'checked'}
+              checked={newLevelFeedback === 0 && true}
               onChange={event => {
-                setNewLevelFeedback(event.target.value);
+                setNewLevelFeedback(Number(event.target.value));
               }}
             />
             <RadioLabel htmlFor="justright">Just right</RadioLabel>
@@ -185,9 +185,9 @@ const AddClimbedBoulderForm = ({
               id="toohard"
               name="levelFeedback"
               value="1"
-              checked={newLevelFeedback === '1' && 'checked'}
+              checked={newLevelFeedback === 1 && true}
               onChange={event => {
-                setNewLevelFeedback(event.target.value);
+                setNewLevelFeedback(Number(event.target.value));
               }}
             />
             <RadioLabel htmlFor="toohard">Too hard</RadioLabel>
