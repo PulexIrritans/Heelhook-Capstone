@@ -3,8 +3,9 @@
 Capstone project - Web Development Bootcamp @[neuefische](https://www.neuefische.de/weiterbildung/web-development)
 
 ## Description
+![Slide 16_9 - 1](https://user-images.githubusercontent.com/94105745/169652505-251cf0af-d834-4eb2-bf28-af97928463cc.jpg)
 
-Picture will come here...
+
 
 ### An app for boulder sport enthusiasts
 
