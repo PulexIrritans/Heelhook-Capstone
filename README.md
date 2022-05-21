@@ -1,6 +1,6 @@
 # Heelhook
 
-Capstone project - Web Development Bootcamp @neuefische
+Capstone project - Web Development Bootcamp @[neuefische](https://www.neuefische.de/weiterbildung/web-development)
 
 ## Description
 
