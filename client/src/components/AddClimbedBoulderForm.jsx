@@ -127,7 +127,7 @@ const AddClimbedBoulderForm = ({
               checked={newResult === 'Flash' && true}
               onChange={event => {
                 setNewResult(event.target.value);
-                setNewAttempts(0);
+                setNewAttempts(1);
               }}
             />
             <RadioLabel htmlFor="Flash">Flash</RadioLabel>
