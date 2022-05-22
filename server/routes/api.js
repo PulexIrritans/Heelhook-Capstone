@@ -121,7 +121,7 @@ router.get('/climbed_boulders_days/:climberID', async (req, res, next) => {
   })
     .sort({ date: -1 })
     .then(data => {
-      res.status(200).send(data[0].date);
+      res.status(200).send(data[0]?.date);
     })
     .catch(e => {
       console.error(e);
@@ -136,8 +136,8 @@ router.get('/climbed_boulders_session/:climberID', async (req, res, next) => {
   const allClimbedBoulders = await Climbed_boulder.find({
     climber_id: climberID,
   }).sort({ date: -1 });
-  const latestDateISO = allClimbedBoulders[0].date;
-  const allLatestSessionClimbs = allClimbedBoulders.filter(climbedBoulder =>
+  const latestDateISO = allClimbedBoulders[0]?.date;
+  const allLatestSessionClimbs = allClimbedBoulders?.filter(climbedBoulder =>
     dayjs(climbedBoulder.date).isSame(dayjs(latestDateISO), 'day')
   );
   const amountAll = allLatestSessionClimbs?.length;

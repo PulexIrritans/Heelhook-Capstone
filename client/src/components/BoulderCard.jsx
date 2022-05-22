@@ -191,7 +191,7 @@ const TagList = styled.ul`
 const Tag = styled.li`
   padding: 0.2em;
   font-size: 0.8rem;
-  background-color: var(--color-cyan);
+  background-color: var(--color-cyan-transparent);
 `;
 
 const Setter = styled(Text)`
