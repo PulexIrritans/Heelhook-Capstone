@@ -124,6 +124,7 @@ const UserProfile = () => {
             required={false}
             disabled={false}
             value={climber.birthday}
+            max={dayjs().format('YYYY-MM-DD')}
             myFunction={event => {
               const newClimber = { ...climber };
               newClimber.birthday = event.target.value;
@@ -136,6 +137,7 @@ const UserProfile = () => {
             required={false}
             disabled={false}
             value={climber.boulder_start_date}
+            max={dayjs().format('YYYY-MM-DD')}
             myFunction={event => {
               const newClimber = { ...climber };
               newClimber.boulder_start_date = event.target.value;
