@@ -48,7 +48,7 @@ const Add = () => {
       attempts,
       result,
       liked,
-      level_feedback: Number(levelFeedback),
+      level_feedback: levelFeedback,
     };
 
     fetch(`${URL}/climbed_boulders/`, {

@@ -76,7 +76,7 @@ const AddClimbedBoulderForm = ({
             type="number"
             id="attempts"
             name="attempts"
-            value={newAttempts}
+            value={newAttempts || 0}
             min="0"
             max="99"
             onChange={event => {
@@ -194,7 +194,7 @@ const AddClimbedBoulderForm = ({
             <ResetButton
               type="button"
               onClick={() => {
-                setNewLevelFeedback(0);
+                setNewLevelFeedback('');
               }}
             >
               <FaUndoAlt />
