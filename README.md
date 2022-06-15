@@ -13,7 +13,7 @@ Heelhook is the boulder buddy that you waited for. It shows you all boulder rout
 
 ### Demo
 
-Have a look at the hosted version on Vercel: [Heelhook Demo](https://heelhook-capstone.vercel.app/)
+Have a look at the hosted version on Vercel: [Heelhook Demo](https://heelhook.vercel.app/)
 
 Important: This demo is optimized for mobile screen!
 
