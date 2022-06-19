@@ -39,7 +39,7 @@ Important: This demo is optimized for mobile screen!
 ### Project Setup
 
 - Clone this respository
-- run $ npm install:all (Installs all dependencies for the root project, the client project and the server project.)
+- perform $ npm run install:all (Installs all dependencies for the root project, the client project and the server project.)
 - Set up an .env with the variable "MONGODB_URL" in the server folder with the address to your local mongodb, e.g.: MONGODB_URL="mongodb://localhost:27017/heelhook"
 - Insert some test boulders to mongodb (heelhook) in a collection named "boulders". There is a boulders.json in the project which you can use for this purpose. Please use only such boulders in the json that DON'T have an id property. The boulders with ID are not ready to be used yet as no pictures have been uploaded to the project for those.
 - Set up an .env with the variable "REACT_APP_URL" in the client folder with the the following content: "REACT_APP_URL=/api"
