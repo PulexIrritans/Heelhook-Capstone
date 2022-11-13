@@ -98,7 +98,7 @@ const WrapperShort = styled.li`
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
   &:hover {
-    background-color: var(--color-medium-gray);
+    background-color: var(--color-cyan);
   }
 `;
 
