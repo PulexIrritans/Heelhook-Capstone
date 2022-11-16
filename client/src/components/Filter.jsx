@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import ScreenReaderOnly from './ScreenReaderOnly';
+import Checkbox from './Checkbox';
 const URL = process.env.REACT_APP_URL;
 const USER_ID = 9999;
 
@@ -155,6 +156,7 @@ const Filter = ({ filter, setFilter, saveFilterToSessionStorage }) => {
           </FilterSelect>
         </>
       )}
+      <Checkbox />
     </FilterWrapper>
   );
 };
