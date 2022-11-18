@@ -32,17 +32,25 @@ export default function Find() {
       filter.hold_color === '' &&
       filter.level === '' &&
       filter.sector === '' &&
-      filter.climb_result === ''
+      filter.climb_result === '' &&
+      filter.projectedOnly === false
     ) {
       setFilteredBouldersList([...bouldersList]);
     } else {
       setFilteredBouldersList(
         bouldersList.filter(
           boulder =>
-            boulder.hold_color === filter.hold_color ||
-            boulder.level === filter.level ||
-            boulder.sector === filter.sector ||
-            boulder.climbed === filter.climb_result
+            (filter.hold_color
+              ? boulder.hold_color === filter.hold_color
+              : true) &&
+            (filter.level ? boulder.level === filter.level : true) &&
+            (filter.sector ? boulder.sector === filter.sector : true) &&
+            (filter.climb_result
+              ? boulder.climbed === filter.climb_result
+              : true) &&
+            (filter.projectedOnly
+              ? boulder.projected === filter.projectedOnly
+              : true)
         )
       );
     }
@@ -60,6 +68,7 @@ export default function Find() {
           level: '',
           sector: '',
           climb_result: '',
+          projectedOnly: false,
         })
       : setFilter(sessionStorageReturn);
   };
