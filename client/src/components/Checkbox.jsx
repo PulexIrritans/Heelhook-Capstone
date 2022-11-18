@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 
-const Checkbox = ({ title, checked, myFunction }) => {
+const Checkbox = ({ title, checked, myFunction, width }) => {
   return (
     <CheckboxWrapper>
-      <CheckboxLabel htmlFor={title}>{title}: </CheckboxLabel>
+      <CheckboxLabel width={width} htmlFor={title}>
+        {title}:{' '}
+      </CheckboxLabel>
       <DefaultCheckbox
         type="checkbox"
         id={title}
@@ -55,5 +57,5 @@ const CheckboxWrapper = styled.div`
 `;
 
 const CheckboxLabel = styled.label`
-  width: 65px;
+  width: ${props => props.width};
 `;

@@ -166,6 +166,7 @@ const Filter = ({ filter, setFilter, saveFilterToSessionStorage }) => {
       )}
       <Checkbox
         title="Show projected only"
+        width=""
         checked={filter.projectedOnly}
         myFunction={event => {
           setFilter({
@@ -193,7 +194,7 @@ export default Filter;
 const FilterWrapper = styled.form`
   padding: 0.5rem;
   position: relative;
-  height: 20%;
+  //height: 20%;
   margin-bottom: 1rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
