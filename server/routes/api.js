@@ -26,6 +26,7 @@ router.get('/boulders_all/:climberID', async (req, res, next) => {
 
       copy.likeAmount = amount;
       copy.climbed = resultBoulder ? resultBoulder.result : 'None';
+      copy.projected = resultBoulder ? resultBoulder.projected : false;
       return copy;
     })
   );

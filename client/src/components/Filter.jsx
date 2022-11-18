@@ -39,12 +39,14 @@ const Filter = ({ filter, setFilter, saveFilterToSessionStorage }) => {
                 level: '',
                 sector: '',
                 climb_result: '',
+                projectedOnly: false,
               });
               saveFilterToSessionStorage({
                 hold_color: event.target.value,
                 level: '',
                 sector: '',
                 climb_result: '',
+                projectedOnly: false,
               });
             }}
           >
@@ -72,12 +74,14 @@ const Filter = ({ filter, setFilter, saveFilterToSessionStorage }) => {
                 hold_color: '',
                 sector: '',
                 climb_result: '',
+                projectedOnly: false,
               });
               saveFilterToSessionStorage({
                 hold_color: '',
                 level: event.target.value,
                 sector: '',
                 climb_result: '',
+                projectedOnly: false,
               });
             }}
           >
@@ -105,12 +109,14 @@ const Filter = ({ filter, setFilter, saveFilterToSessionStorage }) => {
                 hold_color: '',
                 level: '',
                 climb_result: '',
+                projectedOnly: false,
               });
               saveFilterToSessionStorage({
                 sector: event.target.value,
                 hold_color: '',
                 level: '',
                 climb_result: '',
+                projectedOnly: false,
               });
             }}
           >
@@ -138,12 +144,14 @@ const Filter = ({ filter, setFilter, saveFilterToSessionStorage }) => {
                 level: '',
                 sector: '',
                 climb_result: event.target.value,
+                projectedOnly: false,
               });
               saveFilterToSessionStorage({
                 hold_color: '',
                 level: '',
                 sector: '',
                 climb_result: event.target.value,
+                projectedOnly: false,
               });
             }}
           >
@@ -156,7 +164,26 @@ const Filter = ({ filter, setFilter, saveFilterToSessionStorage }) => {
           </FilterSelect>
         </>
       )}
-      <Checkbox />
+      <Checkbox
+        title="Show projected only"
+        checked={filter.projectedOnly}
+        myFunction={event => {
+          setFilter({
+            hold_color: '',
+            level: '',
+            sector: '',
+            climb_result: '',
+            projectedOnly: event.target.checked,
+          });
+          saveFilterToSessionStorage({
+            hold_color: '',
+            level: '',
+            sector: '',
+            climb_result: '',
+            projectedOnly: event.target.checked,
+          });
+        }}
+      />
     </FilterWrapper>
   );
 };
