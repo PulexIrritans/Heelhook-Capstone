@@ -34,19 +34,10 @@ const Filter = ({ filter, setFilter, saveFilterToSessionStorage }) => {
             name="hold_color"
             value={filter.hold_color}
             onChange={event => {
-              setFilter({
-                hold_color: event.target.value,
-                level: '',
-                sector: '',
-                climb_result: '',
-                projectedOnly: false,
-              });
+              setFilter({ ...filter, hold_color: event.target.value });
               saveFilterToSessionStorage({
+                ...filter,
                 hold_color: event.target.value,
-                level: '',
-                sector: '',
-                climb_result: '',
-                projectedOnly: false,
               });
             }}
           >
@@ -69,19 +60,10 @@ const Filter = ({ filter, setFilter, saveFilterToSessionStorage }) => {
             name="level"
             value={filter.level}
             onChange={event => {
-              setFilter({
-                level: event.target.value,
-                hold_color: '',
-                sector: '',
-                climb_result: '',
-                projectedOnly: false,
-              });
+              setFilter({ ...filter, level: event.target.value });
               saveFilterToSessionStorage({
-                hold_color: '',
+                ...filter,
                 level: event.target.value,
-                sector: '',
-                climb_result: '',
-                projectedOnly: false,
               });
             }}
           >
@@ -104,19 +86,10 @@ const Filter = ({ filter, setFilter, saveFilterToSessionStorage }) => {
             name="sector"
             value={filter.sector}
             onChange={event => {
-              setFilter({
-                sector: event.target.value,
-                hold_color: '',
-                level: '',
-                climb_result: '',
-                projectedOnly: false,
-              });
+              setFilter({ ...filter, sector: event.target.value });
               saveFilterToSessionStorage({
+                ...filter,
                 sector: event.target.value,
-                hold_color: '',
-                level: '',
-                climb_result: '',
-                projectedOnly: false,
               });
             }}
           >
@@ -139,19 +112,10 @@ const Filter = ({ filter, setFilter, saveFilterToSessionStorage }) => {
             name="result"
             value={filter.climb_result}
             onChange={event => {
-              setFilter({
-                hold_color: '',
-                level: '',
-                sector: '',
-                climb_result: event.target.value,
-                projectedOnly: false,
-              });
+              setFilter({ ...filter, climb_result: event.target.value });
               saveFilterToSessionStorage({
-                hold_color: '',
-                level: '',
-                sector: '',
+                ...filter,
                 climb_result: event.target.value,
-                projectedOnly: false,
               });
             }}
           >
@@ -169,18 +133,9 @@ const Filter = ({ filter, setFilter, saveFilterToSessionStorage }) => {
         width=""
         checked={filter.projectedOnly}
         myFunction={event => {
-          setFilter({
-            hold_color: '',
-            level: '',
-            sector: '',
-            climb_result: '',
-            projectedOnly: event.target.checked,
-          });
+          setFilter({ ...filter, projectedOnly: event.target.checked });
           saveFilterToSessionStorage({
-            hold_color: '',
-            level: '',
-            sector: '',
-            climb_result: '',
+            ...filter,
             projectedOnly: event.target.checked,
           });
         }}
