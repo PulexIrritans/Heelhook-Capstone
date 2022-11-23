@@ -5,7 +5,7 @@ import Checkbox from './Checkbox';
 const URL = process.env.REACT_APP_URL;
 const USER_ID = 9999;
 
-const Filter = ({ filter, setFilter, saveFilterToSessionStorage }) => {
+const Filter = ({ filter, setFilterAndSaveToSessionStorage }) => {
   const [dropdownFilter, setDropdownFilter] = useState({
     hold_colors: [],
     levels: [],
@@ -34,8 +34,7 @@ const Filter = ({ filter, setFilter, saveFilterToSessionStorage }) => {
             name="hold_color"
             value={filter.hold_color}
             onChange={event => {
-              setFilter({ ...filter, hold_color: event.target.value });
-              saveFilterToSessionStorage({
+              setFilterAndSaveToSessionStorage({
                 ...filter,
                 hold_color: event.target.value,
               });
@@ -60,8 +59,7 @@ const Filter = ({ filter, setFilter, saveFilterToSessionStorage }) => {
             name="level"
             value={filter.level}
             onChange={event => {
-              setFilter({ ...filter, level: event.target.value });
-              saveFilterToSessionStorage({
+              setFilterAndSaveToSessionStorage({
                 ...filter,
                 level: event.target.value,
               });
@@ -86,8 +84,7 @@ const Filter = ({ filter, setFilter, saveFilterToSessionStorage }) => {
             name="sector"
             value={filter.sector}
             onChange={event => {
-              setFilter({ ...filter, sector: event.target.value });
-              saveFilterToSessionStorage({
+              setFilterAndSaveToSessionStorage({
                 ...filter,
                 sector: event.target.value,
               });
@@ -112,8 +109,7 @@ const Filter = ({ filter, setFilter, saveFilterToSessionStorage }) => {
             name="result"
             value={filter.climb_result}
             onChange={event => {
-              setFilter({ ...filter, climb_result: event.target.value });
-              saveFilterToSessionStorage({
+              setFilterAndSaveToSessionStorage({
                 ...filter,
                 climb_result: event.target.value,
               });
@@ -133,8 +129,7 @@ const Filter = ({ filter, setFilter, saveFilterToSessionStorage }) => {
         width=""
         checked={filter.projectedOnly}
         myFunction={event => {
-          setFilter({ ...filter, projectedOnly: event.target.checked });
-          saveFilterToSessionStorage({
+          setFilterAndSaveToSessionStorage({
             ...filter,
             projectedOnly: event.target.checked,
           });

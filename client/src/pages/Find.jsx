@@ -50,7 +50,8 @@ export default function Find() {
     }
   };
 
-  const saveFilterToSessionStorage = newfilter => {
+  const setFilterAndSaveToSessionStorage = newfilter => {
+    setFilter(newfilter);
     sessionStorage.setItem('filter', JSON.stringify(newfilter));
   };
 
@@ -86,8 +87,7 @@ export default function Find() {
         <main>
           <Filter
             filter={filter}
-            setFilter={setFilter}
-            saveFilterToSessionStorage={saveFilterToSessionStorage}
+            setFilterAndSaveToSessionStorage={setFilterAndSaveToSessionStorage}
           />
           <BoulderList role="list">
             <h2>Click on a card to enter your climb.</h2>
