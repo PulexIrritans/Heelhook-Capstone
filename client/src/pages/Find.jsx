@@ -28,13 +28,7 @@ export default function Find() {
   };
 
   const filterBouldersList = () => {
-    if (
-      filter.hold_color === '' &&
-      filter.level === '' &&
-      filter.sector === '' &&
-      filter.climb_result === '' &&
-      filter.projectedOnly === false
-    ) {
+    if (filter.length === 0) {
       setFilteredBouldersList([...bouldersList]);
     } else {
       setFilteredBouldersList(
@@ -56,20 +50,15 @@ export default function Find() {
     }
   };
 
-  const saveFilterToSessionStorage = newfilter => {
+  const setFilterAndSaveToSessionStorage = newfilter => {
+    setFilter(newfilter);
     sessionStorage.setItem('filter', JSON.stringify(newfilter));
   };
 
   const getFilterFromSessionStorage = () => {
     const sessionStorageReturn = JSON.parse(sessionStorage.getItem('filter'));
     sessionStorageReturn === null
-      ? setFilter({
-          hold_color: '',
-          level: '',
-          sector: '',
-          climb_result: '',
-          projectedOnly: false,
-        })
+      ? setFilter({})
       : setFilter(sessionStorageReturn);
   };
 
@@ -98,8 +87,7 @@ export default function Find() {
         <main>
           <Filter
             filter={filter}
-            setFilter={setFilter}
-            saveFilterToSessionStorage={saveFilterToSessionStorage}
+            setFilterAndSaveToSessionStorage={setFilterAndSaveToSessionStorage}
           />
           <BoulderList role="list">
             <h2>Click on a card to enter your climb.</h2>

@@ -5,7 +5,7 @@ import Checkbox from './Checkbox';
 const URL = process.env.REACT_APP_URL;
 const USER_ID = 9999;
 
-const Filter = ({ filter, setFilter, saveFilterToSessionStorage }) => {
+const Filter = ({ filter, setFilterAndSaveToSessionStorage }) => {
   const [dropdownFilter, setDropdownFilter] = useState({
     hold_colors: [],
     levels: [],
@@ -34,19 +34,9 @@ const Filter = ({ filter, setFilter, saveFilterToSessionStorage }) => {
             name="hold_color"
             value={filter.hold_color}
             onChange={event => {
-              setFilter({
+              setFilterAndSaveToSessionStorage({
+                ...filter,
                 hold_color: event.target.value,
-                level: '',
-                sector: '',
-                climb_result: '',
-                projectedOnly: false,
-              });
-              saveFilterToSessionStorage({
-                hold_color: event.target.value,
-                level: '',
-                sector: '',
-                climb_result: '',
-                projectedOnly: false,
               });
             }}
           >
@@ -69,19 +59,9 @@ const Filter = ({ filter, setFilter, saveFilterToSessionStorage }) => {
             name="level"
             value={filter.level}
             onChange={event => {
-              setFilter({
+              setFilterAndSaveToSessionStorage({
+                ...filter,
                 level: event.target.value,
-                hold_color: '',
-                sector: '',
-                climb_result: '',
-                projectedOnly: false,
-              });
-              saveFilterToSessionStorage({
-                hold_color: '',
-                level: event.target.value,
-                sector: '',
-                climb_result: '',
-                projectedOnly: false,
               });
             }}
           >
@@ -104,19 +84,9 @@ const Filter = ({ filter, setFilter, saveFilterToSessionStorage }) => {
             name="sector"
             value={filter.sector}
             onChange={event => {
-              setFilter({
+              setFilterAndSaveToSessionStorage({
+                ...filter,
                 sector: event.target.value,
-                hold_color: '',
-                level: '',
-                climb_result: '',
-                projectedOnly: false,
-              });
-              saveFilterToSessionStorage({
-                sector: event.target.value,
-                hold_color: '',
-                level: '',
-                climb_result: '',
-                projectedOnly: false,
               });
             }}
           >
@@ -139,19 +109,9 @@ const Filter = ({ filter, setFilter, saveFilterToSessionStorage }) => {
             name="result"
             value={filter.climb_result}
             onChange={event => {
-              setFilter({
-                hold_color: '',
-                level: '',
-                sector: '',
+              setFilterAndSaveToSessionStorage({
+                ...filter,
                 climb_result: event.target.value,
-                projectedOnly: false,
-              });
-              saveFilterToSessionStorage({
-                hold_color: '',
-                level: '',
-                sector: '',
-                climb_result: event.target.value,
-                projectedOnly: false,
               });
             }}
           >
@@ -169,18 +129,8 @@ const Filter = ({ filter, setFilter, saveFilterToSessionStorage }) => {
         width=""
         checked={filter.projectedOnly}
         myFunction={event => {
-          setFilter({
-            hold_color: '',
-            level: '',
-            sector: '',
-            climb_result: '',
-            projectedOnly: event.target.checked,
-          });
-          saveFilterToSessionStorage({
-            hold_color: '',
-            level: '',
-            sector: '',
-            climb_result: '',
+          setFilterAndSaveToSessionStorage({
+            ...filter,
             projectedOnly: event.target.checked,
           });
         }}
