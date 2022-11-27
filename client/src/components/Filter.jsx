@@ -134,7 +134,9 @@ const Filter = ({ filter, setFilterAndSaveToSessionStorage }) => {
             projectedOnly: event.target.checked,
           });
         }}
-      />
+      >
+        Show Projected only:
+      </Checkbox>
     </FilterWrapper>
   );
 };
@@ -144,7 +146,6 @@ export default Filter;
 const FilterWrapper = styled.form`
   padding: 0.5rem;
   position: relative;
-  //height: 20%;
   margin-bottom: 1rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);

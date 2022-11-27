@@ -4,6 +4,7 @@ import { FaUndoAlt } from 'react-icons/fa';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 import ScreenReaderOnly from './ScreenReaderOnly';
 import { ReactComponent as Heart } from '../icons/heart.svg';
+import Checkbox from './Checkbox';
 
 import styled from 'styled-components';
 import Button from './Button';
@@ -48,18 +49,17 @@ const AddClimbedBoulderForm = ({
           navigate('/find');
         }}
       >
-        <CheckboxWrapper>
-          <CheckboxLabel htmlFor="projected">Projected: </CheckboxLabel>
-          <CheckboxInput
-            type="checkbox"
-            id="projected"
-            name="projected"
-            checked={newProjected}
-            onChange={event => {
-              setNewProjected(event.target.checked);
-            }}
-          ></CheckboxInput>
-        </CheckboxWrapper>
+        <Checkbox
+          title={'Projected'}
+          width={'65px'}
+          checked={newProjected}
+          myFunction={event => {
+            setNewProjected(event.target.checked);
+          }}
+        >
+          Projected:
+        </Checkbox>
+
         <AttemptsLabel htmlFor="attempts">Attempts: </AttemptsLabel>
         <AttemptsWrapper>
           <ButtonWrapperLeft>
@@ -141,20 +141,17 @@ const AddClimbedBoulderForm = ({
             </ResetButton>
           </RadioButtonWrapper>
         </fieldset>
-        <CheckboxWrapper>
-          <CheckboxLabel htmlFor="liked">
-            <Heart style={{ width: '20px' }} /> Like:{' '}
-          </CheckboxLabel>
-          <CheckboxInput
-            type="checkbox"
-            id="liked"
-            name="liked"
-            checked={newLiked}
-            onChange={event => {
-              setNewLiked(event.target.checked);
-            }}
-          ></CheckboxInput>
-        </CheckboxWrapper>
+        <Checkbox
+          width={'65px'}
+          title="Liked"
+          checked={newLiked}
+          myFunction={event => {
+            setNewLiked(event.target.checked);
+          }}
+        >
+          <Heart style={{ width: '20px' }} /> Like:{' '}
+        </Checkbox>
+
         <fieldset>
           <ScreenReaderOnly as="legend">Level Feedback</ScreenReaderOnly>
           <RadioButtonWrapper>
@@ -330,45 +327,4 @@ const PlusIcon = styled(AiOutlinePlus)`
   opacity: 0.5;
   width: 100%;
   height: 100%;
-`;
-
-const CheckboxInput = styled.input`
-  position: relative;
-  width: 2rem;
-  height: 1rem;
-  -webkit-appearance: none;
-  background: #c6c6c6;
-  outline: none;
-  border-radius: 20px;
-  box-shadow: inset 0 0 5px rgba(255, 0, 0, 0.2);
-  transition: 0.7s;
-  &:checked {
-    background: var(--color-cyan);
-  }
-  &:before {
-    content: '';
-    position: absolute;
-    width: 1rem;
-    height: 1rem;
-    border-radius: 20px;
-    top: 0;
-    left: 0;
-    background: #ffffff;
-    transform: scale(1.1);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    transition: 0.5s;
-  }
-  &:checked&:before {
-    left: 1rem;
-  }
-`;
-
-const CheckboxWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-`;
-
-const CheckboxLabel = styled.label`
-  width: 65px;
 `;
