@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import ScreenReaderOnly from './ScreenReaderOnly';
 import Checkbox from './Checkbox';
+import FilterDropdown from './FilterDropdown';
 const URL = process.env.REACT_APP_URL;
 const USER_ID = 9999;
 
@@ -12,6 +12,13 @@ const Filter = ({ filter, setFilterAndSaveToSessionStorage }) => {
     sectors: [],
     climb_results: [],
   });
+
+  const dropdownTitles = {
+    hold_colors: ['Hold color', 'Choose a hold color'],
+    levels: ['Level', 'Choose a level'],
+    sectors: ['Sector', 'Choose a sector'],
+    climb_results: ['Climb result', 'Choose climb result'],
+  };
 
   const fetchDropdownFilter = () => {
     fetch(`${URL}/boulders_filter/${USER_ID}`)
@@ -24,106 +31,22 @@ const Filter = ({ filter, setFilterAndSaveToSessionStorage }) => {
 
   return (
     <FilterWrapper>
-      {dropdownFilter.hold_colors.length > 0 && (
-        <>
-          <ScreenReaderOnly as="label" for="hold_color">
-            Choose a hold color:
-          </ScreenReaderOnly>
-          <FilterSelect
-            id="hold_color"
-            name="hold_color"
-            value={filter.hold_color}
-            onChange={event => {
-              setFilterAndSaveToSessionStorage({
-                ...filter,
-                hold_color: event.target.value,
-              });
-            }}
-          >
-            <option value="">Hold color</option>
-            {dropdownFilter.hold_colors.map(color => (
-              <option key={color} value={color}>
-                {color.toUpperCase()}
-              </option>
-            ))}
-          </FilterSelect>
-        </>
-      )}
-      {dropdownFilter.levels.length > 0 && (
-        <>
-          <ScreenReaderOnly as="label" for="level">
-            Choose a level:
-          </ScreenReaderOnly>
-          <FilterSelect
-            id="level"
-            name="level"
-            value={filter.level}
-            onChange={event => {
-              setFilterAndSaveToSessionStorage({
-                ...filter,
-                level: event.target.value,
-              });
-            }}
-          >
-            <option value="">Level</option>
-            {dropdownFilter.levels.map(level => (
-              <option key={level} value={level}>
-                {level}
-              </option>
-            ))}
-          </FilterSelect>
-        </>
-      )}
-      {dropdownFilter.sectors.length > 0 && (
-        <>
-          <ScreenReaderOnly as="label" for="sector">
-            Choose a sector:
-          </ScreenReaderOnly>
-          <FilterSelect
-            id="sector"
-            name="sector"
-            value={filter.sector}
-            onChange={event => {
-              setFilterAndSaveToSessionStorage({
-                ...filter,
-                sector: event.target.value,
-              });
-            }}
-          >
-            <option value="">Sector</option>
-            {dropdownFilter.sectors.map(sector => (
-              <option key={sector} value={sector}>
-                {sector.toUpperCase()}
-              </option>
-            ))}
-          </FilterSelect>
-        </>
-      )}
-      {dropdownFilter.hold_colors.length > 0 && (
-        <>
-          <ScreenReaderOnly as="label" for="result">
-            Choose climb result:
-          </ScreenReaderOnly>
-          <FilterSelect
-            id="result"
-            name="result"
-            value={filter.climb_result}
-            onChange={event => {
-              setFilterAndSaveToSessionStorage({
-                ...filter,
-                climb_result: event.target.value,
-              });
-            }}
-          >
-            <option value="">Climb result</option>
-            {dropdownFilter.climb_results?.map(result => (
-              <option key={result} value={result}>
-                {result.toUpperCase()}
-              </option>
-            ))}
-          </FilterSelect>
-        </>
-      )}
+      {Object.keys(dropdownFilter).map((keyName, index) => (
+        <FilterDropdown
+          key={index}
+          defaultValueText={dropdownTitles[keyName][0]}
+          dropdown={dropdownFilter[keyName]}
+          title={dropdownTitles[keyName][1]}
+          dropdownType={keyName}
+          value={filter[keyName]}
+          myFunction={event => {
+            setFilterAndSaveToSessionStorage({
+              ...filter,
+              [keyName]: event.target.value,
+            });
+          }}
+        />
+      ))}
       <Checkbox
         title="Show projected only"
         width=""
@@ -134,7 +57,9 @@ const Filter = ({ filter, setFilterAndSaveToSessionStorage }) => {
             projectedOnly: event.target.checked,
           });
         }}
-      />
+      >
+        Show Projected only:
+      </Checkbox>
     </FilterWrapper>
   );
 };
@@ -144,7 +69,6 @@ export default Filter;
 const FilterWrapper = styled.form`
   padding: 0.5rem;
   position: relative;
-  //height: 20%;
   margin-bottom: 1rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -155,14 +79,5 @@ const FilterWrapper = styled.form`
   box-shadow: var(--box-shadow);
   &:hover {
     background-color: var(--color-medium-gray);
-  }
-`;
-
-const FilterSelect = styled.select`
-  border: 1px solid var(--color-cyan);
-  background-color: white;
-  padding: 0.5rem;
-  &:focus {
-    border: 2px solid var(--color-cyan);
   }
 `;

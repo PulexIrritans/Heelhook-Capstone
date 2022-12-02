@@ -34,13 +34,13 @@ export default function Find() {
       setFilteredBouldersList(
         bouldersList.filter(
           boulder =>
-            (filter.hold_color
-              ? boulder.hold_color === filter.hold_color
+            (filter.hold_colors
+              ? boulder.hold_color === filter.hold_colors
               : true) &&
-            (filter.level ? boulder.level === filter.level : true) &&
-            (filter.sector ? boulder.sector === filter.sector : true) &&
-            (filter.climb_result
-              ? boulder.climbed === filter.climb_result
+            (filter.levels ? boulder.level === filter.levels : true) &&
+            (filter.sectors ? boulder.sector === filter.sectors : true) &&
+            (filter.climb_results
+              ? boulder.climbed === filter.climb_results
               : true) &&
             (filter.projectedOnly
               ? boulder.projected === filter.projectedOnly

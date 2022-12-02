@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-const Checkbox = ({ title, checked, myFunction, width }) => {
+const Checkbox = ({ title, checked, myFunction, width, children }) => {
   return (
     <CheckboxWrapper>
       <CheckboxLabel width={width} htmlFor={title}>
-        {title}:{' '}
+        {children}
       </CheckboxLabel>
       <DefaultCheckbox
         type="checkbox"
