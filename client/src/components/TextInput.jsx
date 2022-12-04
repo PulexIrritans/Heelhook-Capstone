@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const TextInput = ({
+  type,
   title,
   placeholder,
   required,
@@ -14,7 +15,7 @@ const TextInput = ({
     <Wrapper>
       <Label htmlFor={title}>{title}</Label>
       <TextFieldInput
-        type="text"
+        type={'text'}
         id={title}
         name={title}
         placeholder={placeholder}
