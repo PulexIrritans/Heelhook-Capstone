@@ -44,9 +44,15 @@ const AddBoulder = () => {
   }, [addedBoulder]);
 
   return (
-    <>
+    <AddBoulderFormWrapper>
+      <FormHeader id="form-heading">
+        Couldn't find the boulder you want to climb?
+      </FormHeader>
+      <p id="form-description">Add a new boulder yourself!</p>
       {error && <Error content={error} />}
       <NewBoulderForm
+        aria-labelledby="form-heading"
+        aria-describedby="form-description"
         onSubmit={event => {
           event.preventDefault();
           saveNewBoulderToDatabase();
@@ -131,7 +137,7 @@ const AddBoulder = () => {
         />
         <Button title={'Save Boulder'} myFunction={() => {}} />
       </NewBoulderForm>
-    </>
+    </AddBoulderFormWrapper>
   );
 };
 
@@ -142,4 +148,22 @@ const NewBoulderForm = styled.form`
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+`;
+
+const AddBoulderFormWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 1rem 0.5rem;
+  margin-top: 1rem;
+  background-color: var(--color-light-gray);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  &:hover {
+    background-color: var(--color-medium-gray);
+  }
+`;
+
+const FormHeader = styled.h2`
+  margin: 0;
 `;
