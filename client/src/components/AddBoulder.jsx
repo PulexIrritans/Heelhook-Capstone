@@ -1,23 +1,21 @@
 import { useState } from 'react';
 import TextInput from './TextInput';
+import Error from './Error';
 import Button from './Button';
 import styled from 'styled-components';
+const URL = process.env.REACT_APP_URL;
 
 const AddBoulder = () => {
-  const [error, setError] = useState('');
-  const [newBoulder, setNewBoulder] = useState({
-    name: '',
-    level: '',
-    hold_color: '',
-    sector: '',
-    setter: '',
-    tags: '',
-  });
+  const [error, setError] = useState(false);
+  const [newBoulder, setNewBoulder] = useState({});
 
-  const saveNewBoulderToDatabase = newBoulder => {
+  const saveNewBoulderToDatabase = () => {
     const newDBBoulder = {
       ...newBoulder,
-      tags: newBoulder.tags.split(',').map(tag => tag.trim()),
+      hold_color: newBoulder.hold_color.toLowerCase(),
+      tags: newBoulder.tags
+        ? newBoulder.tags.split(/[\s,;]+/).map(tag => tag.trim())
+        : [],
       start_date: new Date(),
     };
 
@@ -31,99 +29,100 @@ const AddBoulder = () => {
       .then(response => response.json())
       .then(data => {})
       .catch(error => {
-        setError(true);
+        setError('Sorry, could not save boulder.');
       });
   };
 
   return (
-    <NewBoulderForm>
-      <TextInput
-        title={'Boulder name*'}
-        required
-        min={2}
-        max={30}
-        placeholder={'Boulder name'}
-        disabled={false}
-        value={newBoulder.name}
-        myFunction={event => {
-          const newInputBoulder = { ...newBoulder };
-          newInputBoulder.name = event.target.value;
-          setNewBoulder(newInputBoulder);
+    <>
+      {error && <Error content={error} />}
+      <NewBoulderForm
+        onSubmit={event => {
+          event.preventDefault();
+          saveNewBoulderToDatabase();
+          // navigate('/add${_id}');
         }}
-      />
-      <TextInput
-        title={'Level*'}
-        required
-        minLength={1}
-        maxLength={3}
-        placeholder={'Level'}
-        disabled={false}
-        value={newBoulder.level}
-        myFunction={event => {
-          const newInputBoulder = { ...newBoulder };
-          newInputBoulder.level = event.target.value;
-          setNewBoulder(newInputBoulder);
-        }}
-      />
-      <TextInput
-        title={'Hold color*'}
-        required
-        minLength={3}
-        maxLength={20}
-        placeholder={'Hold color'}
-        disabled={false}
-        value={newBoulder.hold_color}
-        myFunction={event => {
-          const newInputBoulder = { ...newBoulder };
-          newInputBoulder.hold_color = event.target.value;
-          setNewBoulder(newInputBoulder);
-        }}
-      />
-      <TextInput
-        title={'Sector*'}
-        required
-        minLength={3}
-        maxLength={30}
-        placeholder={'Sector'}
-        disabled={false}
-        value={newBoulder.sector}
-        myFunction={event => {
-          const newInputBoulder = { ...newBoulder };
-          newInputBoulder.sector = event.target.value;
-          setNewBoulder(newInputBoulder);
-        }}
-      />
-      <TextInput
-        title={'Setter'}
-        minLength={3}
-        maxLength={30}
-        placeholder={'Setter'}
-        disabled={false}
-        value={newBoulder.setter}
-        myFunction={event => {
-          const newInputBoulder = { ...newBoulder };
-          newInputBoulder.setter = event.target.value;
-          setNewBoulder(newInputBoulder);
-        }}
-      />
-      <TextInput
-        title={'Tags'}
-        minLength={3}
-        maxLength={30}
-        placeholder={'Tags (separate by comma)'}
-        disabled={false}
-        value={newBoulder.tags}
-        myFunction={event => {
-          const newInputBoulder = { ...newBoulder };
-          newInputBoulder.tags = event.target.value;
-          setNewBoulder(newInputBoulder);
-        }}
-      />
-      <Button
-        title={'Save Boulder'}
-        myFunction={saveNewBoulderToDatabase(newBoulder)}
-      />
-    </NewBoulderForm>
+      >
+        <TextInput
+          title={'Boulder name*'}
+          required
+          min={2}
+          max={30}
+          disabled={false}
+          value={newBoulder.name}
+          myFunction={event => {
+            const newInputBoulder = { ...newBoulder };
+            newInputBoulder.name = event.target.value;
+            setNewBoulder(newInputBoulder);
+          }}
+        />
+        <TextInput
+          title={'Level*'}
+          required
+          minLength={1}
+          maxLength={3}
+          disabled={false}
+          value={newBoulder.level}
+          myFunction={event => {
+            const newInputBoulder = { ...newBoulder };
+            newInputBoulder.level = event.target.value;
+            setNewBoulder(newInputBoulder);
+          }}
+        />
+        <TextInput
+          title={'Hold color*'}
+          required
+          minLength={3}
+          maxLength={20}
+          disabled={false}
+          value={newBoulder.hold_color}
+          myFunction={event => {
+            const newInputBoulder = { ...newBoulder };
+            newInputBoulder.hold_color = event.target.value;
+            setNewBoulder(newInputBoulder);
+          }}
+        />
+        <TextInput
+          title={'Sector*'}
+          required
+          minLength={3}
+          maxLength={30}
+          disabled={false}
+          value={newBoulder.sector}
+          myFunction={event => {
+            const newInputBoulder = { ...newBoulder };
+            newInputBoulder.sector = event.target.value;
+            setNewBoulder(newInputBoulder);
+          }}
+        />
+        <TextInput
+          title={'Setter'}
+          minLength={3}
+          maxLength={30}
+          disabled={false}
+          value={newBoulder.setter}
+          myFunction={event => {
+            const newInputBoulder = { ...newBoulder };
+            newInputBoulder.setter = event.target.value;
+            setNewBoulder(newInputBoulder);
+          }}
+        />
+        <TextInput
+          title={'Tags'}
+          minLength={3}
+          maxLength={30}
+          placeholder={'Please separate by comma'}
+          disabled={false}
+          value={newBoulder.tags}
+          myFunction={event => {
+            const newInputBoulder = { ...newBoulder };
+            newInputBoulder.tags = event.target.value;
+            setNewBoulder(newInputBoulder);
+          }}
+        />
+        <Button title={'Save Boulder'} myFunction={() => {}} />
+      </NewBoulderForm>
+    </>
   );
 };
 
