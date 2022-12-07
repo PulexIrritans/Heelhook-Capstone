@@ -1,4 +1,5 @@
 import TextInput from './TextInput';
+import Error from './Error';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import profilePic from '../images/ProfilePic.jpg';
@@ -64,7 +65,7 @@ const UserProfile = () => {
 
   return (
     <ProfileFormWrapper>
-      {error && <Error>{error}</Error>}
+      {error && <Error content={error} />}
       <PicInfoWrapper>
         <Info success={success}>Saved successfully.</Info>
         <Picture src={profilePic} alt="ProfilePic" />
@@ -198,11 +199,4 @@ const DateWrapper = styled.div`
   grid-template-columns: repeat(2, 1fr);
   gap: 5px;
   margin-bottom: 1rem;
-`;
-
-const Error = styled.p`
-  background-color: rgb(255, 0, 0, 0.2);
-  text-align: center;
-  padding: 0.5rem;
-  border-radius: var(--border-radius);
 `;
