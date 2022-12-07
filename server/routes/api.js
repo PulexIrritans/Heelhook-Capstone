@@ -227,7 +227,9 @@ router.post('/add_boulder/', async (req, res, next) => {
 
   await Boulder(newBoulder)
     .save()
-    .then(data => console.log(data))
+    .then(data => {
+      res.status(201).send(data);
+    })
     .catch(() => {
       next();
     });

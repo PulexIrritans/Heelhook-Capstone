@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import TextInput from './TextInput';
 import Error from './Error';
 import Button from './Button';
@@ -8,6 +9,9 @@ const URL = process.env.REACT_APP_URL;
 const AddBoulder = () => {
   const [error, setError] = useState(false);
   const [newBoulder, setNewBoulder] = useState({});
+  const [addedBoulder, setAddedBoulder] = useState({});
+
+  const navigate = useNavigate();
 
   const saveNewBoulderToDatabase = () => {
     const newDBBoulder = {
@@ -27,11 +31,17 @@ const AddBoulder = () => {
       body: JSON.stringify(newDBBoulder),
     })
       .then(response => response.json())
-      .then(data => {})
+      .then(data => {
+        setAddedBoulder(data);
+      })
       .catch(error => {
         setError('Sorry, could not save boulder.');
       });
   };
+
+  useEffect(() => {
+    addedBoulder._id && navigate(`/add/${addedBoulder._id}`);
+  }, [addedBoulder]);
 
   return (
     <>
@@ -40,7 +50,6 @@ const AddBoulder = () => {
         onSubmit={event => {
           event.preventDefault();
           saveNewBoulderToDatabase();
-          // navigate('/add${_id}');
         }}
       >
         <TextInput
