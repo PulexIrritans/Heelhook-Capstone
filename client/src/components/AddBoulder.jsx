@@ -58,7 +58,7 @@ const AddBoulder = () => {
   return (
     <AddBoulderFormWrapper>
       <FormHeader id="form-heading">
-        Couldn't find the boulder you want to climb?
+        Couldn't find the boulder you climbed?
       </FormHeader>
       <p id="form-description">Add a new boulder yourself!</p>
       {error && <Error content={error} />}
