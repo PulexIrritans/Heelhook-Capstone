@@ -13,13 +13,25 @@ const AddBoulder = () => {
 
   const navigate = useNavigate();
 
+  const toTitleCase = text => {
+    return text
+      .toLowerCase()
+      .split(' ')
+      .map(word => word.substring(0, 1).toUpperCase() + word.substring(1))
+      .join(' ');
+  };
+
   const saveNewBoulderToDatabase = () => {
     const newDBBoulder = {
       ...newBoulder,
-      hold_color: newBoulder.hold_color.toLowerCase(),
+      name: toTitleCase(newBoulder.name.trim()),
+      hold_color: newBoulder.hold_color.toLowerCase().trim(),
+      level: newBoulder.level.trim(),
+      sector: toTitleCase(newBoulder.sector.trim()),
       tags: newBoulder.tags
-        ? newBoulder.tags.split(/[\s,;]+/).map(tag => tag.trim())
+        ? newBoulder.tags.split(/[\s,;]+/).map(tag => tag.loLowerCase().trim())
         : [],
+      setter: newBoulder.setter && toTitleCase(newBoulder.setter.trim()),
       start_date: new Date(),
     };
 
