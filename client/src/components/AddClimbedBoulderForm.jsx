@@ -34,7 +34,7 @@ const AddClimbedBoulderForm = ({
     <FormWrapper>
       <FormHeader id="form-heading">Your climb</FormHeader>
       <p id="form-description">Use this form to save your climb data.</p>
-      <BoulderForm
+      <BoulderResultForm
         aria-labelledby="form-heading"
         aria-describedby="form-description"
         onSubmit={event => {
@@ -199,7 +199,7 @@ const AddClimbedBoulderForm = ({
           </RadioButtonWrapper>
         </fieldset>
         <Button type="submit" title="Save" myFunction={() => {}} />
-      </BoulderForm>
+      </BoulderResultForm>
     </FormWrapper>
   );
 };
@@ -217,7 +217,7 @@ const FormWrapper = styled.div`
   }
 `;
 
-const BoulderForm = styled.form`
+const BoulderResultForm = styled.form`
   margin-top: 0.5rem;
   display: flex;
   flex-direction: column;

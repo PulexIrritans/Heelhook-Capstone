@@ -214,6 +214,27 @@ router.get('/climbed_boulders/:climberID', async (req, res, next) => {
     });
 });
 
+// Save new boulder to db
+
+router.post('/add_boulder/', async (req, res, next) => {
+  const newBoulder = {
+    ...req.body,
+    img_start: req.body.img_start ? req.body.img_start : 'Test_start.jpg',
+    img_complete: req.body.img_complete ? req.body.img_complete : 'Test.jpg',
+    setter: req.body.setter ? req.body.setter : 'N.N.',
+    weighting: 100,
+  };
+
+  await Boulder(newBoulder)
+    .save()
+    .then(data => {
+      res.status(201).send(data);
+    })
+    .catch(() => {
+      next();
+    });
+});
+
 // Save or replace new climbed boulder in db from add page
 
 router.post('/climbed_boulders/', async (req, res, next) => {

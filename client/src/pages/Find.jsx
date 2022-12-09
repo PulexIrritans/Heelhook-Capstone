@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import Navigation from '../components/Navigation';
 import Filter from '../components/Filter';
 import BoulderCard from '../components/BoulderCard';
+import AddBoulder from '../components/AddBoulder';
 import styled from 'styled-components';
 const URL = process.env.REACT_APP_URL;
 const USER_ID = 9999;
@@ -103,6 +104,7 @@ export default function Find() {
               <p>Sorry, nothing found. Please try again.</p>
             )}
           </BoulderList>
+          <AddBoulder />
         </main>
         <Navigation />
       </>
