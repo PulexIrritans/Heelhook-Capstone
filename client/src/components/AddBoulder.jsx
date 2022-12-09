@@ -29,7 +29,7 @@ const AddBoulder = () => {
       level: newBoulder.level.trim(),
       sector: toTitleCase(newBoulder.sector.trim()),
       tags: newBoulder.tags
-        ? newBoulder.tags.split(/[\s,;]+/).map(tag => tag.loLowerCase().trim())
+        ? newBoulder.tags.split(/[\s,;]+/).map(tag => tag.toLowerCase().trim())
         : [],
       setter: newBoulder.setter && toTitleCase(newBoulder.setter.trim()),
       start_date: new Date(),
